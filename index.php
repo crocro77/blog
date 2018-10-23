@@ -1,3 +1,6 @@
+<?php
+    // require_oncerequire_once('controller/controller.php');
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,17 +28,20 @@
         }
         
         // On récupère les derniers posts
-        $req = $bdd->query('SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS date_creation_fr, author FROM posts ORDER BY id');
+        $req = $bdd->query('SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin\') AS date_creation_fr, author FROM posts ORDER BY id');
         
         while ($data = $req->fetch())
         {
             echo "<h2>{$data['title']}</h2>";
             echo "<p>{$data['content']}</p>";
             echo "<p>Le {$data['date_creation_fr']} par {$data['author']}</p>";
+        ?>
+            <em><a href="commentaires.php?billet=<?php echo $donnees['id']; ?>">Commentaires</a></em>
         }
         // Fin de la boucle sur les posts
+        <?php
         $req->closeCursor();
-    ?>
+        ?>
     </div>
   </body>
 </html>
