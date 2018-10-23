@@ -1,0 +1,23 @@
+body {
+    background-color: whitesmoke;
+}
+
+#landscape {
+    width: 950px;
+    height: 350px;
+    display: block;
+    margin: auto;
+}
+
+#illustration, #title, #posts {
+    border: 2px solid gray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    box-shadow: 2px 2px black;
+}
+
+#title {
+    text-align: center;
+    font-family: 'Tahoma';
+}
