@@ -35,9 +35,9 @@
             echo "<h2>{$data['title']}</h2>";
             echo "<p>{$data['content']}</p>";
             echo "<p>Le {$data['date_creation_fr']} par {$data['author']}</p>";
-        ?>
-            <em><a href="commentaires.php?billet=<?php echo $donnees['id']; ?>">Commentaires</a></em>
+            echo '<a href="comments.php?post={$data["id"]}">Commentaires</a>';
         }
+        ?>
         // Fin de la boucle sur les posts
         <?php
         $req->closeCursor();
