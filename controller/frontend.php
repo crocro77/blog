@@ -6,7 +6,7 @@ require_once('model/CommentManager.php');
 
 function listPosts()
 {
-    $postManager = new PostManager(); // Création d'un objet
+    $postManager = new \Anthony\Blogalaska\Model\PostManager(); // Création d'un objet
     $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
     require('view/frontend/listPostsView.php');
@@ -14,8 +14,8 @@ function listPosts()
 
 function post()
 {
-    $postManager = new PostManager();
-    $commentManager = new CommentManager();
+    $postManager = new \Anthony\Blogalaska\Model\PostManager();
+    $commentManager = new \Anthony\Blogalaska\Model\CommentManager();
 
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
@@ -25,7 +25,7 @@ function post()
 
 function addComment($postId, $author, $comment)
 {
-    $commentManager = new CommentManager();
+    $commentManager = new \Anthony\Blogalaska\Model\CommentManager();
 
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
 

@@ -1,4 +1,7 @@
 <?php
+
+namespace Anthony\Blogalaska\Model;
+
 require_once("model/Manager.php");
 
 class PostManager extends Manager
@@ -14,30 +17,30 @@ class PostManager extends Manager
   //   $this->hydrate($donnees);
   // }
 
-  // public function id()
-  // {
-  //   return $this->$id;
-  // }
+  public function id()
+  {
+    return $this->$id;
+  }
 
-  // public function date()
-  // {
-  //   return $this->$date;
-  // }
+  public function date()
+  {
+    return $this->$date;
+  }
 
-  // public function title()
-  // {
-  //   return $this->$title;
-  // }
+  public function title()
+  {
+    return $this->$title;
+  }
 
-  // public function content()
-  // {
-  //   return $this->$content;
-  // }
+  public function content()
+  {
+    return $this->$content;
+  }
 
-  // public function author()
-  // {
-  //   return $this->$author;
-  // }
+  public function author()
+  {
+    return $this->$author;
+  }
 
   public function getPosts()
   {
