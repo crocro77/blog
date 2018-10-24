@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 <div id="illustration">
-  <img id="landscape" src="img/alaska_landscape.jpg" alt="alaska landscape">
+  <img id="landscape" src="public/img/alaska_landscape.jpg" alt="alaska landscape">
 </div>
 <div id="title">
 <h1>Billet pour l'Alaska de Jean Forteroche</h1>
@@ -12,7 +12,7 @@
 while ($data = $posts->fetch())
 {
 ?>
-  <div class="posts">
+  <div id="posts">
     <h3>
       <?= htmlspecialchars($data['title']) ?>
       <em> - Ecrit le <?= $data['date_creation_fr'] ?> par <?= $data['author'] ?></em>
@@ -29,5 +29,5 @@ $posts->closeCursor();
 ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/frontend/template.php'); ?>
 
