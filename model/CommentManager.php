@@ -27,37 +27,46 @@ class CommentManager extends Manager
     return $this->$post_id;
   }
 
-  public function dateComment()
-  {
-    return $this->$dateComment;
-  }
-
   public function author()
   {
     return $this->$author;
   }
 
-  public function content()
+  public function comment()
   {
-    return $this->$content;
+    return $this->$comment;
   }
 
-  public function getComments($postId)
+  public function comment_date()
   {
-    $db = dbConnect();
+    return $this->$comment_date;
+  }
+
+  public function getComments($post_id)
+  {
+    $db = $this->dbConnect();
     $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
-    $comments->execute(array($postId));
+    $comments->execute(array($post_id));
 
     return $comments;
   }
 
-  public function postComment($postId, $author, $comment)
+  public function postComment($post_id, $author, $comment)
   {
-    $db = dbConnect();
+    $db = $this->dbConnect();
     $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-    $affectedLines = $comments->execute(array($postId, $author, $comment));
+    $affectedLines = $comments->execute(array($post_id, $author, $comment));
 
     return $affectedLines;
+  }
+
+  public function editComment($newComment, $post_id)
+  {
+      $db = $this->dbConnect();
+      $newComment = $db->prepare('UPDATE comments SET comment = ? WHERE id=?');
+      $affectedComment = $newComment->execute(array($newComment, $post_id));
+
+      return $affectedComment;
   }
 }
 ?>

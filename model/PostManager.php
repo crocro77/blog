@@ -50,11 +50,11 @@ class PostManager extends Manager
     return $req;
   }
 
-  public function getPost($postId)
+  public function getPost($post_id)
   {
     $db = $this->dbConnect();
     $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin\') AS date_creation_fr, author FROM posts ORDER BY id');
-    $req->execute(array($postId));
+    $req->execute(array($post_id));
     $post = $req->fetch();
 
     return $post;

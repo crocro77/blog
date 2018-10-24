@@ -9,7 +9,7 @@ body {
     margin: auto;
 }
 
-#illustration, #title, #posts {
+#illustration, #title, #posts, #comments, #addComments {
     border: 2px solid gray;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -20,4 +20,26 @@ body {
 #title {
     text-align: center;
     font-family: 'Tahoma';
+}
+
+#button {
+    border: 1px solid blanchedalmond;
+    border-radius: 3px;
+    background-color: cadetblue;
+    color: white;
+    text-decoration-line: none;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#paragraph, #posts, #comments, #addComments {
+    text-align: center;
+}
+
+.commentButton {
+    width: 150px;
+    margin: auto;
+    display: block;
+    text-align: center;
 }
