@@ -1,11 +1,11 @@
 <?php
-class Posts
+class Comments
 {
   protected $id,
-    	      $idPost,
-            $dateComment,
+    	      $post_id,
             $author,
-            $content;
+            $comment,
+            $comment_date;
     
   public function __construct(array $donnees)
   {
