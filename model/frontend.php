@@ -13,7 +13,7 @@ function getPost($postId)
     $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin\') AS date_creation_fr, author FROM posts ORDER BY id');
     $req->execute(array($postId));
     $post = $req->fetch();
-
+    
     return $post;
 }
 
@@ -26,18 +26,10 @@ function getComments($postId)
     return $comments;
 }
 
-// Nouvelle fonction qui nous permet d'éviter de répéter du code
 function dbConnect()
 {
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=blog_alaska;charset=utf8', 'root', '');
-        return $db;
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
+    $db = new PDO('mysql:host=localhost;dbname=blog_alaska;charset=utf8', 'root', '');
+    return $db;
 }
 
 function postComment($postId, $author, $comment)
