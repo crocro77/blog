@@ -71,7 +71,7 @@ class CommentManager extends Manager
 
   public function deleteComment($deleteComment, $postId)
   {
-    $db = $this->dbConnec();
+    $db = $this->dbConnect();
     $deleteComment = $db->prepare('DELETE FROM comments WHERE id={$_GET["id"]}');
     header("Location: index.php");
   }
