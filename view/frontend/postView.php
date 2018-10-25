@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 <div id="illustration">
-  <img id="landscape" src="public/img/alaska_landscape.jpg" alt="alaska landscape">
+  <img id="landscape" src="public/img/alaska_landscape2.jpg" alt="alaska landscape">
 </div>
 <div id="title">
 <h1>Billet simple pour l'Alaska de Jean Forteroche</h1>
@@ -24,8 +24,9 @@
     ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-        <em><a id="button" href="index.php?action=edit&amp;id=<?= $comment['id'] ?>&amp;postID=<?= $post['id'] ?>">Editer</a></em>
-        <em><a id="button" href="*">Supprimer</a></em>
+        <strong>Admin only</strong>
+        <em><a id="button" href="index.php?action=edit&id=<?= $comment['id'] ?>&amp;postId=<?= $post['id'] ?>">Editer</a></em>
+        <em><a id="button" href="delete.php?id={$comment['id']}">Supprimer</a></em>
     <?php
 
     }
@@ -33,7 +34,7 @@
 </div>
 <div id="addComments">
     <h2>Ajouter un commentaire</h2>
-        <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+        <form action="index.php?action=addComment&id=<?= $post['id'] ?>" method="post">
             <div>
                 <label for="author">Pseudo</label><br />
                 <input type="text" id="author" name="author" />

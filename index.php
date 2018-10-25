@@ -33,11 +33,22 @@ try { // On essaie de faire des choses
         elseif ($_GET['action'] == 'edit') {
             if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['post_id']) && $_GET['post_id'] > 0){
                 if (isset($_POST['newComment'])) {
-                edit($_POST['newComment'], $_GET['id'], $_GET['post_id']);
-            }
-            else {
-                // Autre exception
-                throw new Exception ('Bug');
+                    edit($_POST['newComment'], $_GET['id'], $_GET['post_id']);
+                }
+                else {
+                    // Autre exception
+                    throw new Exception ('Bug');
+                }
+        }
+        elseif ($_GET['delete'] == 'delete') {
+            if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['post_id']) && $_GET['post_id'] > 0){
+                if (isset($_POST['deleteComment'])) {
+                    delete($_POST['deleteComment'], $_GET['id'], $_GET['post_id']);
+                }
+                else {
+                    // Autre exception
+                    throw new Exception ('Bug');
+                }
             }
         }
       }   

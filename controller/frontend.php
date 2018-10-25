@@ -23,25 +23,25 @@ function post()
     require('view/frontend/postView.php');
 }
 
-function addComment($post_id, $author, $comment)
+function addComment($postId, $author, $comment)
 {
     $commentManager = new \Anthony\Blogalaska\Model\CommentManager();
 
-    $affectedLines = $commentManager->postComment($post_id, $author, $comment);
+    $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id=' . $post_id);
+        header('Location: index.php?action=post&id=' . $postId);
     }
 }
 
-function edit($newComment, $id, $post_id)
+function edit($newComment, $id, $postId)
 {
     $commentManager = new \Anthony\Blog\Model\CommentManager();
   
-    $affectedComment = $commentManager->editComment($newComment,$post_id);
+    $affectedComment = $commentManager->editComment($newComment,$postId);
   
     require('view/frontend/postView.php');
   
@@ -49,6 +49,6 @@ function edit($newComment, $id, $post_id)
         throw new Exception('Impossible d\'editer le commentaire !');
     }
     else {
-        header('Location : index.php?action=post&id=' . $post_id);
+        header('Location : index.php?action=post&id=' . $postId);
     }
 }

@@ -9,7 +9,7 @@ body {
     margin: auto;
 }
 
-#illustration, #title, #posts, #comments, #addComments {
+#illustration, #title, #posts, #comments, #addComments, #createPost {
     border: 2px solid gray;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -33,7 +33,7 @@ body {
     cursor: pointer;
 }
 
-#paragraph, #posts, #comments, #addComments {
+#paragraph, #posts, #comments, #addComments, #createPost {
     text-align: center;
 }
 
@@ -42,4 +42,9 @@ body {
     margin: auto;
     display: block;
     text-align: center;
+}
+
+textarea {
+    width: 95%;
+    height: 300px;
 }

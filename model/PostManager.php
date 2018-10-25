@@ -17,30 +17,30 @@ class PostManager extends Manager
   //   $this->hydrate($donnees);
   // }
 
-  public function id()
-  {
-    return $this->$id;
-  }
+  // public function id()
+  // {
+  //   return $this->$id;
+  // }
 
-  public function date()
-  {
-    return $this->$date;
-  }
+  // public function date()
+  // {
+  //   return $this->$date;
+  // }
 
-  public function title()
-  {
-    return $this->$title;
-  }
+  // public function title()
+  // {
+  //   return $this->$title;
+  // }
 
-  public function content()
-  {
-    return $this->$content;
-  }
+  // public function content()
+  // {
+  //   return $this->$content;
+  // }
 
-  public function author()
-  {
-    return $this->$author;
-  }
+  // public function author()
+  // {
+  //   return $this->$author;
+  // }
 
   public function getPosts()
   {
@@ -50,11 +50,11 @@ class PostManager extends Manager
     return $req;
   }
 
-  public function getPost($post_id)
+  public function getPost($postId)
   {
     $db = $this->dbConnect();
     $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin\') AS date_creation_fr, author FROM posts ORDER BY id');
-    $req->execute(array($post_id));
+    $req->execute(array($postId));
     $post = $req->fetch();
 
     return $post;
