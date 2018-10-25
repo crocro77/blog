@@ -24,7 +24,7 @@
     ?>
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-        <strong>Admin only</strong>
+        <strong>Admin only - à voir plus tard</strong>
         <em><a id="button" href="index.php?action=edit&id=<?= $comment['id'] ?>&amp;postId=<?= $post['id'] ?>">Editer</a></em>
         <em><a id="button" href="delete.php?id={$comment['id']}">Supprimer</a></em>
     <?php
@@ -41,7 +41,7 @@
             </div>
             <div>
                 <label for="comment">Commentaire</label><br />
-                <textarea id="comment" name="comment"></textarea>
+                <textarea id="newComment" name="comment"></textarea>
             </div>
             <div>
                 <input id="button" type="submit" />

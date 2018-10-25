@@ -28,15 +28,15 @@ while ($data = $posts->fetch())
 $posts->closeCursor();
 ?>
 <div id="createPost">
-<strong>Admin only - tinyMCE</strong>
+<strong>Admin only - à voir plus tard</strong>
 <h2>Ajouter un chapitre</h2>
   <form method="post" action="create.php">
     Titre :<input type="text" name="title">
     <br />
     Contenu :<br/>
-    <textarea name="content"></textarea>
+    <textarea id="newPost" name="content"></textarea>
     <br />
-    <input type="submit" value="Valider">
+    <input id="button" type="submit" value="Valider">
   </form>
 </div>
 <?php $content = ob_get_clean(); ?>

@@ -44,7 +44,17 @@ body {
     text-align: center;
 }
 
-textarea {
-    width: 95%;
-    height: 300px;
+#newComment {
+    width: 50%;
+    height: 150px;
+    margin: auto;
+    border-radius: 3px;
+}
+
+input {
+    border-radius: 3px;
+}
+
+#newPost_tbl {
+    display: inline-block;
 }
