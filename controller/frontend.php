@@ -52,3 +52,13 @@ function edit($newComment, $id, $postId)
         header('Location : index.php?action=post&id=' . $postId);
     }
 }
+
+// function delete()
+// {
+
+// }
+
+// function createPost()
+// {
+
+// }

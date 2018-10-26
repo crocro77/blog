@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 24 oct. 2018 à 18:03
+-- Généré le :  ven. 26 oct. 2018 à 10:14
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -49,7 +49,9 @@ INSERT INTO `comments` (`id`, `post_id`, `author`, `comment`, `comment_date`) VA
 (6, 1, 'Super_Koala', 'Super! Continuez !', '2018-10-24 18:03:51'),
 (11, 5, 'mama', 'Epoustouflant', '2018-10-24 19:53:31'),
 (10, 4, 'Pat', 'Un peu court...', '2018-10-24 19:50:44'),
-(12, 2, 'Toto', 'J\'ai bien aimé moi !', '2018-10-24 19:55:47');
+(12, 2, 'Toto', 'J\'ai bien aimé moi !', '2018-10-24 19:55:47'),
+(15, 4, 'minou_minou', 'Moi j\'aime bien !', '2018-10-26 11:02:30'),
+(16, 3, 'Toto', 'Oui ! Espérons que la suite soit aussi bien !', '2018-10-26 11:44:19');
 
 -- --------------------------------------------------------
 
