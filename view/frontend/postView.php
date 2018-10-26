@@ -25,8 +25,8 @@
         <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
         <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
         <strong>Admin only - à voir plus tard</strong>
-        <em><a id="button" href="index.php?action=edit&id=<?= $comment['id'] ?>&amp;postId=<?= $post['id'] ?>">Editer</a></em>
-        <em><a id="button" href="delete.php?id={$comment['id']}">Supprimer</a></em>
+        <em><a id="button" href="index.php?action=edit&id=<?= $comment['id'] ?>&postId=<?= $post['id'] ?>">Editer</a></em>
+        <em><a id="button" href="index.php?action=delete?id=<?= $comment['id'] ?>&postId=<?= $post['id'] ?>">Supprimer</a></em>
     <?php
 
     }
@@ -48,6 +48,10 @@
             </div>
         </form>
 </div>
+
+<footer>
+    <p>2018 - Jean Forteroche</a> - <a id="adminButton" href='index.php?action=login'>Espace d'administration</a></p>
+</footer>
 
 <?php $content = ob_get_clean(); ?>
 

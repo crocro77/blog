@@ -58,3 +58,11 @@ input {
 #newPost_tbl {
     display: inline-block;
 }
+
+footer {
+    text-align: center;
+}
+
+#adminButton {
+    text-decoration-line: none;
+}

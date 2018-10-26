@@ -40,7 +40,7 @@ try { // On essaie de faire des choses
                     throw new Exception ('Bug');
                 }
         }
-        elseif ($_GET['delete'] == 'delete') {
+        elseif ($_GET['action'] == 'delete') {
             if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['post_id']) && $_GET['post_id'] > 0){
                 if (isset($_POST['deleteComment'])) {
                     delete($_POST['deleteComment'], $_GET['id'], $_GET['post_id']);
@@ -51,6 +51,8 @@ try { // On essaie de faire des choses
                 }
             }
         }
+        // elseif ($_GET['action'] == 'login') {
+        // }
       }   
     }
     else {

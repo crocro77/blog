@@ -39,6 +39,9 @@ $posts->closeCursor();
     <input id="button" type="submit" value="Valider">
   </form>
 </div>
+<footer>
+  <p>2018 - Jean Forteroche</a> - <a id="adminButton" href='index.php?action=login'>Espace d'administration</a></p>
+</footer>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('view/frontend/template.php'); ?>
