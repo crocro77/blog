@@ -11,7 +11,7 @@
 <div id="posts">
     <h3>
         <?= htmlspecialchars($post['title']) ?>
-        <em>le <?= $post['date_creation_fr'] ?></em>
+        <em>le <?= $post['creation_date_fr'] ?></em>
     </h3>
     <p>
         <?= nl2br(htmlspecialchars($post['content'])) ?>
@@ -49,10 +49,6 @@
         </form>
 </div>
 
-<footer>
-    <p>2018 - Jean Forteroche</a> - <a id="adminButton" href='index.php?action=login'>Espace d'administration</a></p>
-</footer>
-
 <?php $content = ob_get_clean(); ?>
 
-<?php require('view/frontend/template.php'); ?>
+<?php require('view/frontend/template.php'); ?> 

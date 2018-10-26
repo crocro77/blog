@@ -15,13 +15,13 @@ while ($data = $posts->fetch())
   <div id="posts">
     <h3 id="paragraph">
       <?= htmlspecialchars($data['title']) ?>
-      <em> - Ecrit le <?= $data['date_creation_fr'] ?> par <?= $data['author'] ?></em>
+      <em> - Ecrit le <?= $data['creation_date_fr'] ?> par <?= $data['author'] ?></em>
     </h3>
     <p>
       <?= nl2br(htmlspecialchars($data['content'])) ?>
       <br />
     </p>
-    <em><a class="commentButton" id="button" href="post.php?id=<?= $data['id'] ?>">Commentaires</a></em>
+    <em><a class="commentButton" id="button" href="index.php?action=post&id=<?= $data['id'] ?>">Commentaires</a></em>
   </div>
 <?php
 }
@@ -39,9 +39,7 @@ $posts->closeCursor();
     <input id="button" type="submit" value="Valider">
   </form>
 </div>
-<footer>
-  <p>2018 - Jean Forteroche</a> - <a id="adminButton" href='index.php?action=login'>Espace d'administration</a></p>
-</footer>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('view/frontend/template.php'); ?>
