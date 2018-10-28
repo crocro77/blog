@@ -19,7 +19,8 @@ body {
 
 #title {
     text-align: center;
-    font-family: 'Tahoma';
+    font-family: 'Indie Flower';
+    font-size: 60px;
 }
 
 #button {
@@ -33,8 +34,23 @@ body {
     cursor: pointer;
 }
 
-#paragraph, #posts, #comments, #addComments, #createPost {
+#button:hover {
+    color: black;
+    background-color: turquoise;
+}
+
+#titleDetail, #postTitle, #posts, #comments, #addComments, #createPost {
     text-align: center;
+}
+
+#postTitle {
+    background-color: white;
+    font-size: 200%;
+}
+
+#chapterContent {
+    padding-left: 300px;
+    padding-right: 300px;
 }
 
 .commentButton {
@@ -65,4 +81,9 @@ footer {
 
 #adminButton {
     text-decoration-line: none;
+    color: cadetblue;
+}
+
+#adminButton:hover {
+    color: turquoise;
 }

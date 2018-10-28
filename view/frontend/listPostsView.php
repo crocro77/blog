@@ -4,25 +4,26 @@
 <div id="illustration">
   <img id="landscape" src="public/img/alaska_landscape.jpg" alt="alaska landscape">
 </div>
-<div id="title">
-<h1>Billet simple pour l'Alaska de Jean Forteroche</h1>
-<p>Découvrez ce roman passionnant avec de nouveaux chapitres ajoutés régulièrement !</p>
+<div>
+<h1 id="title">Billet simple pour l'Alaska de Jean Forteroche</h1>
+<p id="titleDetail">Découvrez ce roman passionnant avec de nouveaux chapitres ajoutés régulièrement !</p>
 </div>
 <?php
 while ($data = $posts->fetch())
 {
 ?>
   <div id="posts">
-    <h3 id="paragraph">
+    <h3 id="postTitle">
       <?= htmlspecialchars($data['title']) ?>
       <em> - Ecrit le <?= $data['creation_date_fr'] ?> par <?= $data['author'] ?></em>
     </h3>
-    <p>
+    <p id="chapterContent">
       <?= nl2br(htmlspecialchars($data['content'])) ?>
       <br />
     </p>
     <em><a class="commentButton" id="button" href="index.php?action=post&id=<?= $data['id'] ?>">Commentaires</a></em>
   </div>
+  <br />
 <?php
 }
 $posts->closeCursor();

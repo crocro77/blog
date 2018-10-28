@@ -12,34 +12,34 @@ class Post
             $content,
             $author;
 
-	public function __construct(array $donnees)
+	public function __construct(array $data)
 	{
-		$this->hydrate($donnees);
+		$this->hydrate($data);
 	}
 
 	public function id()
 	{
-		return $this->$id;
+		return $this->id;
 	}
 
 	public function date()
 	{
-		return $this->$date;
+		return $this->date;
 	}
 
 	public function title()
 	{
-		return $this->$title;
+		return $this->title;
 	}
 
 	public function content()
 	{
-		return $this->$content;
+		return $this->content;
 	}
 
 	public function author()
 	{
-		return $this->$author;
+		return $this->author;
 	}
 }
 

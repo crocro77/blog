@@ -12,33 +12,33 @@ class Comment
             $comment,
             $comment_date;
       
-  public function __construct(array $donnees)
+  public function __construct(array $data)
   {
-    $this->hydrate($donnees);
+    $this->hydrate($data);
   }
 
   public function id()
   {
-    return $this->$id;
+    return $this->id;
   }
 
   public function post_id()
   {
-    return $this->$post_id;
+    return $this->post_id;
   }
 
   public function author()
   {
-    return $this->$author;
+    return $this->author;
   }
 
   public function comment()
   {
-    return $this->$comment;
+    return $this->comment;
   }
 
   public function comment_date()
   {
-    return $this->$comment_date;
+    return $this->comment_date;
   }
 }

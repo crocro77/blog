@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title><?= $title ?></title>
         <link href="public/css/style.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
         <script type="text/javascript" src="public/tiny_mce/tiny_mce.js"></script>
         <script src="public/js/tiny_mce_script.js"></script>
     </head>

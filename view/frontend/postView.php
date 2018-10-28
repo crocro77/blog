@@ -4,19 +4,20 @@
 <div id="illustration">
   <img id="landscape" src="public/img/alaska_landscape2.jpg" alt="alaska landscape">
 </div>
-<div id="title">
-<h1>Billet simple pour l'Alaska de Jean Forteroche</h1>
-<p><a id="button" href="index.php">Retour à la liste des chapitres</a></p>
+<div>
+<h1  id="title">Billet simple pour l'Alaska de Jean Forteroche</h1>
+<p id="titleDetail"><a id="button" href="index.php">Retour à la liste des chapitres</a></p>
 </div>
 <div id="posts">
-    <h3>
+    <h3 id="postTitle">
         <?= htmlspecialchars($post['title']) ?>
         <em>le <?= $post['creation_date_fr'] ?></em>
     </h3>
-    <p>
+    <p id="chapterContent">
         <?= nl2br(htmlspecialchars($post['content'])) ?>
     </p>
 </div>
+<br />
 <div id="comments">
     <h2>Commentaires</h2>
     <?php
@@ -32,6 +33,7 @@
     }
     ?>
 </div>
+<br />
 <div id="addComments">
     <h2>Ajouter un commentaire</h2>
         <form action="index.php?action=addComment&id=<?= $post['id'] ?>" method="post">
