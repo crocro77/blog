@@ -11,7 +11,7 @@ function listPosts()
     $postManager = new PostManager();
     $posts = $postManager->getPosts();
 
-    require('view/frontend/listPostsView.php');
+    require('view/frontoffice/listPostsView.php');
 }
 
 function post()
@@ -22,7 +22,7 @@ function post()
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
 
-    require('view/frontend/postView.php');
+    require('view/frontoffice/postView.php');
 }
 
 function addComment($postId, $author, $comment)
@@ -38,30 +38,3 @@ function addComment($postId, $author, $comment)
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
-
-// Edition du commentaire -- A FAIRE
-// function edit($newComment, $commentID, $postID)
-// {
-//     $commentManager = new CommentManager();
-   
-//     $affectedComment = $commentManager->editComment($newComment,$commentID);
-   
-//     require('view/frontend/commentView.php');
-   
-//     if ($affectedComment == false){
-//         throw new Exception('Impossible d\'editer le commentaire !');
-//     }
-//     else {
-//         header('Location : index.php?action=post&id=' .$postID);
-//     }
-// }
-// Suppression du commenaitre -- A FAIRE
-// function delete()
-// {
-
-// }
-// Création d'un nouveau post -- A FAIRE
-// function createPost()
-// {
-
-// }

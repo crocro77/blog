@@ -1,5 +1,6 @@
 <?php
-require("controller/frontend.php");
+require("controller/frontoffice.php");
+require("controller/backoffice.php");
 
 try {
     if (isset($_GET['action'])) {
@@ -27,6 +28,8 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+
+        // backend - admin
         // Edition -- A FAIRE
         // elseif($_GET['action'] == 'edit'){
 	       //  if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['post_id']) && $_GET['post_id'] > 0){

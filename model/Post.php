@@ -4,13 +4,14 @@ namespace Anthony\Blogalaska\Model;
 
 require_once("model/Manager.php");
 
-class Post
+class Post extends ObjectModel
 {
 	protected $id,
 			$date,
             $title,
             $content,
-            $author;
+			$author,
+			$chapter_image;
 
 	public function __construct(array $data)
 	{
@@ -40,6 +41,11 @@ class Post
 	public function author()
 	{
 		return $this->author;
+	}
+
+	public function chapter_image()
+	{
+		return $this->chapter_image();
 	}
 }
 

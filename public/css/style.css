@@ -7,12 +7,17 @@ body {
     height: 350px;
     display: block;
     margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #illustration, #title, #posts, #comments, #addComments, #createPost {
     border: 2px solid gray;
+    margin: 0 15px;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
     border-radius: 15px;
     box-shadow: 2px 2px black;
 }
@@ -23,22 +28,6 @@ body {
     font-size: 60px;
 }
 
-#button {
-    border: 1px solid blanchedalmond;
-    border-radius: 3px;
-    background-color: cadetblue;
-    color: white;
-    text-decoration-line: none;
-    padding: 5px 10px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#button:hover {
-    color: black;
-    background-color: turquoise;
-}
-
 #titleDetail, #postTitle, #posts, #comments, #addComments, #createPost {
     text-align: center;
 }
@@ -46,18 +35,12 @@ body {
 #postTitle {
     background-color: white;
     font-size: 200%;
+    border-radius: 5px;
 }
 
 #chapterContent {
     padding-left: 300px;
     padding-right: 300px;
-}
-
-.commentButton {
-    width: 150px;
-    margin: auto;
-    display: block;
-    text-align: center;
 }
 
 #newComment {
@@ -73,17 +56,4 @@ input {
 
 #newPost_tbl {
     display: inline-block;
-}
-
-footer {
-    text-align: center;
-}
-
-#adminButton {
-    text-decoration-line: none;
-    color: cadetblue;
-}
-
-#adminButton:hover {
-    color: turquoise;
 }

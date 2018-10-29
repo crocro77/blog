@@ -8,16 +8,16 @@ class PostManager extends Manager
 {
 	public function getPosts()
 	{
-	    $db = self::dbConnect();
-	    $req = $db->query('SELECT id, title, content, author, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin\') AS creation_date_fr FROM posts ORDER BY id'); 
+	    $db = $this->dbConnect();
+	    $req = $db->query('SELECT id, title, content, author, chapter_image, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY id LIMIT 5'); 
 
 	    return $req;
 	}
 
 	public function getPost($postId)
 	{
-	    $db = self::dbConnect();
-	    $req = $db->prepare('SELECT id, title, content, author, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin\') AS creation_date_fr FROM posts WHERE id = ?');
+	    $db = $this->dbConnect();
+	    $req = $db->prepare('SELECT id, title, content, author, chapter_image, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?');
 	    $req->execute(array($postId));
 	    $post = $req->fetch();
 	    

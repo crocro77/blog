@@ -2,15 +2,18 @@
 
 namespace Anthony\Blogalaska\Model;
 
+use Anthony\Blog_Alaska\Model\ObjectModel;
+
 require_once("model/Manager.php");
 
-class Comment
+class Comment extends ObjectModel
 {
   protected $id,
             $post_id,
             $author,
             $comment,
-            $comment_date;
+            $comment_date,
+            $last_edited;
       
   public function __construct(array $data)
   {
@@ -40,5 +43,10 @@ class Comment
   public function comment_date()
   {
     return $this->comment_date;
+  }
+
+  public function last_edited()
+  {
+    return $this->last_edited;
   }
 }
