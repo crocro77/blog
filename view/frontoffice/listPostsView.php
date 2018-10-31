@@ -13,18 +13,22 @@
 </div>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
-    <li class="page-item"><a class="page-link" href="#">5</a></li>
+  <?php
+  for ($i = 1; $i <= $pageNumber; $i++) {
+    if ($i == $currentPage) {
+      echo "<li class='page-item'><a class='page-link'>$i</a></li>";
+    } else {
+      echo "<li class='page-item'><a class='page-link' href=\"index.php?p=$i\">$i</a></li>";
+    }
+  }
+  ?>
   </ul>
 </nav>
 <?php
 while ($data = $posts->fetch()) {
-  ?>
-  <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="public/img/<?= $data['chapter_image']; ?>" alt="chapter image">
+?>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="public/img/<?= $data['chapter_image']; ?>" alt="chapter image">
     <div class="card-body">
       <h5 class="card-title">
         <?= htmlspecialchars($data['title']) ?>
@@ -36,8 +40,8 @@ while ($data = $posts->fetch()) {
       </p>
       <a href="index.php?action=post&id=<?= $data['id'] ?>" class="btn btn-primary">Commentaires</a>
     </div>
-  </div>
-  <br />
+</div>
+<br />
 <?php
 
 }

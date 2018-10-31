@@ -1,6 +1,7 @@
 <?php
-require("controller/frontoffice.php");
-require("controller/backoffice.php");
+require("controller/FrontOffice.php");
+require("controller/BackOffice.php");
+setPaginationData();
 
 try {
     if (isset($_GET['action'])) {

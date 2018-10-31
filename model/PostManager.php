@@ -8,10 +8,11 @@ class PostManager extends Manager
 {
 	public function getPosts()
 	{
-	    $db = $this->dbConnect();
-	    $req = $db->query('SELECT id, title, content, author, chapter_image, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY id LIMIT 5'); 
-
-	    return $req;
+		$currentPage = $_GET['p'];
+		$postPerPage = 3;
+		$db = $this->dbConnect();
+		$req = $db->query("SELECT id, title, content, author, chapter_image, DATE_FORMAT(date, '%d/%m/%Y à %Hh%i') AS creation_date_fr FROM posts ORDER BY id LIMIT ".(($currentPage-1)*$postPerPage).",$postPerPage");
+		return $req;
 	}
 
 	public function getPost($postId)
@@ -22,6 +23,15 @@ class PostManager extends Manager
 	    $post = $req->fetch();
 	    
 	    return $post;
+	}
+
+	public function getPostsNumber()
+	{
+		$db = $this->dbConnect();
+		$req = $db->query('SELECT COUNT(id) as postAmount FROM posts');
+		$reqResult = $req->fetch();
+		$postsNumber = $reqResult['postAmount'];
+		return $postsNumber;
 	}
 	
 	// CREATION DE POST -- A FAIRE

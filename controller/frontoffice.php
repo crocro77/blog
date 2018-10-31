@@ -6,6 +6,9 @@ require_once("model/CommentManager.php");
 use \Anthony\Blog_Alaska\Model\PostManager;
 use \Anthony\Blog_Alaska\Model\CommentManager;
 
+setPaginationData();
+$currentPage;
+
 function listPosts()
 {
     $postManager = new PostManager();
@@ -13,6 +16,31 @@ function listPosts()
 
     require('view/frontoffice/listPostsView.php');
 }
+
+function setPaginationData()
+{
+    $postPerPage = 3;
+
+    $currentPage = 1;
+
+    $postManager = new PostManager();
+    $posts = $postManager->getPosts();
+    $postsNumber = $postManager->getPostsNumber();
+
+
+    $pageNumber = ceil($postsNumber/$postPerPage);
+
+    if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $pageNumber) {
+        $currentPage = $_GET['p'];
+    }
+    else
+    {
+        $currentPage = 1;
+    }
+
+    require('view/frontoffice/listPostsView.php');
+}
+
 
 function post()
 {
