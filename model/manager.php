@@ -1,12 +1,12 @@
 <?php
 
-namespace Anthony\BlogAlaska\Model;
+namespace Anthony\Blog_Alaska\Model;
 
 class Manager
 {
-    protected function db_connect()
+    protected function dbConnect()
     {
-        $db = new \PDO('mysql:host=localhost;dbname=blog_alaska;charset=utf-8', 'root', '');
+    	$db = new \PDO('mysql:host=localhost;dbname=blog_alaska;charset=utf8', 'root', '');
         return $db;
     }
 }

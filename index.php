@@ -1,41 +1,38 @@
 <?php
-
-session_start();
-
-require('Controller/controller.php');
+require("controller/Controller.php");
 
 try {
     if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'list_posts') {
-            list_posts();
+        if ($_GET['action'] == 'listPosts') {
+            paginatedListPost();
         }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 post();
             }
             else {
-                echo 'Erreur : aucun identifiant de billet envoyé';
+                throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        elseif ($_GET['action'] == 'add_comment') {
+        elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_POST['author'], $_POST['email'], $_POST['comment']);
+                if (!empty($_POST['author']) && !empty($_POST['comment'])) {
+                    addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 }
                 else {
-                    echo 'Erreur : tous les champs ne sont pas remplis !';
+                    throw new Exception('Tous les champs ne sont pas remplis !');
                 }
             }
             else {
-                echo 'Erreur : aucun identifiant de billet envoyé';
+                throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
     }
     else {
-        list_posts();
+        paginatedListPost();
     }
 }
 catch(Exception $e) {
     $errorMessage = $e->getMessage();
-    require('view/error.php');
+    require('view/errorView.php');
 }

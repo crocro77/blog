@@ -1,50 +1,56 @@
-<?php $title = "Billet simple pour l'Alaska - Jean Forteroche"; ?>
+<?php $title = 'Billet simple pour l\'Alaska'; ?>
 
 <?php ob_start(); ?>
+<br />
+<div class="container">
+<div id="illustration">
+  <img id="landscape" src="public/img/alaska_landscape2.jpg" alt="alaska landscape">
+</div>
+<br />
+<div>
+<h1  id="title">Billet simple pour l'Alaska de Jean Forteroche</h1>
+<br />
+<p id="titleDetail"><a class="btn light-blue waves-effect" href="index.php">Retour à la liste des chapitres</a></p>
+</div>
 </div>
         
-<div class="parallax-container">
-    <div class="parallax">
-        <img src="img/posts/<?= $post->chapter_image ?>" alt="<?= $post->title ?>"/>
-    </div>
-</div>
-
 <div class="container">
-    <h2 id="post-title"><?= $post->title ?></h2>
-    <h6>Par <?= $post->author ?> le <?= $post->creation_date_fr ?></h6>
-    <p><?= nl2br($post->content); ?></p>
+    <h2 id="post-title" class="center"><?= htmlspecialchars($post['title']) ?></h2>
+    <h6 class="center">Par <?= $post['author'] ?> le <?= $post['creation_date_fr'] ?></h6>
+    <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
 
     <hr>
     <h4>Commentaires</h4>
         <?php
-            if ($responses != false) {
-                foreach ($responses as $response) {
-                    ?>
-                    <strong><?= $response->author ?> (<?= date("d/m/Y", strtotime($response->comment_date)) ?>) a dit :</strong>
+        if ($comments != false) {
+            foreach ($comments as $comment) {
+                ?>
+                    <strong><?= htmlspecialchars($comment['author']) ?> (<?= $comment['comment_date_fr'] ?>) a dit :</strong>
                     <blockquote>
-                    <p><?= nl2br($response->comment); ?></p>
+                    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
                     </blockquote>
                     <?php
 
                 }
+            // else fonctionne pas
             } else echo "Aucun commentaire n'a été publié, soyez le premier à réagir !"
-        ?>
+            ?>
 
     <h4>Commenter</h4>
         <?php
-            if (isset($_POST['submit'])) {
-                $name = htmlspecialchars(trim($_POST['name']));
-                $email = htmlspecialchars(trim($_POST['email']));
-                $comment = htmlspecialchars(trim($_POST['comment']));
-                $error = [];
+        if (isset($_POST['submit'])) {
+            $name = htmlspecialchars(trim($_POST['name']));
+            $email = htmlspecialchars(trim($_POST['email']));
+            $comment = htmlspecialchars(trim($_POST['comment']));
+            $error = [];
 
-                if (empty($name) || empty($email) || empty($comment)) {
-                    $errors['empty'] = "Tous les champs n'ont pas été remplis";
-                } else {
-                    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                        $errors['email'] = "L'adresse email n'est pas valide";
-                    }
+            if (empty($name) || empty($email) || empty($comment)) {
+                $errors['empty'] = "Tous les champs n'ont pas été remplis";
+            } else {
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $errors['email'] = "L'adresse email n'est pas valide";
                 }
+            }
 
             if (!empty($errors)) {
                 ?>
@@ -59,6 +65,7 @@
                         </div>
                     <?php 
                 } else {
+                    // post_comment fonctionne pas
                     post_comment($name, $email, $comment);
                     ?>
                         <script>
@@ -68,7 +75,7 @@
 
                 }
             }
-        ?>
+            ?>
 
     <form method="post">
         <div class="row">
@@ -94,4 +101,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?> 

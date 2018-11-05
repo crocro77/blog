@@ -1,17 +1,29 @@
 <?php
 
-require_once('Model/PostManager.php');
-require_once('Model/CommentManager.php');
+require_once("model/PostManager.php");
+require_once("model/CommentManager.php");
 
-use Anthony\BlogAlaska\Model\PostManager;
-use Anthony\BlogAlaska\Model\CommentManager;
+use \Anthony\Blog_Alaska\Model\PostManager;
+use \Anthony\Blog_Alaska\Model\CommentManager;
 
-function list_posts()
+function paginatedListPost()
 {
+    $postPerPage = 4;
     $postManager = new PostManager();
-    $posts = $postManager->get_posts();
+    $postsNumber = $postManager->getPostsNumber();
+    $pageNumber = ceil($postsNumber/$postPerPage);
 
-    require('View/home.php');
+    if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $pageNumber) {
+        $currentPage = $_GET['p'];
+    }
+    else
+    {
+        $currentPage = 1;
+    }
+    
+    $posts = $postManager->getPosts($currentPage, $postPerPage);
+    
+    require('view/listPostsView.php');
 }
 
 function post()
@@ -19,31 +31,22 @@ function post()
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
-    $post = $postManager->get_post($_GET['id']);
-    $comments = $commentManager->get_comments($_GET['id']);
+    $post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager->getComments($_GET['id']);
 
-    require('View/postView.php');
+    require('view/postView.php');
 }
 
-function chapters()
-{
-    $postManager = new PostManager();
-
-    $chapters = $postManager->get_chapters();
-
-    require('View/chapters.php');
-}
-
-function add_comment($name,$email,$comment)
+function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager();
 
-    $affectedLines = $commentManager->post_comment($name,$email,$comment);
+    $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id=' . $_GET['id']);
+        header('Location: index.php?action=post&id=' . $postId);
     }
 }
