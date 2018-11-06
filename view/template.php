@@ -9,8 +9,8 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="public/js/materialize.js"></script>
-        <!-- <script type="text/javascript" src="public/vendor/tiny_mce/tiny_mce.js"></script>
-        <script src="public/vendor/js/tiny_mce_script.js"></script> -->
+        <script type="text/javascript" src="public/vendor/tiny_mce/tiny_mce.js"></script>
+        <script src="public/vendor/js/tiny_mce_script.js"></script>
     </head>
         
     <body>
