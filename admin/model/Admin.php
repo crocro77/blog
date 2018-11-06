@@ -1,17 +1,15 @@
 <?php
 
-namespace Anthony\Blog_Alaska\Model;
+namespace Anthony\Blog_Alaska\Admin\Model;
 
-require_once("../model/Manager.php");
+require_once("model/Manager.php");
 
 class Admin extends Manager
 {
     protected $id,
         $name,
         $email,
-        $password,
-        $token,
-        $role;
+        $password;
 
     public function __construct(array $data)
     {
@@ -38,19 +36,9 @@ class Admin extends Manager
         return $this->password;
     }
 
-    public function token()
-    {
-        return $this->token;
-    }
-
-    public function role()
-    {
-        return $this->role();
-    }
-
     public function is_admin($email,$password)
     {
-        global $db;
+        $db = $this->dbConnect();
         $admin = [
             'email'     =>  $email,
             'password'  =>  sha1($password)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Anthony\Blog_Alaska\Model;
+namespace Anthony\Blog_Alaska\Admin\Model;
 
 class Manager
 {

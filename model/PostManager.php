@@ -31,13 +31,4 @@ class PostManager extends Manager
 		$postsNumber = $reqResult['postAmount'];
 		return $postsNumber;
 	}
-	
-	// CREATION DE POST -- A FAIRE
-	// public function createPost()
-	// {
-	// 	$db = $this->dbConnect();
-	// 	extract($_POST);
-	//     $req = $db->prepare('INSERT into posts (title, content) VALUES ($title, $content,)');
-	//     header("Location: index.php");
-	// }
 }
