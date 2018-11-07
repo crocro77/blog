@@ -37,16 +37,16 @@ function post()
     require('view/postView.php');
 }
 
-function addComment($postId, $author, $comment)
+function add_comment($name,$email,$comment)
 {
     $commentManager = new CommentManager();
 
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
+    $affectedLines = $commentManager->comment($name,$email,$comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id=' . $postId);
+        header('Location: index.php?action=post&id=' . $_GET['id']);
     }
 }

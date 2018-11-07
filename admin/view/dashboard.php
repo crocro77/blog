@@ -1,12 +1,9 @@
 <!-- <>?php $editComment = edit_comment($comment_edited,$id); ?> -->
-<?php $title = 'Billet simple pour l\'Alaska'; ?>
-
-<?php ob_start(); ?>
-
 <h2>Tableau de bord</h2>
 <div class="row">
 
     <?php
+
         $tables = [
             "Publication(s)"      =>  "posts",
             "Commentaire(s)"      =>  "comments",
@@ -18,9 +15,12 @@
             "comments"  =>  "green",
             "admins"    =>  "red"
         ];
+
     ?>
 
+
     <?php
+
         foreach($tables as $table_name => $table){
             ?>
                 <div class="col l4 m6 s12">
@@ -34,6 +34,7 @@
                 </div>
             <?php
         }
+
     ?>
 </div>
 
@@ -106,7 +107,3 @@
         ?>
     </tbody>
 </table>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('view/backtemplate.php'); ?>

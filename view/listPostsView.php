@@ -8,7 +8,7 @@
   </div>
   <br />
   <div class="row">
-  <h1 id="title">Billet simple pour l'Alaska<br />Jean Forteroche</h1>
+  <h1 id="site-title">Billet simple pour l'Alaska<br />Jean Forteroche</h1>
   <br />
   <h5 id="titleDetail">Découvrez ce roman passionnant avec de nouveaux chapitres ajoutés régulièrement !</h5>
   <br />

@@ -1,7 +1,3 @@
-<?php $title = 'Billet simple pour l\'Alaska'; ?>
-
-<?php ob_start(); ?>
-
 <h2>Listing des chapitres</h2>
 <hr/>
 
@@ -29,8 +25,3 @@ foreach($posts as $post){
 
     <?php
 }
-?>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('view/backtemplate.php'); ?>

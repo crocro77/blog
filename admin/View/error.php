@@ -6,4 +6,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('view/backtemplate.php'); ?>
+<?php require('../view/template.php'); ?>

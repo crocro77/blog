@@ -8,7 +8,7 @@
 </div>
 <br />
 <div>
-<h1  id="title">Billet simple pour l'Alaska de Jean Forteroche</h1>
+<h1  id="site-title">Billet simple pour l'Alaska de Jean Forteroche</h1>
 <br />
 <p id="titleDetail"><a class="btn light-blue waves-effect" href="index.php">Retour à la liste des chapitres</a></p>
 </div>
@@ -25,16 +25,16 @@
         if ($comments != false) {
             foreach ($comments as $comment) {
                 ?>
-                    <strong><?= htmlspecialchars($comment['author']) ?> (<?= $comment['comment_date_fr'] ?>) a dit :</strong>
+                    <strong><?= htmlspecialchars($comment->author) ?> (<?= date("d/m/Y", strtotime($comment->comment_date)) ?>) a dit :</strong>
                     <blockquote>
-                    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+                    <p><?= nl2br(htmlspecialchars($comment->comment)) ?></p>
                     </blockquote>
-                    <?php
-
-                }
-            // else fonctionne pas
-            } else echo "Aucun commentaire n'a été publié, soyez le premier à réagir !"
-            ?>
+                <?php
+            }
+        } else {
+            echo "Aucun commentaire n'a été publié, soyez le premier à réagir !";
+        }
+        ?>
 
     <h4>Commenter</h4>
         <?php
@@ -65,14 +65,9 @@
                         </div>
                     <?php 
                 } else {
-                    // post_comment fonctionne pas
-                    post_comment($name, $email, $comment);
+                    add_comment($name,$email,$comment);
                     ?>
-                        <script>
-                            window.location.replace("index.php?page=post&id=<?= $_GET['id'] ?>")
-                        </script>
-                    <?php
-
+                <?php
                 }
             }
             ?>

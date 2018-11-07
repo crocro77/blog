@@ -1,15 +1,13 @@
 <?php
 
-namespace Anthony\Blog_Alaska\Admin\Model;
-
-require_once("model/Manager.php");
-
-class Admin extends Manager
+class Admin
 {
     protected $id,
         $name,
         $email,
-        $password;
+        $password,
+        $token,
+        $role;
 
     public function __construct(array $data)
     {
@@ -36,18 +34,14 @@ class Admin extends Manager
         return $this->password;
     }
 
-    public function is_admin($email,$password)
+    public function token()
     {
-        $db = $this->dbConnect();
-        $admin = [
-            'email'     =>  $email,
-            'password'  =>  sha1($password)
-        ];
-        $sql = "SELECT * FROM admins WHERE email = :email AND password = :password";
-        $req = $db->prepare($sql);
-        $req->execute($admin);
-        $exist = $req->rowCount($sql);
-        return $exist;
+        return $this->token;
+    }
+
+    public function role()
+    {
+        return $this->role();
     }
 }
 ?>

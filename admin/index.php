@@ -1,97 +1,66 @@
 <?php
 
-require("controller/BackController.php");
+require '../model/Manager.php';
 
-$pages = scandir('view/');
-if(isset($_GET['view']) && !empty($_GET['view'])){
-    if(in_array($_GET['view'].'.php',$pages)){
-        $page = $_GET['view'];
-    }else{
-        $page = "error";
-    }
-}else{
-    $page = "dashboard";
-}
+// $pages = scandir('View/');
+// if(isset($_GET['page']) && !empty($_GET['page'])){
+//     if(in_array($_GET['page'].'.php',$pages)){
+//         $page = $_GET['page'];
+//     }else{
+//         $page = "error";
+//     }
+// }else{
+//     $page = "dashboard";
+// }
 
-$pages_functions = scandir('model/');
-if(in_array($page.'.func.php',$pages_functions)){
-    include 'model/'.$page.'.func.php';
-}
-
-if(isset($_POST['submit'])){
-    $email = htmlspecialchars(trim($_POST['email']));
-    $password = htmlspecialchars(trim($_POST['password']));
-
-    $errors = [];
-
-    if(empty($email) || empty($password)){
-        $errors['empty'] = "Tous les champs n'ont pas été remplis!";
-        } else if (is_admin($email,$password) == 0){
-        $errors['exist']  = "Cet administrateur n'existe pas";
-    }
-
-    if(!empty($errors)){
-        ?>
-        <div class="card red">
-            <div class="card-content white-text">
-                <?php
-                    foreach($errors as $error){
-                    echo $error."<br/>";
-                    }
-                ?>
-            </div>
-        </div>
-        <?php
-    } else {
-        $_SESSION['admin'] = $email;
-        header("Location:index.php?page=dashboard");
-    }
-
-}
-
-if(isset($_POST['post'])){
-    $title = htmlspecialchars(trim($_POST['title']));
-    $content = htmlspecialchars(trim($_POST['content']));
-    $posted = isset($_POST['public']) ? "1" : "0";
-
-    $errors = [];
-
-    if(empty($title) || empty($content)){
-        $errors['empty'] = "Veuillez remplir tous les champs";
-    }
-
-    if(!empty($_FILES['image']['name'])){
-        $file = $_FILES['image']['name'];
-        $extensions = ['.png','.jpg','.jpeg','.gif','.PNG','.JPG','.JPEG','.GIF'];
-        $extension = strrchr($file,'.');
-
-        if(!in_array($extension,$extensions)){
-            $errors['image'] = "Cette image n'est pas valable";
-        }
-    }
-
-    if(!empty($errors)){
-        ?>
-            <div class="card red">
-                <div class="card-content white-text">
-                    <?php
-                        foreach($errors as $error){
-                            echo $error."<br/>";
-                        }
-                    ?>
-                </div>
-            </div>
-        <?php
-    }else{
-        post($title,$content,$posted);
-        if(!empty($_FILES['image']['name'])){
-            post_img($_FILES['image']['tmp_name'], $extension);
-        }else{
-            $id = $db->lastInsertId();
-            header("Location:index.php?page=post&id=".$id);
-        }
-    }
-}
-
+// $pages_functions = scandir('functions/');
+// if(in_array($page.'.func.php',$pages_functions)){
+//     include 'functions/'.$page.'.func.php';
+// }
 
 ?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../public/css/materialize.css"  media="screen,projection"/>
+    <title>Billet simple pour l'Alaska | Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+
+<?php
+
+// if($page != 'login' && $page != 'new' && !isset($_SESSION['admin'])){
+//     header("Location:index.php?page=login");
+// }
+
+include "body/topbar.php";
+?>
+<!-- <div class="container">
+    <>?php
+    include 'View/'.$page.'.php';
+    ?>
+</div> -->
+
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../js/materialize.js"></script>
+<script type="text/javascript" src="../js/script.js"></script>
+<!-- <>?php
+$pages_js = scandir('js/');
+if(in_array($page.'.func.js',$pages_js)){
+    ?>
+    <script type="text/javascript" src="js/<>?= $page ?>.func.js"></script>
+<>?php
+}
+
+?> -->
+
+</body>
+</html>
