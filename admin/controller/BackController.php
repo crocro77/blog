@@ -13,25 +13,31 @@ use \Anthony\Blog_Alaska\Admin\DashboardManager;
 function Admin()
 {
 	$adminManager = new AdminManager();
-	$Admin = $adminManager->is_admin($email,$password);
+    $Admin = $adminManager->is_admin($email,$password);
 }
 
 function DashboardTable()
 {
 	inTable($table);
-	getColor($table,$colors);
+    getColor($table,$colors);
+    
+    require('view/dashboard.php');
 }
 
 function ListPosts()
 {
     $adminPostManager = new AdminPostManager(); 
     $posts = $adminPostManager->get_posts();
+
+    require('view/list.php');
 }
 
 function SinglePost()
 {
     $adminPostManager = new AdminPostManager();
     $post = $adminPostManager->get_post();
+
+    require('view/post.php');
 }
 
 function CreatePost($title,$content,$posted)
@@ -46,6 +52,8 @@ function CreatePost($title,$content,$posted)
     else {
         header('Location: index.php?action=post&id=' . $_GET['id']);
     }
+    
+    require('view/write.php');
 }
 
 function EditPost($title,$content,$posted,$id)
@@ -59,23 +67,31 @@ function EditPost($title,$content,$posted,$id)
 	}
 	else {
 		header('Location: index.php?action=post&id=' . $_GET['id']);
-	}
+    }
+        
+    require('view/post.php');
 }
 
 function PostImage($tmp_name, $extension)
 {
 	$adminPostManager = new AdminPostManager();
     $postimage = $adminPostManager->post_img($tmp_name, $extension);
+        
+    require('view/write.php');
 }
 
 function GetComments()
 {
     $adminCommentManager = new AdminCommentManager();
     $comments = $adminCommentManager->get_comments();
+
+    require('view/dashboard.php');
 }
 
 function EditComment($comment_edited,$id)
 {
 	$adminCommentManager = new AdminCommentManager();
     $editcomment = $adminCommentManager->edit_comment($comment_edited,$id);
+
+    require('view/dashboard.php');
 }

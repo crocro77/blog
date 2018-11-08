@@ -6,13 +6,11 @@
 <hr/>
 
 <?php
-
 foreach($posts as $post){
     ?>
     <div class="row">
         <div class="col s12">
             <h4><?= $post->title ?><?php echo ($post->posted == "0") ? "<i class='material-icons'>lock</i>" : "" ?></h4>
-
             <div class="row">
                 <div class="col s12 m6 l8">
                     <?= substr(nl2br($post->content), 0, 800) ?>...
@@ -25,10 +23,9 @@ foreach($posts as $post){
             </div>
         </div>
     </div>
-
-    <?php
-    }
-    ?>
+<?php
+}
+?>
     
 <?php $content = ob_get_clean(); ?>
 

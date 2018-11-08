@@ -3,17 +3,17 @@
 require('controller/BackController.php');
 
 $pages = scandir('view/');
-if(isset($_GET['page']) && !empty($_GET['page'])){
-    if(in_array($_GET['page'].'.php',$pages)){
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    if (in_array($_GET['page'] . '.php', $pages)) {
         $page = $_GET['page'];
-    }else{
+    } else {
         $page = "error";
     }
-}else{
+} else {
     $page = "dashboard";
 }
 
-if($page != 'login' && !isset($_SESSION['admin'])){
+if ($page != 'login' && !isset($_SESSION['admin'])) {
     header("Location:index.php?page=login");
 }
 
@@ -35,29 +35,30 @@ if (isset($_POST['submit'])) {
     }
 
     if (!empty($errors)) {
-    ?>
+        ?>
     <div class="card red">
         <div class="card-content white-text">
         <?php
         foreach ($errors as $error) {
-        echo $error . "<br/>";
+            echo $error . "<br/>";
         }
         ?>
         </div>
     </div>
     <?php
-    } else {
-        $_SESSION['admin'] = $email;
-        header("Location:index.php?page=dashboard");
-    }
+
+} else {
+    $_SESSION['admin'] = $email;
+    header("Location:index.php?page=dashboard");
+}
 }
 
-//post controller
+// post controller
 if ($post == false) {
     header("Location:index.php?page=error");
 }
 
-edit($title,$content,$posted,$id);
+edit($title, $content, $posted, $id);
 if (isset($_POST['submit'])) {
     $title = htmlspecialchars(trim($_POST['title']));
     $content = htmlspecialchars(trim($_POST['content']));
@@ -70,68 +71,66 @@ if (isset($_POST['submit'])) {
 
     if (!empty($errors)) {
         ?>
-                <div class="card red">
-                    <div class="card-content white-text">
-                        <?php
-                        foreach ($errors as $error) {
-                            echo $error . "<br/>";
-                        }
-                        ?>
-                    </div>
-                </div>
-                <?php
-
-            } else {
-                edit($title, $content, $posted, $_GET['id']);
-                ?>
-                    <script>
-                        window.location.replace("index.php?page=post&id=<?= $_GET['id'] ?>");
-                    </script>
-                <?php
+        <div class="card red">
+            <div class="card-content white-text">
+            <?php
+            foreach ($errors as $error) {
+                echo $error . "<br/>";
+            }
+            ?>
+            </div>
+        </div>
+        <?php
+    } else {
+        edit($title, $content, $posted, $_GET['id']);
+        ?>
+        <script>window.location.replace("index.php?page=post&id=<?= $_GET['id'] ?>");</script>
+        <?php
     }
 }
 
 //write controller
-if(isset($_POST['post'])){
+if (isset($_POST['post'])) {
     $title = htmlspecialchars(trim($_POST['title']));
     $content = htmlspecialchars(trim($_POST['content']));
     $posted = isset($_POST['public']) ? "1" : "0";
 
     $errors = [];
 
-    if(empty($title) || empty($content)){
-        $errors['empty'] = "Veuillez remplir tous les champs";
+    if (empty($title) || empty($content)) {
+       $errors['empty'] = "Veuillez remplir tous les champs";
     }
 
-    if(!empty($_FILES['image']['name'])){
+    if (!empty($_FILES['image']['name'])) {
         $file = $_FILES['image']['name'];
-        $extensions = ['.png','.jpg','.jpeg','.gif','.PNG','.JPG','.JPEG','.GIF'];
-        $extension = strrchr($file,'.');
+        $extensions = ['.png', '.jpg', '.jpeg', '.gif', '.PNG', '.JPG', '.JPEG', '.GIF'];
+        $extension = strrchr($file, '.');
 
-        if(!in_array($extension,$extensions)){
+        if (!in_array($extension, $extensions)) {
             $errors['image'] = "Cette image n'est pas valable";
         }
     }
-
-    if(!empty($errors)){
-        ?>
-            <div class="card red">
-                <div class="card-content white-text">
-                    <?php
-                        foreach($errors as $error){
-                            echo $error."<br/>";
-                        }
-                    ?>
-                </div>
+            
+    if (!empty($errors)) {
+    ?>
+        <div class="card red">
+            <div class="card-content white-text">
+                <?php
+                foreach ($errors as $error) {
+                    echo $error . "<br/>";
+                }
+                ?>
             </div>
-        <?php
-    }else{
-        post($title,$content,$posted);
-        if(!empty($_FILES['image']['name'])){
+        </div>
+    <?php
+
+    } else {
+        post($title, $content, $posted);
+        if (!empty($_FILES['image']['name'])) {
             post_img($_FILES['image']['tmp_name'], $extension);
-        }else{
+        } else {
             $id = $db->lastInsertId();
-            header("Location:index.php?page=post&id=".$id);
+            header("Location:index.php?page=post&id=" . $id);
         }
     }
 }
