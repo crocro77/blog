@@ -3,15 +3,15 @@
 <?php ob_start(); ?>
 <br />
 <div class="container">
-<div id="illustration">
-  <img id="landscape" src="public/img/alaska_landscape2.jpg" alt="alaska landscape">
-</div>
-<br />
-<div>
-<h1  id="site-title">Billet simple pour l'Alaska de Jean Forteroche</h1>
-<br />
-<p id="titleDetail"><a class="btn light-blue waves-effect" href="index.php">Retour à la liste des chapitres</a></p>
-</div>
+    <div id="illustration">
+        <img id="landscape" src="public/img/alaska_landscape2.jpg" alt="alaska landscape">
+    </div>
+    <br />
+    <div>
+        <h1  id="site-title">Billet simple pour l'Alaska de Jean Forteroche</h1>
+        <br />
+        <p id="titleDetail"><a class="btn light-blue waves-effect" href="index.php">Retour à la liste des chapitres</a></p>
+    </div>
 </div>
         
 <div class="container">

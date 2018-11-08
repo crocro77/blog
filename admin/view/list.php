@@ -1,9 +1,12 @@
+<?php $title = "Billet simple pour l'Alaska | Administration"; ?>
+
+<?php ob_start(); ?>
+
 <h2>Listing des chapitres</h2>
 <hr/>
 
 <?php
 
-$posts = get_posts();
 foreach($posts as $post){
     ?>
     <div class="row">
@@ -15,7 +18,7 @@ foreach($posts as $post){
                     <?= substr(nl2br($post->content), 0, 800) ?>...
                 </div>
                 <div class="col s12 m6 l4">
-                    <img src="../Public/img/posts/<?= $post->chapter_image ?>" class="materialboxed responsive-img" alt="<?= $post->title ?>"/>
+                    <img src="../img/posts/<?= $post->chapter_image ?>" class="materialboxed responsive-img" alt="<?= $post->title ?>"/>
                     <br/><br/>
                     <a class="btn light-blue waves-effect waves-light" href="index.php?page=post&id=<?= $post->id ?>">Voir le chapitre complet</a>
                 </div>
@@ -24,4 +27,9 @@ foreach($posts as $post){
     </div>
 
     <?php
-}
+    }
+    ?>
+    
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?>

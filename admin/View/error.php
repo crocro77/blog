@@ -1,4 +1,4 @@
-<?php $title = 'Billet simple pour l\'Alaska'; ?>
+<?php $title = "Billet simple pour l'Alaska | Administration"; ?>
 
 <?php ob_start(); ?>
 
@@ -6,4 +6,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../view/template.php'); ?>
+<?php require('template.php'); ?>

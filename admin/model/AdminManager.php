@@ -2,13 +2,14 @@
 
 namespace Anthony\Blog_Alaska\Admin\Model;
 
-require_once("functions/Manager.php");
+require_once("Manager.php");
 
-class Login extends Manager
+class AdminManager extends Manager
 {
-    public function is_admin($email, $password)
+    public function is_admin($email,$password)
     {
         $db = $this->dbConnect();
+
         $admin = [
             'email' => $email,
             'password' => sha1($password)

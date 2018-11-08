@@ -1,9 +1,10 @@
-<!-- <>?php $editComment = edit_comment($comment_edited,$id); ?> -->
+<?php $title = "Billet simple pour l'Alaska | Administration"; ?>
+
+<?php ob_start(); ?>
+
 <h2>Tableau de bord</h2>
 <div class="row">
-
     <?php
-
         $tables = [
             "Publication(s)"      =>  "posts",
             "Commentaire(s)"      =>  "comments",
@@ -15,11 +16,6 @@
             "comments"  =>  "green",
             "admins"    =>  "red"
         ];
-
-    ?>
-
-
-    <?php
 
         foreach($tables as $table_name => $table){
             ?>
@@ -34,17 +30,10 @@
                 </div>
             <?php
         }
-
     ?>
 </div>
 
 <h4>Commentaire(s) non lu(s)</h4>
-
-<?php
-
-    $comments = get_comments();
-
-?>
 
 <table>
     <thead>
@@ -79,7 +68,7 @@
                                         <textarea id="content" name="content" class="materialize-textarea"><?= $editComment->comment ?></textarea>
                                         <label for="content">Contenu de l'article</label>
                                     </div>
-                                    <!-- <p><>?= nl2br($comment->comment) ?></p> -->
+                                    <p><?= nl2br($comment->comment) ?></p>
                                 </div>
 
                                 <div class="modal-footer">
@@ -107,3 +96,7 @@
         ?>
     </tbody>
 </table>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?>
