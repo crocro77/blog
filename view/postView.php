@@ -33,7 +33,7 @@
             }
         } else {
             echo "Aucun commentaire n'a été publié, soyez le premier à réagir !";
-        }
+        }   
         ?>
 
     <h4>Commenter</h4>
