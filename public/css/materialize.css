@@ -2756,7 +2756,7 @@ video.responsive-video {
   vertical-align: top;
   height: 30px;
 }
-  
+
 .pagination li a {
   color: #444;
   display: inline-block;
@@ -5277,7 +5277,6 @@ small {
   overflow-y: hidden;
   height: 48px;
   width: 100%;
-  background-color: #fff;
   margin: 0 auto;
   white-space: nowrap;
 }
@@ -5318,7 +5317,7 @@ small {
 .tabs .tab {
   display: inline-block;
   text-align: center;
-  line-height: 48px;
+  line-height: 60px;
   height: 48px;
   padding: 0;
   margin: 0;
@@ -5326,11 +5325,11 @@ small {
 }
 
 .tabs .tab a {
-  color: rgba(238, 110, 115, 0.7);
+  color: rgb(0, 0, 0);
   display: block;
   width: 100%;
   height: 100%;
-  padding: 0 24px;
+  padding: 0 12px;
   font-size: 14px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -5340,19 +5339,19 @@ small {
 
 .tabs .tab a:focus,
 .tabs .tab a:focus.active {
-  background-color: rgba(246, 178, 181, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   outline: none;
 }
 
 .tabs .tab a:hover,
 .tabs .tab a.active {
   background-color: transparent;
-  color: #ee6e73;
+  color: #03a9f4;
 }
 
 .tabs .tab.disabled a,
 .tabs .tab.disabled a:hover {
-  color: rgba(238, 110, 115, 0.4);
+  color: rgba(0, 0, 0, 0.4);
   cursor: default;
 }
 
@@ -5360,8 +5359,9 @@ small {
   position: absolute;
   bottom: 0;
   height: 2px;
-  background-color: #f6b2b5;
+  background-color: #000000;
   will-change: left, right;
+  display: none;
 }
 
 @media only screen and (max-width: 992px) {
@@ -9521,6 +9521,24 @@ input[type=range]::-ms-thumb {
 }
 
 #post-title {
-    font-family: 'Open Sans';
-    font-weight: bold;
-  }
+  font-family: 'Open Sans';
+  font-weight: bold;
+}
+
+#chapterUniqueParagraph {
+  text-align: justify;
+}
+
+.btn-danger:hover {
+  background-color: red;
+  color: black;
+}
+
+.btn-warning:hover {
+  background-color: orange;
+}
+
+.btn-publish:hover {
+  background-color: rgb(40, 241, 33);
+  color: black;
+}
