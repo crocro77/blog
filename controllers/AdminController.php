@@ -6,9 +6,9 @@ class AdminController extends Controller {
 
 		$chapter = null;
 
-		// onglets de l'espace admin
-		if(isset($_GET['menu'])) {
-			$selectedTab = $_GET['menu'];
+		// onglet de l'espace admin
+		if(isset($_GET['tab'])) {
+			$selectedTab = $_GET['tab'];
 		}
 
 		// ajout et maj d'un contenu dans la bdd //

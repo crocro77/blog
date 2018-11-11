@@ -5341,12 +5341,14 @@ small {
 .tabs .tab a:focus.active {
   background-color: rgba(0, 0, 0, 0.2);
   outline: none;
+  border-radius: 10px;
 }
 
 .tabs .tab a:hover,
 .tabs .tab a.active {
   background-color: transparent;
   color: #03a9f4;
+  border-radius: 10px;
 }
 
 .tabs .tab.disabled a,
@@ -9554,4 +9556,8 @@ input[type=range]::-ms-thumb {
   border: 1px solid black;
   font-size: 20px;
   font-weight: bold;
+}
+
+.material-icons {
+  font-size: 50px;
 }

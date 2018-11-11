@@ -26,20 +26,9 @@ class ViewAdmin
 	// affiche le contenu de la vue.
 	public function display() {
 		?>
-		<div class="admin-container">
-			<div class="container">
+		<div class="container">
 			
 			<?php
-			// Si les variables de session ne sont pas créées, on affiche la page de connexion.
-			if(!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
-				include('admin/login.php');
-			}
-			elseif(isset($_SESSION['username']) && $_SESSION['username'] !== 'j.forteroche') {
-				echo '<p>Désolé, vous n\'êtes pas autorisé à administrer ce blog.</p>';
-			}
-			// Sinon, on affiche les différents éléments de l'espace d'administration.
-			else {
-				// Dans tous les cas, le menu de navigation composé de plusieurs onglets.
 				include('admin/admin-nav.php');
 				// Le tableau de bord si 'selectedTab' vaut 'dashboard'.
 				if($this->selectedTab == 'dashboard') {
@@ -61,9 +50,7 @@ class ViewAdmin
 				elseif($this->selectedTab == 'settings') {
 					include('admin/settings.php');
 				}
-			}
 			?>
-			</div>
 		</div>
 		<?php
 	}
