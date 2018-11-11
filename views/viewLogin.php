@@ -33,7 +33,7 @@ class ViewLogin {
 						</div>
 
 						<div class="center">
-							<button type="submit" name="submit" class="waves-effect waves-light btn light-blue"><i class="material-icons left">perm_identity</i>Se connecter</button>
+							<button type="submit" name="submit" class="waves-effect waves-light btn light-blue"><i class="material-icons left">person</i>Se connecter</button>
 						</div>
 					</form>
 				</div>

@@ -37,7 +37,7 @@ class Chapter
 	 */
 	public function setId($id)
 	{
-		if(is_int($id) AND $id > 0)
+		if(is_int($id) && $id > 0)
 		{
 			$this->id = $id;
 		}
@@ -49,7 +49,7 @@ class Chapter
 	 */
 	public function setTitle($title)
 	{
-		if(is_string($title) AND !empty($title)) {
+		if(is_string($title) && !empty($title)) {
 			$this->title = $title;
 		}
 	}
@@ -60,7 +60,7 @@ class Chapter
 	 */
 	public function setContent($content)
 	{
-		if(is_string($content) AND !empty($content)) 
+		if(is_string($content) && !empty($content)) 
 		{
 			$this->content = $content;
 		}
@@ -72,7 +72,7 @@ class Chapter
 	 */
 	public function setAuthor($author)
 	{
-		if(is_string($author) AND !empty($author)) 
+		if(is_string($author) && !empty($author)) 
 		{
 			$this->author = $author;
 		}
@@ -93,7 +93,7 @@ class Chapter
 	 */
 	public function setChapterImage($chapter_image)
 	{
-		if(is_string($chapter_image) AND !empty($chapter_image)) 
+		if(is_string($chapter_image) && !empty($chapter_image)) 
 		{
 			$this->chapter_image = $chapter_image;
 		}

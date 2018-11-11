@@ -5,9 +5,9 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-sm-4 dashboard-left">
+			<div class="center">
             <?php
-                include('includes/dashboard.func.php');
+                include('includes/dashboard-tables.php');
 
                 $tables = [
                     "Publication(s)"      =>  "posts",

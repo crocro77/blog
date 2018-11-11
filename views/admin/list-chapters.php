@@ -20,7 +20,7 @@ if(empty($this->listOfChapters)) {
                     <div class="col s12 m6 l4">
                         <img src="public/img/<?= $chapter->getChapterImage() ?>" class="responsive-img" alt="<?= htmlspecialchars($chapter->getTitle()); ?>"/>
                         <br/><br/>
-                        <a class="btn light-blue waves-effect waves-light" href="index.php?page=post&id=<?= $chapter->getId(); ?>">Voir le chapitre complet</a>
+                        <a class="btn light-blue waves-effect waves-light" href="index.php?p=single&id=<?= $chapter->getId(); ?>">Voir le chapitre complet</a>
                         <br/><br/>
                         <a class="btn light-blue waves-effect waves-light" href="index.php?p=admin&menu=write&action=edit&id=<?= $chapter->getId(); ?>">Éditer le chapitre</a>
                         <br/><br/>

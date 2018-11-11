@@ -13,7 +13,7 @@ class AdminController extends Controller {
 
 		// ajout et maj d'un contenu dans la bdd //
         $errors = '';
-		if(!empty($_POST['title']) AND !empty($_POST['author']) AND !empty($_POST['content'])) {
+		if(!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content'])) {
 			$title = $_POST['title'];
 			$author = $_POST['author'];
 			$content = $_POST['content'];
@@ -28,6 +28,7 @@ class AdminController extends Controller {
 				$chapter->setContent($content);
 				$chapter->setAuthor($author);
 				$this->chapterManager->add($chapter);
+				header("Location:index.php");
 			}
 		} elseif(!empty($_POST)){
 		    if(empty($_POST['title'])) {

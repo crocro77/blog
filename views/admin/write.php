@@ -1,9 +1,9 @@
 <?php 
-if(isset($_GET['action']) AND $_GET['action'] == 'edit' AND isset($_GET['id'])) {
+if(isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
 	echo '<div class="page-header">';
 	echo '<h3>Mettre à jour le chapitre</h3>';
 	echo '</div>';
-} else {
+} elseif (isset($_GET['action']) && $_GET['action'] == 'write' && isset($_GET['id'])) {
 	echo '<div class="page-header">';
 	echo '<h3>Nouveau chapitre</h3>';
 	echo '</div>';
@@ -11,7 +11,7 @@ if(isset($_GET['action']) AND $_GET['action'] == 'edit' AND isset($_GET['id'])) 
 
 // Si l'on n'est pas en train d'éditer un article. 
 if(!isset($_GET['action'])) {
-	echo '<p>Vous pouvez rédiger un nouveau chapitre. Il apparaîtra non seulement sur la page d\'accueil, mais aussi dans votre liste de chapitres.</p>';
+	echo '<p>Vous pouvez rédiger dès à présent un nouveau chapitre.</p>';
 }
 if(isset($_SESSION['flash'])) {
 	include('includes/flash-msg.php');
@@ -39,7 +39,7 @@ if(isset($_SESSION['flash'])) {
 
 	<?php
 	// Si on édite un article, le bouton d'envoi devient 'Mettre à jour'.
-	if(isset($_GET['action']) AND $_GET['action'] == 'edit') {
+	if(isset($_GET['action']) && $_GET['action'] == 'edit') {
 		?>
 		<input type="hidden" name="id" value="<?= $this->chapter->getId(); ?>" />
 		<button type="submit" class="btn btn-warning">Mettre à jour</button>
@@ -53,3 +53,17 @@ if(isset($_SESSION['flash'])) {
 	}
 	?>
 </form>
+<script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=c851wd1npuo4c59ed6f7fp6doripcdhfdi1ltt9hpr29wt3x"></script>
+<script>tinymce.init({
+	selector: 'textarea',
+	height: 500,
+	menubar: false,
+    plugins: [
+        'advlist autolink lists charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media save table contextmenu paste code'
+    ],
+    toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
+    content_css: '//www.tinymce.com/css/codepen.min.css'
+    });
+</script>

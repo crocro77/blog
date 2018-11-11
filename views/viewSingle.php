@@ -32,6 +32,9 @@ class ViewSingle
 
         <div class="container">
             <h2 id="post-title" class="center"><?= htmlspecialchars($this->chapterUnique->getTitle()); ?></h2>
+            <div class="row center">
+                <img class="chapterUniqueImage" src="public/img/<?= $this->chapterUnique->getChapterImage() ?>" alt="<?= htmlspecialchars($this->chapterUnique->getTitle()); ?>" >
+            </div>
             <h6 class="center">Par <?= htmlspecialchars($this->chapterUnique->getAuthor()); ?> le <?= $this->chapterUnique->getDate()->format('d/m/Y') ?></h6>
             <p><?= $this->chapterUnique->getContent(); ?></p>
 

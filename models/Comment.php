@@ -31,7 +31,7 @@ class Comment
 	 * @param int $id L'id
 	 */
 	public function setId($id) {
-		if(is_int($id) AND $id > 0) {
+		if(is_int($id) && $id > 0) {
 			$this->id = $id;
 		}
 	}
@@ -49,7 +49,7 @@ class Comment
 	 * @param string $comment Le commentaire
 	 */
 	public function setComment($comment) {
-		if(is_string($comment) AND !empty($comment)) {
+		if(is_string($comment) && !empty($comment)) {
 			$this->comment = $comment;
 		}
 	}
@@ -67,7 +67,7 @@ class Comment
 	 * @param string $author L'auteur
 	 */
 	public function setAuthor($author) {
-		if(is_string($author) AND !empty($author)) {
+		if(is_string($author) && !empty($author)) {
 			$this->author = $author;
 		}
 	}
@@ -77,7 +77,7 @@ class Comment
 	 * @param int $signaled Le signal
 	 */
 	public function setSignaled($signaled) {
-		if(is_int($signaled) AND !empty($signaled)) {
+		if(is_int($signaled) && !empty($signaled)) {
 			$this->signaled = $signaled;
 		}
 	}

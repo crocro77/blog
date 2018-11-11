@@ -11,9 +11,9 @@ class HomeController extends Controller {
 		// Nombre de pages.
 		$numberOfPages = ceil($numberOfChapters / $chaptersPerPage);
 
-		if(isset($_GET['page']) AND empty($_GET['page'])) {
+		if(isset($_GET['page']) && empty($_GET['page'])) {
 			$currentPage = 1;
-		} elseif(isset($_GET['page']) AND !empty($_GET['page'])) {
+		} elseif(isset($_GET['page']) && !empty($_GET['page'])) {
 			$currentPage = intval($_GET['page']);
 
 			if($currentPage > $numberOfPages) {

@@ -56,38 +56,6 @@ class ChapterManager
 	}
 
 	/**
-	 * Obtient la liste des Chapters.
-	 * @param int $firstchapter Le premier chapter
-	 * @param int $ChaptersPerPage Le nombre d'Chapters par page
-	 * @return chapter objects La liste
-	 */
-	// public function getList($firstChapter = -1, $chaptersPerPage = -1) 
-	// {
-	// 	$sql = 'SELECT * FROM posts ORDER BY id';
-		
-	// 	// Vérification de la validité des données reçues.
-	// 	if($firstChapter != -1 || $chaptersPerPage != -1)
-	// 	{
-	// 		$sql .= ' LIMIT ' . (int) $chaptersPerPage . ' , ' . (int) $firstChapter;
-	// 	}
-
-	// 	$request = $this->db->query($sql);
-	// 	$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Chapter');
-
-	// 	$listOfChapters = $request->fetchAll();
-
-	// 	// On boucle sur la liste des chapters afin d'instancier des objets DateTime pour date.
-	// 	foreach($listOfChapters as $chapter)
-	// 	{
-	// 		$chapter->setDate(new DateTime($chapter->getDate()));
-	// 	}
-
-	// 	$request->closeCursor();
-
-	// 	return $listOfChapters;
-	// }
-
-	/**
 	 * Obtient la liste des chapitres.
 	 * @param int $firstArticle Le premier chapitre
 	 * @param int $chaptersPerPage Le nombre de chapires par page
@@ -113,6 +81,7 @@ class ChapterManager
 		$request->closeCursor();
 		return $listOfChapters;
 	}
+	
 	/**
 	 * Obtient un chapter unique (pour la vue Single)
 	 * @param int $id L'id duchapter

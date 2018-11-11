@@ -5,7 +5,7 @@ function post_img($tmp_name, $extension){
     $id = $db->lastInsertId();
     $image = [
         'id'    =>  $id,
-        'image' =>  $id.$extension
+        'chapter_image' =>  $id.$extension
     ];
 
     $sql = "UPDATE posts SET chapter_image = :chapter_image WHERE id = :id";

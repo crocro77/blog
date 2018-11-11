@@ -31,27 +31,6 @@
     <footer>
         <p id="titleDetail">2018 - Jean Forteroche</p>
     </footer>
-    
-    <?php 
-    // on utilise TinyMCE sur adminmenu write et edit.
-    if(isset($_GET['p']) && $_GET['p'] === 'admin' && isset($_GET['menu']) && $_GET['menu'] == 'write' || isset($_GET['menu']) && $_GET['menu'] == 'edit')
-    {
-      ?>
-      <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=c851wd1npuo4c59ed6f7fp6doripcdhfdi1ltt9hpr29wt3x"></script>
-      <script>tinymce.init({
-              selector: 'textarea',
-              height: 800,
-              menubar: false,
-              plugins: [
-                'advlist autolink lists charmap print preview anchor',
-                'searchreplace visualblocks code fullscreen',
-                'insertdatetime media save table contextmenu paste code'
-              ],
-              toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
-              content_css: '//www.tinymce.com/css/codepen.min.css'
-            });</script>
-      <?php
-    }
-    ?>
+
   </body>
 </html>

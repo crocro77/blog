@@ -31,10 +31,10 @@ class ViewAdmin
 			
 			<?php
 			// Si les variables de session ne sont pas créées, on affiche la page de connexion.
-			if(!isset($_SESSION['username']) AND !isset($_SESSION['password'])) {
+			if(!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 				include('admin/login.php');
 			}
-			elseif(isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {
+			elseif(isset($_SESSION['username']) && $_SESSION['username'] !== 'j.forteroche') {
 				echo '<p>Désolé, vous n\'êtes pas autorisé à administrer ce blog.</p>';
 			}
 			// Sinon, on affiche les différents éléments de l'espace d'administration.

@@ -49,7 +49,7 @@ class ViewHome
 							echo '<div class="alert alert-danger">';
 							echo '<p>Aucun chapitre n\'a été publié pour le moment. Patientez un peu, l\'auteur est en plein travail.</p>';
 							echo '</div>';
-							if(isset($_SESSION['username']) AND $_SESSION['username'] == 'j.forteroche') {
+							if(isset($_SESSION['username']) && $_SESSION['username'] == 'j.forteroche') {
 								echo '<p><a class="btn btn-default" href="index.php?p=admin&amp;menu=write">Commencez ici</a></p>';
 							} 
 						} else {
@@ -61,7 +61,7 @@ class ViewHome
 										<h6 class="grey-text">Le <?= $chapter->getDate()->format("d/m/Y"); ?> par <?= $chapter->getAuthor(); ?></h6>
 									</div>
 									<div class="card-image waves-effect waves-block waves-light">
-										<img src="public/img/<?= $chapter->getChapterImage(); ?>" alt="<?= htmlspecialchars($chapter->getTitle()); ?>"/>
+										<a href="index.php?p=single&amp;id=<?= $chapter->getId(); ?>"><img src="public/img/<?= $chapter->getChapterImage(); ?>" alt="<?= htmlspecialchars($chapter->getTitle()); ?>"/></a>
 									</div>
 										<div class="card-content">
 										<span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>

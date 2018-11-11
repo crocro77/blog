@@ -3,6 +3,9 @@
 </div>
 
 <?php
+
+if($this->signaledComments) echo '<p id="flash" class="center"><i class="material-icons">warning</i>&nbspUn ou plusieurs commentaire(s) signalé(s) : Action requise !</p>';
+
 if (empty($this->listOfComments)) {
 	echo '<p>Aucun commentaire n\'a été posté pour le moment.</p>';
 } else { ?>
@@ -71,5 +74,7 @@ if (empty($this->listOfComments)) {
 ?>
 	</div>
 	<?php
-
 }
+?>
+
+<script type="text/javascript" src="public/js/script.js"></script>
