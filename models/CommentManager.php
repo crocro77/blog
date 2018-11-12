@@ -35,9 +35,9 @@ class CommentManager
 	}
 
 	/**
-	 * Obtient le nombre de commentaires sur un chapter spécifique.
-	 * @param int $chapterId L'id de l'chapter
-	 * @return int Le nombre de commentaires sur cet chapter
+	 * Obtient le nombre de commentaires sur un chapitre spécifique.
+	 * @param int $chapterId L'id du chapitre
+	 * @return int Le nombre de commentaires sur ce chapitre
 	 */
 	public function count($post_id) {
 		$request = $this->db->prepare('SELECT COUNT(*) FROM comments WHERE post_id = :post_id');
@@ -62,8 +62,8 @@ class CommentManager
 	}
 
 	/**
-	 * Obtient tous les commentaires, triés par id d'chapter et date de publication.
-	 * @return Comment objects Les commentaires.
+	 * Obtient tous les commentaires, triés par id du chapitre et date de publication.
+	 * @return Comment objet Les commentaires.
 	 */
 	public function getAllComments() {
 		$result = $this->db->query('SELECT * FROM comments ORDER BY post_id, comment_date');
@@ -75,9 +75,9 @@ class CommentManager
 	}
 
 	/**
-	 * Obtient les commentaires d'un chapter spécifique, triés par date de publication dans l'ordre décroissant.
-	 * @param id $chapterId L'id de l'chapter
-	 * @return Comment Objects Les commentaires.
+	 * Obtient les commentaires d'un chapitre spécifique
+	 * @param id $chapterId L'id du chapitre
+	 * @return Comment objet Les commentaires.
 	 */
 	public function getComments($post_id) {
 		$request = $this->db->prepare('SELECT * FROM comments WHERE post_id = :post_id ORDER BY comment_date DESC');
@@ -89,7 +89,7 @@ class CommentManager
 	}
 
 	/**
-	 * Signal a comment so it can be moderated in admin page
+	 * Signaler un commentaire
 	 * @param $comment  The comment
 	 */
 	public function signal($comment) {
@@ -99,7 +99,7 @@ class CommentManager
 	}
 
 	/**
-	 * Validate a signaled comment
+	 * Valider un commentaire
 	 * @param int $commentId The comment identifier
 	 */
 	public function validateComment($commentId) {
@@ -114,8 +114,8 @@ class CommentManager
 	}
 
 	/**
-	 * Gets the signaled comment.
-	 * @return The signaled comment.
+	 * obtenir le commentaire signalé
+	 * @return le commantaire signalé.
 	 */
 	public function getSignaledComments() {
 		$result = $this->db->query('SELECT * FROM comments WHERE signaled > 0 ORDER BY signaled DESC');
@@ -127,8 +127,8 @@ class CommentManager
 	}
 
 	/**
-	 * Delete a specific comment
-	 * @param int $id The identifier
+	 * supprime un commentaire
+	 * @param int $id l'identifiant
 	 */
 	public function deleteComment($commentId) {
 		$req = $this->db->prepare('DELETE FROM comments WHERE id = :id');
@@ -137,7 +137,7 @@ class CommentManager
 	}
 
 	/**
-	 * Delete all comments
+	 * supprime tous les commentaires
 	 */
 	public function deleteAll() {
 		$result = $this->db->exec('TRUNCATE TABLE comments');

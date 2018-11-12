@@ -1,6 +1,5 @@
 <h2>Liste des chapitres</h2>
 <hr/>
-
 <?php
 if(empty($this->listOfChapters)) {
 	echo '<p>Vous n\'avez pas encore publié d\'article. <a href="index.php?p=admin&amp;menu=write">Commencez ici</a></p>';

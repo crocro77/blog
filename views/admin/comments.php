@@ -1,11 +1,8 @@
 <div class="page-header">
 	<h3>Commentaire(s)</h3>
 </div>
-
 <?php
-
 if($this->signaledComments) echo '<p id="flash" class="center"><i class="material-icons">warning</i>&nbspUn ou plusieurs commentaire(s) signalé(s) : Action requise !</p>';
-
 if (empty($this->listOfComments)) {
 	echo '<p>Aucun commentaire n\'a été posté pour le moment.</p>';
 } else { ?>
@@ -16,7 +13,6 @@ if (empty($this->listOfComments)) {
 			<th>Auteur</th>
 			<th>Action</th>
 		</thead>
-
 		<tbody>
 			<?php
 		foreach ($this->listOfComments as $comment) { ?>
@@ -27,15 +23,12 @@ if (empty($this->listOfComments)) {
 					<td><a href="?p=admin&amp;menu=comments&amp;action=deleteComment&amp;commentId=<?= $comment->getId(); ?>"><i class="material-icons">delete</i></a></td>
 				</tr>
 				<?php
-
 		}
 		?>
 		</tbody>
 	</table>
-	
 	<div class="col-xs-12 signaled-comments">
 		<h4>Commentaire(s) signalé(s)</h4>
-
 		<?php 
 	if (empty($this->signaledComments)) {
 		echo 'Aucun commentaire n\'a été signalé pour le moment.';
@@ -63,18 +56,15 @@ if (empty($this->listOfComments)) {
 						</td>
 					</tr>
 				<?php
-
 		}
 		?>
 			</tbody>
 		</table>
 		<?php
-
 }
 ?>
 	</div>
 	<?php
 }
 ?>
-
 <script type="text/javascript" src="public/js/script.js"></script>

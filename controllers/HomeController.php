@@ -1,6 +1,7 @@
 <?php
 
-class HomeController extends Controller {
+class HomeController extends Controller
+{
 	public function execute() {
 		// Nombre de chapitre que l'on veut par page.
 		$chaptersPerPage = 4;

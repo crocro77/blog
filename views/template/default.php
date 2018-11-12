@@ -11,7 +11,6 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="public/js/materialize.js"></script>
   </head>
-
   <body>
     <nav class="light-blue">
         <div class="container">
@@ -23,14 +22,11 @@
             </div>
         </div>
     </nav>
-    
     <?php
       echo $content;
     ?>
-
     <footer>
         <p id="titleDetail">2018 - Jean Forteroche</p>
     </footer>
-
   </body>
 </html>

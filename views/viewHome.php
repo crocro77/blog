@@ -29,7 +29,6 @@ class ViewHome
 				<h5 id="titleDetail">Découvrez ce roman passionnant avec de nouveaux chapitres ajoutés régulièrement !</h5>
 				<br />
 			</div>
-
 			<ul class="pagination center">
 				<?php
 					for($i = 1; $i <= $this->numberOfPages; $i++) {
@@ -80,7 +79,6 @@ class ViewHome
 					</div>
 				</div>
 		</div>
-
 		<?php
 	}
 }

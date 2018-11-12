@@ -22,31 +22,29 @@ class ViewAdmin
 		$this->listOfComments = $listOfComments;
 		$this->totalSignaledComments = $totalSignaledComments;
 	}
-
 	// affiche le contenu de la vue.
 	public function display() {
 		?>
 		<div class="container">
-			
 			<?php
 				include('admin/admin-nav.php');
 				// Le tableau de bord si 'selectedTab' vaut 'dashboard'.
 				if($this->selectedTab == 'dashboard') {
 					include('admin/dashboard.php');
 				}
-				// La liste des Chapters.
+				//  Le tableau de bord si 'selectedTab' vaut 'list'.
 				elseif($this->selectedTab == 'list') {
 					include('admin/list-chapters.php');
 				}
-				// Le formulaire d'ajout ou d'édition de chapter.
+				//  Le tableau de bord si 'selectedTab' vaut 'write'.
 				elseif($this->selectedTab == 'write') {
 					include('admin/write.php');
 				}
-				// La liste des commentaires.
+				//  Le tableau de bord si 'selectedTab' vaut 'comments'.
 				elseif($this->selectedTab == 'comments') {
 					include('admin/comments.php');
 				}
-				// Les réglages
+				//  Le tableau de bord si 'selectedTab' vaut 'settings'.
 				elseif($this->selectedTab == 'settings') {
 					include('admin/settings.php');
 				}

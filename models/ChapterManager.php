@@ -16,8 +16,8 @@ class ChapterManager
 	}
 
 	/**
-	 * Compte le nombre d'Chapters dans la base de données.
-	 * @return int Le nombre d'Chapters
+	 * Compte le nombre de chapitres dans la base de données.
+	 * @return int Le nombre de chapitres
 	 */
 	public function count()
 	{
@@ -27,7 +27,7 @@ class ChapterManager
 
 	/**
 	 * Ajoute un chapitre dans la base de données.
-	 * @param chapter $chapter L'chapter (object)
+	 * @param chapter $chapter L'objet chapitre
 	 */
 	public function add(Chapter $chapter)
 	{
@@ -39,7 +39,7 @@ class ChapterManager
 	}
 
 	/**
-	 * Met à jour les valeurs d'un chapter.
+	 * Met à jour les valeurs d'un chapitre.
 	 * @param string $title Le titre
 	 * @param string $author L'auteur
 	 * @param string $content Le contenu
@@ -58,8 +58,8 @@ class ChapterManager
 	/**
 	 * Obtient la liste des chapitres.
 	 * @param int $firstArticle Le premier chapitre
-	 * @param int $chaptersPerPage Le nombre de chapires par page
-	 * @return Chapte objects La liste
+	 * @param int $chaptersPerPage Le nombre de chapitres par page
+	 * @return Chapter objects La liste
 	 */
 	public function getList($firstChapter = -1, $chaptersPerPage = -1) 
 	{
@@ -73,7 +73,7 @@ class ChapterManager
 		$request = $this->db->query($sql);
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Chapter');
 		$listOfChapters = $request->fetchAll();
-		// On boucle sur la liste des chapitres afin d'instancier des objets DateTime pour date
+		// On boucle sur la liste des chapitres afin d'instancier des objets Date pour date
 		foreach($listOfChapters as $chapter)
 		{
 			$chapter->setDate(new DateTime($chapter->getDate()));
@@ -83,9 +83,9 @@ class ChapterManager
 	}
 	
 	/**
-	 * Obtient un chapter unique (pour la vue Single)
-	 * @param int $id L'id duchapter
-	 * @return chapter Object chapter.
+	 * Obtient un chapitre unique (pour la vue Single)
+	 * @param int $id L'id du chapitre
+	 * @return chapter l'objet chapitre
 	 */
 	public function getUnique($id)
 	{
@@ -99,7 +99,7 @@ class ChapterManager
 	}
 
 	/**
-	 * Supprimer un chapter de la base de données.
+	 * Supprime un chapitre de la bdd
 	 */
 	public function deleteChapter()
 	{
@@ -109,7 +109,7 @@ class ChapterManager
 	}
 
 	/**
-	 * Supprime tous les Chapters de la bdd
+	 * Supprime tous les chapitres de la bdd
 	 */
 	public function deleteAll()
 	{

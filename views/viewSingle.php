@@ -29,7 +29,6 @@ class ViewSingle
                 <p id="titleDetail"><a class="btn light-blue waves-effect" href="index.php">Retour à la page d'accueil</a></p>
             </div>
         </div>
-
         <div class="container">
             <h2 id="post-title" class="center"><?= htmlspecialchars($this->chapterUnique->getTitle()); ?></h2>
             <div class="row center">
@@ -37,7 +36,6 @@ class ViewSingle
             </div>
             <h6 class="center">Par <?= htmlspecialchars($this->chapterUnique->getAuthor()); ?> le <?= $this->chapterUnique->getDate()->format('d/m/Y') ?></h6>
             <p><?= $this->chapterUnique->getContent(); ?></p>
-
             <hr>
             <h4>Commentaire</h4>
             <?php
@@ -67,9 +65,7 @@ class ViewSingle
                 echo "Aucun commentaire n'a été publié, soyez le premier à réagir !";
             }   
             ?>
-
 			<hr>
-
 			<h4 id="poster-commentaire">Commenter</h4>
 			<div class="write-comment">
                 <?php
@@ -90,14 +86,12 @@ class ViewSingle
                     <?php
                     }
                     ?>
-
                     <div class="form-group">
                         <label for="comment" class="col-sm-1 control-label">Commentaire</label>
                         <div class="col-sm-offset-1 col-sm-10">
                             <textarea name="comment" class="materialize-textarea"></textarea>
                         </div>
                     </div>
-
                     <input type="hidden" name="id" value="<?= $this->chapterUnique->getId(); ?>">
                     <div class="col s12">
                         <button type="submit" name ="submit" class="btn light-blue waves-effect">Envoyer votre commentaire</button>

@@ -1,7 +1,7 @@
 <?php
 
-class ViewLogin {
-
+class ViewLogin 
+{
 	// affiche le contenu de la vue
 	public function display() {
 		?>
@@ -16,9 +16,7 @@ class ViewLogin {
 							</div>
 						</div>
 					</div>
-
 					<h4 class="center-align">Espace d'administration</h4>
-
 					<form method="post">
 						<div class="row">
 							<div class="input-field col s12">
@@ -31,7 +29,6 @@ class ViewLogin {
 								<input class="form-control" type="password" name="password" required />
 							</div>
 						</div>
-
 						<div class="center">
 							<button type="submit" name="submit" class="waves-effect waves-light btn light-blue"><i class="material-icons left">person</i>Se connecter</button>
 						</div>

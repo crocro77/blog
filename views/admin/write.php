@@ -8,7 +8,6 @@ if(isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
 	echo '<h3>Nouveau chapitre</h3>';
 	echo '</div>';
 }
-
 // Si l'on n'est pas en train d'éditer un article. 
 if(!isset($_GET['action'])) {
 	echo '<p>Vous pouvez rédiger dès à présent un nouveau chapitre.</p>';
@@ -36,7 +35,6 @@ if(isset($_SESSION['flash'])) {
                 <input type="file" name="image" class="col s12"/>
         </div>
     </div>	
-
 	<?php
 	// Si on édite un article, le bouton d'envoi devient 'Mettre à jour'.
 	if(isset($_GET['action']) && $_GET['action'] == 'edit') {

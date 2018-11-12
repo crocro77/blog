@@ -1,11 +1,10 @@
 <?php
 
-class ViewError {
-	
+class ViewError 
+{
 	// affiche le contenu de la vue.
 	public function display() {
 		?>
-
 		<div class="error-container">
 			<div class="container">
 				<div class="page-header">
@@ -13,7 +12,6 @@ class ViewError {
 				</div>
 			</div>
 		</div>
-		
 		<?php
 	}
 }
