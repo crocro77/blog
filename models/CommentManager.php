@@ -135,12 +135,4 @@ class CommentManager
 		$req->bindValue(':id', $commentId);
 		$req->execute();
 	}
-
-	/**
-	 * supprime tous les commentaires
-	 */
-	public function deleteAll() {
-		$result = $this->db->exec('TRUNCATE TABLE comments');
-		return $result;
-	}
 }

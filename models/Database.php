@@ -1,6 +1,6 @@
 <?php
 
-class Controller 
+class Database 
 {
 	protected $chapterManager;
 	protected $commentManager;
@@ -18,7 +18,5 @@ class Controller
 		$db = new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . ';charset=utf8', $this->db_user, $this->db_pass, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 		$this->chapterManager = new ChapterManager($db);
 		$this->commentManager = new CommentManager($db);
-
 	}
-
 }

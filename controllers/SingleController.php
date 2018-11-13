@@ -1,6 +1,6 @@
 <?php
 
-class SingleController extends Controller
+class SingleController extends Database
 {
 	public function execute() {
 		// Si $_POST['author'] n'est pas vide OU qu'il est vide mais que $_SESSION['username'] existe et que $_POST['comment'] n'est pas vide

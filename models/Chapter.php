@@ -147,5 +147,5 @@ class Chapter
 	 */
 	public function getChapterImage() {
 		return $this->chapter_image;
-    }
+	}
 }

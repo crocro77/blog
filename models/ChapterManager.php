@@ -73,6 +73,7 @@ class ChapterManager
 		$request = $this->db->query($sql);
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Chapter');
 		$listOfChapters = $request->fetchAll();
+		
 		// On boucle sur la liste des chapitres afin d'instancier des objets Date pour date
 		foreach($listOfChapters as $chapter)
 		{
@@ -81,7 +82,7 @@ class ChapterManager
 		$request->closeCursor();
 		return $listOfChapters;
 	}
-	
+
 	/**
 	 * Obtient un chapitre unique (pour la vue Single)
 	 * @param int $id L'id du chapitre
@@ -106,14 +107,5 @@ class ChapterManager
 		$chapterManager = new ChapterManager($this->db);
 		$commentManager->deleteAllWithChapter($_POST['id']);
 		$this->db->exec('DELETE FROM posts WHERE id = '. $_POST['id']);
-	}
-
-	/**
-	 * Supprime tous les chapitres de la bdd
-	 */
-	public function deleteAll()
-	{
-		$result = $this->db->exec('TRUNCATE TABLE posts');
-		return $result;
 	}
 }

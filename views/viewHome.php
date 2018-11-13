@@ -32,16 +32,16 @@ class ViewHome
 			<ul class="pagination center">
 				<?php
 					for($i = 1; $i <= $this->numberOfPages; $i++) {
-					if($i == $this->currentPage) { 
-						echo "<li class='page-item'><a class='page-link'>$i</a></li>";
-					} else {
-						echo '<li class="waves-effect"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
-					}
+						if($i == $this->currentPage) { 
+							echo "<li class='page-item'><a class='page-link'>$i</a></li>";
+						} else {
+							echo '<li class="waves-effect"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+						}
 					}
 				?>
 			</ul>
 			<br />
-				<div class="row">
+				<div id="anchor" class="row">
 					<div class="col-xs-12">
 						<?php
 						if(empty($this->listOfChapters)) {
@@ -78,6 +78,17 @@ class ViewHome
 						?>
 					</div>
 				</div>
+				<ul class="pagination center">
+				<?php
+					for($i = 1; $i <= $this->numberOfPages; $i++) {
+						if($i == $this->currentPage) { 
+							echo "<li class='page-item'><a class='page-link'>$i</a></li>";
+						} else {
+							echo '<li class="waves-effect"><a class="page-link" href="?page=' . $i . '#anchor">' . $i . '</a></li>';
+						}
+					}
+				?>
+			</ul>
 		</div>
 		<?php
 	}

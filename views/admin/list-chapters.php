@@ -1,4 +1,4 @@
-<h2>Liste des chapitres</h2>
+<h2 id="to-the-top">Liste des chapitres</h2>
 <hr/>
 <?php
 if(empty($this->listOfChapters)) {
@@ -36,3 +36,4 @@ if(empty($this->listOfChapters)) {
     }
 }
 ?>
+<a href="#to-the-top" title="Retour en haut" class="right"><i class="material-icons">arrow_upward</i></a>

@@ -1,8 +1,8 @@
 <div class="page-header">
-	<h3>Commentaire(s)</h3>
+	<h3 id="to-the-top">Commentaire(s)</h3>
 </div>
 <?php
-if($this->signaledComments) echo '<p id="flash" class="center"><i class="material-icons">warning</i>&nbspUn ou plusieurs commentaire(s) signalé(s) : Action requise !</p>';
+if($this->signaledComments) echo '<p class="center"><i id="flash" class="material-icons">warning</i><br/><strong>Un ou plusieurs commentaire(s) signalé(s) : Action requise !</strong></p>';
 if (empty($this->listOfComments)) {
 	echo '<p>Aucun commentaire n\'a été posté pour le moment.</p>';
 } else { ?>
@@ -67,4 +67,5 @@ if (empty($this->listOfComments)) {
 	<?php
 }
 ?>
+<a href="#to-the-top" title="Retour en haut" class="right"><i class="material-icons">arrow_upward</i></a>
 <script type="text/javascript" src="public/js/script.js"></script>

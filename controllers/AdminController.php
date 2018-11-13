@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends Controller
+class AdminController extends Database
 {
 	public function execute() {
 		
@@ -83,9 +83,6 @@ class AdminController extends Controller
 		if(isset($_GET['action'])) {
 			if($_GET['action'] == 'delete') {
 				$this->chapterManager->deleteChapter();
-			} elseif($_GET['action'] == 'truncate') {
-				$this->chapterManager->deleteAll();
-				$this->commentManager->deleteAll();
 			} elseif($_GET['action'] == 'edit') {
 				$chapter = $this->chapterManager->getUnique($_GET['id']);
 			}
@@ -97,8 +94,6 @@ class AdminController extends Controller
 				$this->commentManager->validateComment($_GET['commentId']);
 			} elseif($_GET['action'] == 'deleteComment') {
 				$this->commentManager->deleteComment($_GET['commentId']);
-			} elseif($_GET['action'] == 'deleteAllComments') {
-				$this->commentManager->deleteAll();
 			}
 		}
 

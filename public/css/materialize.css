@@ -9552,12 +9552,45 @@ input[type=range]::-ms-thumb {
 }
 
 #flash {
-  background-color: rgb(231, 26, 26);
-  border: 1px solid black;
-  font-size: 20px;
+  color: red;
+  font-size: 50px;
   font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 25px;
 }
 
-.material-icons {
+.tab .material-icons {
   font-size: 50px;
+  color: black;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: space-between;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container > .tab {
+  margin: 15px;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.material-icons:hover {
+  color: #03a9f4;
+}
+
+.material-icons:active {
+  color: white;
 }
