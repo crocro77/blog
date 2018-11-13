@@ -22,9 +22,9 @@
             </div>
         </div>
     </nav>
-    <?php
-      echo $content;
-    ?>
+
+      <?= $content; ?>
+      
     <footer>
         <p id="titleDetail">2018 - Jean Forteroche</p>
     </footer>

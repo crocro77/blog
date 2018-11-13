@@ -17,7 +17,7 @@
                 ];
                 foreach($tables as $table_name => $table){
                     ?>
-                        <div class="col l4 m6 s12">
+                        <div class="col l6 m6 s12">
                             <div class="card">
                                 <div class="card-content <?= getColor($table,$colors) ?> white-text">
                                     <span class="card-title"><?= $table_name ?></span>

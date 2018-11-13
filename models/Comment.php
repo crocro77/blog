@@ -131,5 +131,4 @@ class Comment
 	public function getSignaled() {
 		return $this->signaled; 
 	}
-
 }
