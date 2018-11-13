@@ -11,6 +11,6 @@ function post_img($tmp_name, $extension){
     $sql = "UPDATE posts SET chapter_image = :chapter_image WHERE id = :id";
     $req = $db->prepare($sql);
     $req->execute($image);
-    move_uploaded_file($tmp_name,"../public/img/".$id.$extension);
+    move_uploaded_file($tmp_name,"public/img/".$id.$extension);
     header("Location:index.php?page=post&id=".$id);
 }

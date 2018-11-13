@@ -37,7 +37,7 @@ class ViewSingle
             <h6 class="center">Par <?= htmlspecialchars($this->chapterUnique->getAuthor()); ?> le <?= $this->chapterUnique->getDate()->format('d/m/Y') ?></h6>
             <p><?= $this->chapterUnique->getContent(); ?></p>
             <hr>
-            <h4>Commentaire</h4>
+            <h4>Commentaire(s)</h4>
             <?php
             if ($this->listOfComments != false) {
                 foreach($this->listOfComments as $comment) {

@@ -16,12 +16,12 @@ if(empty($this->listOfChapters)) {
                     <div class="col s12 m6 l8">
                     <?= substr($chapter->getContent(), 0, 1000) . '...'; ?>...
                     </div>
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6 l4 center">
                         <img src="public/img/<?= $chapter->getChapterImage() ?>" class="responsive-img" alt="<?= htmlspecialchars($chapter->getTitle()); ?>"/>
                         <br/><br/>
                         <a class="btn light-blue waves-effect waves-light" href="index.php?p=single&id=<?= $chapter->getId(); ?>">Voir le chapitre complet</a>
                         <br/><br/>
-                        <a class="btn light-blue waves-effect waves-light" href="index.php?p=admin&menu=write&action=edit&id=<?= $chapter->getId(); ?>">Éditer le chapitre</a>
+                        <a class="btn light-blue waves-effect waves-light" href="index.php?p=admin&tab=write&action=edit&id=<?= $chapter->getId(); ?>">Éditer le chapitre</a>
                         <br/><br/>
                         <form method="post" role="form" action="index.php?p=admin&menu=list&action=delete&id=<?= $chapter->getId(); ?>">
                             <input type="hidden" name="id" value="<?= $chapter->getId(); ?>">

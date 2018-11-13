@@ -1,11 +1,9 @@
 <?php
-
 class ViewHome
 {
 	private $listOfChapters;
 	private $numberOfPages;
 	private $currentPage;
-
 	public function __construct($listOfChapters, $numberOfPages, $currentPage)
 	{
 		$this->listOfChapters = $listOfChapters;
