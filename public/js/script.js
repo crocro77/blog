@@ -6,4 +6,4 @@ var clignotement = function(){
     document.getElementById('flash').style.visibility='visible'; 
     } 
  }; 
- periode = setInterval(clignotement, 800); 
+ periode = setInterval(clignotement, 800);

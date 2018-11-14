@@ -27,6 +27,7 @@ class ViewHome
 				<h5 id="titleDetail">Découvrez ce roman passionnant avec de nouveaux chapitres ajoutés régulièrement !</h5>
 				<br />
 			</div>
+			<hr>
 			<ul class="pagination center">
 				<?php
 					for($i = 1; $i <= $this->numberOfPages; $i++) {
@@ -38,7 +39,7 @@ class ViewHome
 					}
 				?>
 			</ul>
-			<br />
+			<hr>
 				<div id="anchor" class="row">
 					<div class="col-xs-12">
 						<?php
@@ -53,29 +54,30 @@ class ViewHome
 							foreach($this->listOfChapters as $chapter) { ?>
 								<div class="col l6 m6 s12">
 									<div class="card">
-									<div class="card-content">
-										<h5 class="grey-text text-darken-2"><?= htmlspecialchars($chapter->getTitle()); ?></h5>
-										<h6 class="grey-text">Le <?= $chapter->getDate()->format("d/m/Y"); ?> par <?= $chapter->getAuthor(); ?></h6>
-									</div>
-									<div class="card-image waves-effect waves-block waves-light">
-										<a href="index.php?p=single&amp;id=<?= $chapter->getId(); ?>"><img src="public/img/<?= $chapter->getChapterImage(); ?>" alt="<?= htmlspecialchars($chapter->getTitle()); ?>"/></a>
-									</div>
 										<div class="card-content">
-										<span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-										<p><a href="index.php?p=single&amp;id=<?= $chapter->getId(); ?>">Voir le chapitre complet</a></p>
+											<h5 class="grey-text text-darken-2"><?= htmlspecialchars($chapter->getTitle()); ?></h5>
+											<h6 class="grey-text">Le <?= $chapter->getDate()->format("d/m/Y"); ?> par <?= $chapter->getAuthor(); ?></h6>
+										</div>
+										<div class="card-image waves-effect waves-block waves-light">
+											<a href="index.php?p=single&amp;id=<?= $chapter->getId(); ?>"><img src="public/img/<?= $chapter->getChapterImage(); ?>" alt="<?= htmlspecialchars($chapter->getTitle()); ?>"/></a>
+										</div>
+										<div class="card-content">
+											<span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+											<p><a href="index.php?p=single&amp;id=<?= $chapter->getId(); ?>">Voir le chapitre complet</a></p>
 										</div>
 										<div class="card-reveal">
-										<span class="card-title grey-text text-darken-4"><?= htmlspecialchars($chapter->getTitle()); ?><i class="material-icons right">close</i></span>
+											<span class="card-title grey-text text-darken-4"><?= htmlspecialchars($chapter->getTitle()); ?><i class="material-icons right">close</i></span>
 											<p><?= substr($chapter->getContent(), 0, 400) . '...'; ?></p>
-											</div>
 										</div>
 									</div>
+								</div>
 							<?php
 							}
 						}
 						?>
 					</div>
 				</div>
+				<hr>
 				<ul class="pagination center">
 				<?php
 					for($i = 1; $i <= $this->numberOfPages; $i++) {
@@ -85,8 +87,9 @@ class ViewHome
 							echo '<li class="waves-effect"><a class="page-link" href="?page=' . $i . '#anchor">' . $i . '</a></li>';
 						}
 					}
-				?>
-			</ul>
+					?>
+				</ul>
+				<hr>
 		</div>
 		<?php
 	}

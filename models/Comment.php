@@ -8,6 +8,7 @@ class Comment
 	private $comment_date;
 	private $author;
 	private $signaled;
+	private $seen;
 
 	public function __construct($value = []) {
 		if(!empty($value)) {
@@ -81,6 +82,16 @@ class Comment
 			$this->signaled = $signaled;
 		}
 	}
+
+		/**
+	 * Permet d'assigner une valeur à l'attribut 'signaled'.
+	 * @param int $signaled Le signal
+	 */
+	public function setSeen($seen) {
+		if(is_int($seen) && !empty($seen)) {
+			$this->seen = $seen;
+		}
+	}
 	
 	// GETTERS //
 	
@@ -130,5 +141,13 @@ class Comment
 	 */
 	public function getSignaled() {
 		return $this->signaled; 
+	}
+
+	/**
+	 * Obtient la valeur de l'attribut 'Signaled'.
+	 * @return int Le signalement
+	 */
+	public function getSeen() {
+		return $this->seen; 
 	}
 }

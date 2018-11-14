@@ -94,6 +94,8 @@ class AdminController extends Database
 				$this->commentManager->validateComment($_GET['commentId']);
 			} elseif($_GET['action'] == 'deleteComment') {
 				$this->commentManager->deleteComment($_GET['commentId']);
+			} elseif($_GET['action'] == 'seenComment') {
+				$this->commentManager->seenComment($_GET['commentId']);
 			}
 		}
 

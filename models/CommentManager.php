@@ -66,7 +66,7 @@ class CommentManager
 	 * @return Comment objet Les commentaires.
 	 */
 	public function getAllComments() {
-		$result = $this->db->query('SELECT * FROM comments ORDER BY post_id, comment_date');
+		$result = $this->db->query("SELECT comments.id, comments.author, comments.comment_date, comments.post_id, comments.comment, posts.title FROM comments JOIN posts ON comments.post_id = posts.id WHERE comments.seen = '0' ORDER BY comments.post_id, comments.comment_date ASC");
 		$listComments = $result->fetchAll(PDO::FETCH_CLASS, "Comment");
 		foreach($listComments as $comment) {
 			$comment->setCommentDate(new DateTime($comment->getCommentDate()));
@@ -103,7 +103,17 @@ class CommentManager
 	 * @param int $commentId The comment identifier
 	 */
 	public function validateComment($commentId) {
-		$req = $this->db->prepare('UPDATE comments SET signaled = 0 WHERE id = :id');
+		$req = $this->db->prepare('UPDATE comments SET signaled = 0, seen = 1 WHERE id = :id');
+		$req->bindValue(':id', (int) $commentId);
+		$req->execute();
+	}
+
+	/**
+	 * Indiqué comme vu un commentaire
+	 * @param int $commentId 
+	 */
+	public function seenComment($commentId) {
+		$req = $this->db->prepare('UPDATE comments SET seen = 1 WHERE id = :id');
 		$req->bindValue(':id', (int) $commentId);
 		$req->execute();
 	}
@@ -115,7 +125,7 @@ class CommentManager
 
 	/**
 	 * obtenir le commentaire signalé
-	 * @return le commantaire signalé.
+	 * @return le commentaire signalé.
 	 */
 	public function getSignaledComments() {
 		$result = $this->db->query('SELECT * FROM comments WHERE signaled > 0 ORDER BY signaled DESC');

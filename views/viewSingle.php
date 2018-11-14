@@ -54,7 +54,7 @@ class ViewSingle
                         <?php
                         // Sinon, on affiche un message d'alerte pour prévenir que le commentaire a été signalé.
                         } else {
-                            echo '<em>Le commentaire a été signalé et est en attente de modération.</em>';
+                            echo '<em class="red">Le commentaire a été signalé et est en attente de modération.</em>';
                         }
                         ?>
                     </p>
@@ -97,6 +97,7 @@ class ViewSingle
                         <button type="submit" name ="submit" class="btn light-blue waves-effect">Envoyer votre commentaire</button>
                     </div>
                 </form>
+            </div>
         </div>
     <?php
     }
