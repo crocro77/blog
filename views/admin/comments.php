@@ -2,10 +2,11 @@
 	<h3 id="to-the-top" class="center">Commentaire(s)</h3>
 </div>
 <?php
-if($this->signaledComments) echo '<p class="center"><i id="flash" class="material-icons">warning</i><br/><strong>Un ou plusieurs commentaire(s) signalé(s) : Action requise !</strong></p>';
+if($this->signaledComments) echo '<p class="center"><i id="flash" class="material-icons">warning</i><br/><strong>Un ou plusieurs commentaire(s) signalé(s) : <a href="#signaled-comment">Action requise !</a></strong></p>';
 if (empty($this->listOfComments)) {
 	echo '<p>Aucun commentaire n\'a été posté pour le moment.</p>';
 } else { ?>
+<div class="row">
 	<table class="table">
 		<thead>
 			<th>Chapitre</th>
@@ -30,7 +31,7 @@ if (empty($this->listOfComments)) {
 		</tbody>
 	</table>
 	<div class="col-xs-12 signaled-comments">
-		<h4 class="center">Commentaire(s) signalé(s)</h4>
+		<h4 id="signaled-comment" class="center">Commentaire(s) signalé(s)</h4>
 		<?php 
 	if (empty($this->signaledComments)) {
 		echo 'Aucun commentaire n\'a été signalé pour le moment.';
@@ -69,5 +70,6 @@ if (empty($this->listOfComments)) {
 	<?php
 }
 ?>
+</div>
 <a href="#to-the-top" title="Retour en haut" class="right"><i class="material-icons">arrow_upward</i></a>
 <script type="text/javascript" src="public/js/script.js"></script>

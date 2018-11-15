@@ -4,13 +4,11 @@ class ViewSingle
 {
 	private $chapterUnique;
 	private $listOfComments;
-	private $numberOfComments;
 
-	public function __construct($chapterUnique, $listOfComments, $numberOfComments)
+	public function __construct($chapterUnique, $listOfComments)
 	{
 		$this->chapterUnique = $chapterUnique;
 		$this->listOfComments = $listOfComments;
-		$this->numberOfComments = $numberOfComments;
     }
     
 	// affiche le contenu de la vue.

@@ -1,18 +1,7 @@
 <?php
 
-class CommentManager
+class CommentManager extends ObjectModel
 {	
-	// Attribut nécessaire à la connexion avec la base de données.
-	private $db;
-
-	/**
-	 * Permet de se connecter à la base de données dès l'instanciation de l'objet.
-	 * @param PDO Object $db La base de données
-	 */
-	public function __construct($db) {
-		$this->db = $db;
-	}
-
 	/**
 	 * Ajoute un commentaire en base de données.
 	 * @param Comment $comment Le commentaire
@@ -23,27 +12,6 @@ class CommentManager
 		$req->bindValue(':author', $comment->getAuthor());
 		$req->bindValue(':comment', $comment->getComment());
 		$req->execute();
-	}
-
-	/**
-	 * Obtient le nombre total de commentaires.
-	 * @return int Total.
-	 */
-	public function getTotalCount() {
-		$result = $this->db->query('SELECT COUNT(*) FROM comments')->fetchColumn();
-		return $result;
-	}
-
-	/**
-	 * Obtient le nombre de commentaires sur un chapitre spécifique.
-	 * @param int $chapterId L'id du chapitre
-	 * @return int Le nombre de commentaires sur ce chapitre
-	 */
-	public function count($post_id) {
-		$request = $this->db->prepare('SELECT COUNT(*) FROM comments WHERE post_id = :post_id');
-		$request->bindValue(':post_id', $post_id);
-		$request->execute();
-		return $request->fetchColumn();
 	}
 
 	/**
@@ -116,11 +84,6 @@ class CommentManager
 		$req = $this->db->prepare('UPDATE comments SET seen = 1 WHERE id = :id');
 		$req->bindValue(':id', (int) $commentId);
 		$req->execute();
-	}
-
-	public function countSignaledComments() {
-		$result = $this->db->query('SELECT COUNT(*) FROM comments WHERE signaled = 1')->fetchColumn();
-		return $result;
 	}
 
 	/**

@@ -27,9 +27,8 @@ class SingleController extends Database
 
 		$chapterUnique = $this->chapterManager->getUnique($_GET['id']);
 		$listOfComments = $this->commentManager->getComments($_GET['id']);
-		$numberOfComments = $this->commentManager->count($_GET['id']);
 
-		$viewSingle = new ViewSingle($chapterUnique, $listOfComments, $numberOfComments);
+		$viewSingle = new ViewSingle($chapterUnique, $listOfComments);
 		$viewSingle->display();
     }
 }

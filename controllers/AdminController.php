@@ -100,14 +100,11 @@ class AdminController extends Database
 		}
 
 		$listOfchapters = $this->chapterManager->getList();
-		$totalChapters = $this->chapterManager->count();
 		$listOfComments = $this->commentManager->getAllComments();
-		$totalComments = $this->commentManager->getTotalCount();
 		$signaledComments = $this->commentManager->getSignaledComments();
-		$totalSignaledComments = $this->commentManager->countSignaledComments();
 		
 		// les infos sont transmises à la vue
-		$viewAdmin = new ViewAdmin($listOfchapters, $selectedTab, $chapter, $signaledComments, $totalChapters, $totalComments, $listOfComments, $totalSignaledComments);
+		$viewAdmin = new ViewAdmin($listOfchapters, $selectedTab, $chapter, $signaledComments, $listOfComments);
 		$viewAdmin->display();
 	}
 }

@@ -7,20 +7,14 @@ class ViewAdmin
 			$selectedTab,
 			$chapter,
 			$signaledComments,
-			$totalChapters,
-			$totalComments,
-			$listOfComments,
-			$totalSignaledComments;
+			$listOfComments;
 
-	public function __construct($listOfChapters, $selectedTab, $chapter, $signaledComments, $totalChapters, $totalComments, $listOfComments, $totalSignaledComments) {
+	public function __construct($listOfChapters, $selectedTab, $chapter, $signaledComments, $listOfComments) {
 		$this->listOfChapters = $listOfChapters;
 		$this->selectedTab = $selectedTab;
 		$this->chapter = $chapter;
 		$this->signaledComments = $signaledComments;
-		$this->totalChapters = $totalChapters;
-		$this->totalComments = $totalComments;
 		$this->listOfComments = $listOfComments;
-		$this->totalSignaledComments = $totalSignaledComments;
 	}
 	// affiche le contenu de la vue.
 	public function display() {
