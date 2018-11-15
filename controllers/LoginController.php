@@ -1,6 +1,6 @@
 <?php
 
-class LoginController extends Database
+class LoginController extends AdminController
 {
 	public function execute() {
 
@@ -11,8 +11,26 @@ class LoginController extends Database
 			header('Location: index.php?p=admin');
 		}
 
-		$viewLogin = new ViewLogin();
-		$viewLogin->display();
+		return $this->load_template('refactor_views/Login.php', array());
+	}
 
+	/**
+	 * Template loader
+	 * @param $template_name
+	 * @param array $data
+	 * @return string
+	 */
+
+	function load_template($template_name, $data = array())
+	{
+    	//Extract variables from the array
+		extract($data);
+
+    	//Getting template content
+		ob_start();
+		include 'views/' . (string)$template_name;
+		$template = ob_get_contents();
+		ob_end_clean();
+		return $template;
 	}
 }

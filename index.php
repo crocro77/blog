@@ -12,6 +12,8 @@ function autoload($classname) {
 		require $file;
 	} elseif(file_exists($file = 'views/' . $classname . '.php')) {
 		require $file;
+	} elseif(file_exists($file = 'includes/' . $classname . '.php')) {
+		require $file;	
 	}
 }
 
@@ -25,22 +27,20 @@ if(isset($_GET['p'])) {
 	$p = 'home';
 }
 
-ob_start();
-
 if($p === 'home') {
 	$pageTitle .= ' - Bienvenue';
 	$controller = new HomeController();
-    $controller->execute();
+    $content = $controller->execute();
 } elseif($p === 'single') {
 	$controller = new SingleController();
-    $controller->execute();
+    $content = $controller->execute();
 } elseif($p === 'admin') {
 	if(!isset($_SESSION['username']) OR isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {
 		header('Location: index.php?p=login');
 	} else {
 		$pageTitle .= ' - Tableau de bord';
 		$controller = new AdminController();
-		$controller->execute();
+		$content = $controller->execute();
 	}
 } elseif($p === 'login') {
 	if(isset($_SESSION['username']) AND $_SESSION['username'] == 'j.forteroche') {
@@ -48,7 +48,7 @@ if($p === 'home') {
 	} else {
 		$pageTitle .= ' - Connexion';
 		$controller = new LoginController();
-		$controller->execute();
+		$content = $controller->execute();
 	}
 } elseif($p === 'logout') {
 	session_start();
@@ -57,8 +57,7 @@ if($p === 'home') {
 	exit();
 } else {
 	$controller = new ErrorController();
-	$controller->execute();
+	$content = $controller->execute();
 }
 
-$content = ob_get_clean();
 require 'views/template/default.php';

@@ -1,10 +1,10 @@
 <h2 id="to-the-top">Liste des chapitres</h2>
 <hr/>
 <?php
-if(empty($this->listOfChapters)) {
+if(empty($listOfchapters)) {
 	echo '<p>Vous n\'avez pas encore publié d\'article. <a href="index.php?p=admin&amp;menu=write">Commencez ici</a></p>';
 } else {
-    foreach($this->listOfChapters as $chapter){
+    foreach($listOfchapters as $chapter){
         ?>
         <div class="row">
             <div class="col s12">

@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends Database
+class AdminController extends SingleController
 {
 	public function execute() {
 		
@@ -29,7 +29,7 @@ class AdminController extends Database
 				$chapter->setTitle($title);
 				$chapter->setContent($content);
 				$chapter->setAuthor($author);
-				$this->chapterManager->add($chapter);
+				$chapter->add($chapter);
 				header("Location:index.php");
 			}
 		} elseif(!empty($_POST)){
@@ -78,33 +78,54 @@ class AdminController extends Database
         //         header("Location:index.php?page=post&id=".$id);
 		// 	}
 		// }
-
+		
 		// suppression et edition des contenus //
+		$chapterManager = new Chapter();
 		if(isset($_GET['action'])) {
 			if($_GET['action'] == 'delete') {
-				$this->chapterManager->deleteChapter();
+				$chapterManager->deleteChapter();
 			} elseif($_GET['action'] == 'edit') {
-				$chapter = $this->chapterManager->getUnique($_GET['id']);
+				$chapter = $chapterManager->getUnique($_GET['id']);
 			}
 		}
 
 		// gestionnaire des commentaires
+		$commentManager = new Comment();
 		if(isset($_GET['action'])) {
 			if($_GET['action'] == 'validateComment') {
-				$this->commentManager->validateComment($_GET['commentId']);
+				$commentManager->validateComment($_GET['commentId']);
 			} elseif($_GET['action'] == 'deleteComment') {
-				$this->commentManager->deleteComment($_GET['commentId']);
+				$commentManager->deleteComment($_GET['commentId']);
 			} elseif($_GET['action'] == 'seenComment') {
-				$this->commentManager->seenComment($_GET['commentId']);
+				$commentManager->seenComment($_GET['commentId']);
 			}
 		}
 
-		$listOfchapters = $this->chapterManager->getList();
-		$listOfComments = $this->commentManager->getAllComments();
-		$signaledComments = $this->commentManager->getSignaledComments();
+		$listOfchapters = $chapterManager->getList();
+		$listOfComments = $commentManager->getAllComments();
+		$signaledComments = $commentManager->getSignaledComments();
 		
 		// les infos sont transmises à la vue
-		$viewAdmin = new ViewAdmin($listOfchapters, $selectedTab, $chapter, $signaledComments, $listOfComments);
-		$viewAdmin->display();
+		return $this->load_template('refactor_views/Admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
+	}
+
+	/**
+	 * Template loader
+	 * @param $template_name
+	 * @param array $data
+	 * @return string
+	 */
+
+	function load_template($template_name, $data = array())
+	{
+    	//Extract variables from the array
+		extract($data);
+
+    	//Getting template content
+		ob_start();
+		include 'views/' . (string)$template_name;
+		$template = ob_get_contents();
+		ob_end_clean();
+		return $template;
 	}
 }
