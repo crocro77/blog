@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title><?= $pageTitle; ?></title>
+    <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="public/css/materialize.css"  media="screen,projection"/>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
