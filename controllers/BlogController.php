@@ -1,8 +1,38 @@
 <?php
 
-class SingleController
+class BlogController
 {
-	public function execute() {
+	public function executeHome()
+	{
+		// Nombre de chapitre que l'on veut par page.
+		$chaptersPerPage = 4;
+
+		// On compte le nombre total de chapitre présents dans la bdd.
+		$chapterManager = new Chapter();
+		$numberOfChapters = $chapterManager->count();
+
+		// Nombre de pages.
+		$numberOfPages = ceil($numberOfChapters / $chaptersPerPage);
+
+		if (isset($_GET['page']) && empty($_GET['page'])) {
+			$currentPage = 1;
+		} elseif (isset($_GET['page']) && !empty($_GET['page'])) {
+			$currentPage = intval($_GET['page']);
+
+			if ($currentPage > $numberOfPages) {
+				$currentPage = $numberOfPages;
+			}
+		} else {
+			$currentPage = 1;
+		}
+
+		$firstChapter = ($currentPage - 1) * $chaptersPerPage;
+		$listOfChapters = $chapterManager->getList($firstChapter, $chaptersPerPage);
+
+		return $this->load_template('home.php', array('listOfChapters' => $listOfChapters, 'numberOfPages' => $numberOfPages, 'currentPage' => $currentPage));
+    }
+    
+    public function executeSingle() {
 		// Si $_POST['author'] n'est pas vide OU qu'il est vide mais que $_SESSION['username'] existe et que $_POST['comment'] n'est pas vide
 		$commentManager = new Comment();
 		if(!empty($_POST['author']) || (empty($_POST['author']) && isset($_SESSION['username']) && !empty($_POST['comment']))) {

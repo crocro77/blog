@@ -29,26 +29,26 @@ if(isset($_GET['p'])) {
 
 if($p === 'home') {
 	$pageTitle .= ' - Bienvenue';
-	$controller = new HomeController();
-    $content = $controller->execute();
+	$controller = new BlogController();
+    $content = $controller->executeHome();
 } elseif($p === 'single') {
-	$controller = new SingleController();
-    $content = $controller->execute();
+	$controller = new BlogController();
+    $content = $controller->executeSingle();
 } elseif($p === 'admin') {
 	if(!isset($_SESSION['username']) OR isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {
 		header('Location: index.php?p=login');
 	} else {
 		$pageTitle .= ' - Tableau de bord';
 		$controller = new AdminController();
-		$content = $controller->execute();
+		$content = $controller->executeAdminPanel();
 	}
 } elseif($p === 'login') {
 	if(isset($_SESSION['username']) AND $_SESSION['username'] == 'j.forteroche') {
 		header('Location: index.php');
 	} else {
 		$pageTitle .= ' - Connexion';
-		$controller = new LoginController();
-		$content = $controller->execute();
+		$controller = new AdminController();
+		$content = $controller->executeLogin();
 	}
 } elseif($p === 'logout') {
 	session_start();
