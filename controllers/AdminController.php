@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends SingleController
+class AdminController
 {
 	public function execute() {
 		
@@ -106,7 +106,7 @@ class AdminController extends SingleController
 		$signaledComments = $commentManager->getSignaledComments();
 		
 		// les infos sont transmises à la vue
-		return $this->load_template('refactor_views/Admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
+		return $this->load_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
 	}
 
 	/**

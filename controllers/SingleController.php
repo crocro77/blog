@@ -1,6 +1,6 @@
 <?php
 
-class SingleController extends HomeController
+class SingleController
 {
 	public function execute() {
 		// Si $_POST['author'] n'est pas vide OU qu'il est vide mais que $_SESSION['username'] existe et que $_POST['comment'] n'est pas vide
@@ -30,7 +30,7 @@ class SingleController extends HomeController
 		$chapterUnique = $chapterManager->getUnique($_GET['id']);
 		$listOfComments = $commentManager->getComments($_GET['id']);
 
-		return $this->load_template('refactor_views/Single.php', array('chapterUnique' => $chapterUnique, 'listOfComments' => $listOfComments));
+		return $this->load_template('single.php', array('chapterUnique' => $chapterUnique, 'listOfComments' => $listOfComments));
 	}
 
 	/**

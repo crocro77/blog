@@ -1,9 +1,9 @@
 <?php
 
-class ErrorController extends LoginController
+class ErrorController
 {
 	public function execute() {
-		return $this->load_template('refactor_views/Error.php', array());
+		return $this->load_template('error.php', array());
 	}
 
 	/**

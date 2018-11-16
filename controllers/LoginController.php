@@ -1,6 +1,6 @@
 <?php
 
-class LoginController extends AdminController
+class LoginController
 {
 	public function execute() {
 
@@ -11,7 +11,7 @@ class LoginController extends AdminController
 			header('Location: index.php?p=admin');
 		}
 
-		return $this->load_template('refactor_views/Login.php', array());
+		return $this->load_template('admin/login.php', array());
 	}
 
 	/**

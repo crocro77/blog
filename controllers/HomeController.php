@@ -29,7 +29,7 @@ class HomeController
 		$firstChapter = ($currentPage - 1) * $chaptersPerPage;
 		$listOfChapters = $chapterManager->getList($firstChapter, $chaptersPerPage);
 
-		return $this->load_template('refactor_views/Home.php', array('listOfChapters' => $listOfChapters, 'numberOfPages' => $numberOfPages, 'currentPage' => $currentPage));
+		return $this->load_template('home.php', array('listOfChapters' => $listOfChapters, 'numberOfPages' => $numberOfPages, 'currentPage' => $currentPage));
 	}
 
 	/**
