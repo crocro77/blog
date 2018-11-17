@@ -1,5 +1,7 @@
 <?php
 
+require('includes/template-loader.php');
+
 class AdminController
 {
 	public function executeAdminPanel() {
@@ -106,7 +108,7 @@ class AdminController
 		$signaledComments = $commentManager->getSignaledComments();
 		
 		// les infos sont transmises à la vue
-		return $this->load_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
+		return load_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
 	}
 
 	public function executeLogin() {
@@ -118,26 +120,6 @@ class AdminController
 			header('Location: index.php?p=admin');
 		}
 
-		return $this->load_template('admin/login.php', array());
-	}
-
-	/**
-	 * Template loader
-	 * @param $template_name
-	 * @param array $data
-	 * @return string
-	 */
-
-	function load_template($template_name, $data = array())
-	{
-    	//Extract variables from the array
-		extract($data);
-
-    	//Getting template content
-		ob_start();
-		include 'views/' . (string)$template_name;
-		$template = ob_get_contents();
-		ob_end_clean();
-		return $template;
+		return load_template('admin/login.php', array());
 	}
 }

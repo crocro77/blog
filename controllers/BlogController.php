@@ -1,5 +1,7 @@
 <?php
 
+require('includes/template-loader.php');
+
 class BlogController
 {
 	public function executeHome()
@@ -29,7 +31,7 @@ class BlogController
 		$firstChapter = ($currentPage - 1) * $chaptersPerPage;
 		$listOfChapters = $chapterManager->getList($firstChapter, $chaptersPerPage);
 
-		return $this->load_template('home.php', array('listOfChapters' => $listOfChapters, 'numberOfPages' => $numberOfPages, 'currentPage' => $currentPage));
+		return load_template('home.php', array('listOfChapters' => $listOfChapters, 'numberOfPages' => $numberOfPages, 'currentPage' => $currentPage));
     }
     
     public function executeSingle() {
@@ -60,26 +62,6 @@ class BlogController
 		$chapterUnique = $chapterManager->getUnique($_GET['id']);
 		$listOfComments = $commentManager->getComments($_GET['id']);
 
-		return $this->load_template('single.php', array('chapterUnique' => $chapterUnique, 'listOfComments' => $listOfComments));
-	}
-
-	/**
-	 * Template loader
-	 * @param $template_name
-	 * @param array $data
-	 * @return string
-	 */
-
-	function load_template($template_name, $data = array())
-	{
-    	//Extract variables from the array
-		extract($data);
-
-    	//Getting template content
-		ob_start();
-		include 'views/' . (string)$template_name;
-		$template = ob_get_contents();
-		ob_end_clean();
-		return $template;
+		return load_template('single.php', array('chapterUnique' => $chapterUnique, 'listOfComments' => $listOfComments));
 	}
 }
