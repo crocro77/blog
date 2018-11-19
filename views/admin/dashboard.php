@@ -8,7 +8,7 @@
             <?php
                 include('includes/dashboard-tables.php');
                 $tables = [
-                    "Publication(s)"      =>  "posts",
+                    "Chapitre(s)"      =>  "posts",
                     "Commentaire(s)"      =>  "comments",
                 ];
                 $colors = [

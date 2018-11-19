@@ -49,6 +49,7 @@ class AdminController
 		}
 		
 		// ajout de l'image de chapitre
+		//////////////////////////////////////////////////////
 		// if(!empty($_FILES['image']['name'])){
         //     $file = $_FILES['image']['name'];
         //     $extensions = ['.png','.jpg','.jpeg','.gif','.PNG','.JPG','.JPEG','.GIF'];
@@ -61,25 +62,26 @@ class AdminController
 
         // if(!empty($errors)){
         //     ?<>
-        //         <div class="card red">
-        //             <div class="card-content white-text">
-        //                 <?php
-        //                     foreach($errors as $error){
-        //                         echo $error."<br/>";
-        //                     }
-        //                 ?<>
-        //             </div>
+        //     <div class="card red">
+        //         <div class="card-content white-text">
+        //             <?php
+        //             foreach($errors as $error){
+        //                 echo $error."<br/>";
+        //             }
+        //             ?<>
         //         </div>
+        //     </div>
         //     <?php
-        // }else{
-        //     post($title,$content,$author);
+        // } else {
+        //     // post($title,$content,$author);
         //     if(!empty($_FILES['image']['name'])){
-        //         post_img($_FILES['image']['tmp_name'], $extension);
-        //     }else{
-        //         $id = $db->lastInsertId();
+        //         postImage($_FILES['image']['tmp_name'], $extension);
+        //     } else {
+        //         $id = $this->db->lastInsertId();
         //         header("Location:index.php?page=post&id=".$id);
 		// 	}
 		// }
+		////////////////////////////////////////////////////////
 		
 		// suppression et edition des contenus //
 		$chapterManager = new Chapter();
@@ -107,7 +109,6 @@ class AdminController
 		$listOfComments = $commentManager->getAllComments();
 		$signaledComments = $commentManager->getSignaledComments();
 		
-		// les infos sont transmises à la vue
 		return load_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
 	}
 
