@@ -80,3 +80,4 @@
             </form>
         </div>
 </div>
+<script type="text/javascript" src="public/js/script.js"></script>

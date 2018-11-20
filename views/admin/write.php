@@ -16,7 +16,7 @@ if(isset($_SESSION['flash'])) {
 	include('includes/flash-msg.php');
 }
 ?>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 	<div class="form-group">
 		<label for="title">Titre </label>
 		<input type="text" name="title" class="form-control" value="<?php if(isset($_GET['action']) && $_GET['action'] == 'edit') echo $chapter->getTitle(); ?>" />
@@ -29,12 +29,15 @@ if(isset($_SESSION['flash'])) {
 		<label for="content">Contenu </label>
 		<textarea name="content" class="form-control"><?php if(isset($_GET['action']) && $_GET['action'] == 'edit') echo $chapter->getContent(); ?></textarea>
 	</div>
+	<br />
+	<img id="output_image" width="25%" height="25%"/>
 	<div class="col s12">
         <div class="btn light-blue waves-effect waves-light input-field file-field col s3">
-                <span>Image de l'article</span>
-                <input type="file" name="image" class="col s12"/>
+			<input type="file" name="file" onchange="preview_image(event)">
+    		<input type="submit" value="Image d'illustration du chapitre" name="submit">
         </div>
-    </div>	
+    </div>
+
 	<?php
 	// Si on édite un article, le bouton d'envoi devient 'Mettre à jour'.
 	if(isset($_GET['action']) && $_GET['action'] == 'edit') {
@@ -52,6 +55,7 @@ if(isset($_SESSION['flash'])) {
 	?>
 </form>
 <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=c851wd1npuo4c59ed6f7fp6doripcdhfdi1ltt9hpr29wt3x"></script>
+<script type="text/javascript" src="public/js/script.js"></script>
 <script>tinymce.init({
 	selector: 'textarea',
 	height: 500,

@@ -60,15 +60,15 @@ if($p === 'home') {
 	$content = $controller->execute();
 }
 
-// switch ($p) :
-// 	case ($p === 'home'):
+// switch ($p) {
+// 	case "home":
 // 		$pageTitle .= ' - Bienvenue';
 // 		$controller = new BlogController();
 // 		$content = $controller->executeHome();
-// 	case ($p ===  'single'):
+// 	case "single":
 // 		$controller = new BlogController();
 // 		$content = $controller->executeSingle();
-// 	case ($p === 'admin'):
+// 	case "admin":
 // 		if(!isset($_SESSION['username']) OR isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {
 // 			header('Location: index.php?p=login');
 // 		} else {
@@ -76,7 +76,7 @@ if($p === 'home') {
 // 			$controller = new AdminController();
 // 			$content = $controller->executeAdminPanel();
 // 		}
-// 	case ($p === 'login'):
+// 	case "login":
 // 		if(isset($_SESSION['username']) AND $_SESSION['username'] == 'j.forteroche') {
 // 			header('Location: index.php');
 // 		} else {
@@ -84,14 +84,14 @@ if($p === 'home') {
 // 			$controller = new AdminController();
 // 			$content = $controller->executeLogin();
 // 		}
-// 	case ($p === 'logout') :
+// 	case "logout":
 // 		session_start();
 // 		session_destroy();
 // 		header('Location: index.php');
 // 		exit();
-// 	default :
+// 	default:
 // 		$controller = new ErrorController();
 // 		$content = $controller->execute();
-// endswitch;
+// }
 
 require 'views/template/default.php';

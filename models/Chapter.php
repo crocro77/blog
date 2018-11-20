@@ -86,6 +86,7 @@ class Chapter extends ObjectModel
 		$req->bindValue(':title', $chapter->getTitle());
 		$req->bindValue(':content', $chapter->getContent());
 		$req->bindValue(':author', $chapter->getAuthor());
+		// $req->bindValue(':chapter_image', $chapter->getChapterImage());
 		$req->execute();
 	}
 
