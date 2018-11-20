@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 /**
@@ -9,8 +10,6 @@ function autoload($classname) {
 	if(file_exists($file = 'controllers/' . $classname . '.php')) {
 		require $file;
 	} elseif(file_exists($file = 'models/' . $classname . '.php')) {
-		require $file;
-	} elseif(file_exists($file = 'views/' . $classname . '.php')) {
 		require $file;
 	} elseif(file_exists($file = 'includes/' . $classname . '.php')) {
 		require $file;	

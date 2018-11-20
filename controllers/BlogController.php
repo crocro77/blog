@@ -6,7 +6,7 @@ class BlogController
 {
 	public function executeHome()
 	{
-		// Nombre de chapitre que l'on veut par page.
+		// Nombre de chapitre voulu par page.
 		$chaptersPerPage = 4;
 
 		// On compte le nombre total de chapitre présents dans la bdd.

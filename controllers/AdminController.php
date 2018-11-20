@@ -69,7 +69,7 @@ class AdminController
 			$_SESSION['flash']['error'] = '<ul>' . $errors . '</ul>';
 		}
 		
-		// /?\ ajout de l'image de chapitre /?\
+		// /?\ upload de l'image de chapitre /?\
 		//////////////////////////////////////////////////////
 		// if(isset($_POST['submit']))
 		// {

@@ -17,7 +17,7 @@ class ObjectModel
     }
 
     /**
-	 * Compte le nombre de chapitres dans la base de données.
+	 * Compte le nombre de chapitres et de commentaires dans la base de données.
 	 * @return int Le nombre de chapitres
 	 */
 	public function count()

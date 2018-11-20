@@ -96,7 +96,7 @@ class Comment extends ObjectModel
 		return $signaledComments;
 	}
 
-		/**
+	/**
 	 * Signaler un commentaire
 	 * @param $comment  The comment
 	 */
