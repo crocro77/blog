@@ -23,7 +23,7 @@ if(isset($_SESSION['flash'])) {
 	</div>
 	<div class="form-group">
 		<label for="author">Auteur </label>
-		<input type="text" name="author" class="form-control" value="<?php if(isset($_GET['action']) && $_GET['action'] == 'edit') echo $chapter->getAuthor(); ?>" />
+		<input type="text" name="author" class="form-control" value="<?php if(isset($_GET['action']) && $_GET['action'] == 'edit') echo $chapter->getAuthor(); else echo "Jean Forteroche" ?>" />
 	</div>
 	<div class="form-group">
 		<label for="content">Contenu </label>

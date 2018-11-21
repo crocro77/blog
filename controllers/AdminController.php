@@ -18,43 +18,43 @@ class AdminController
 
 		// ajout et maj d'un contenu dans la bdd //
 		$errors = '';
-		if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content'])) {
-			$title = $_POST['title'];
-			$author = $_POST['author'];
-			$content = $_POST['content'];
-
-			$id = (!empty($_POST['id']) ? $_POST['id'] : null);
-
-			if (isset($_POST['id'])) {
-				$this->chapterManager->update($title, $author, $content, $id);
-			} else {
-				$chapter = new Chapter();
-				$chapter->setTitle($title);
-				$chapter->setContent($content);
-				$chapter->setAuthor($author);
-				$chapter->add($chapter);
-				header("Location:index.php");
-			}
-		// /?\ a faire pour ajouter l'image /?\
-		// if(!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content']) && !empty($_POST['submit'])) {
+		// if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content'])) {
 		// 	$title = $_POST['title'];
 		// 	$author = $_POST['author'];
 		// 	$content = $_POST['content'];
-		//  	$chapter_image = $_POST['submit'];
 
-		// 	$id = (!empty($_POST['id']) ? $_POST['id'] : NULL);
+		// 	$id = (!empty($_POST['id']) ? $_POST['id'] : null);
 
-		// 	if(isset($_POST['id'])) {
-		// 		$this->chapterManager->update($title, $author, $content, $chapter_image, $id);
+		// 	if (isset($_POST['id'])) {
+		// 		$this->chapterManager->update($title, $author, $content, $id);
 		// 	} else {
 		// 		$chapter = new Chapter();
 		// 		$chapter->setTitle($title);
 		// 		$chapter->setContent($content);
 		// 		$chapter->setAuthor($author);
-		// 		$chapter->setChapterImage($chapter_image);
 		// 		$chapter->add($chapter);
 		// 		header("Location:index.php");
 		// 	}
+		// /?\ a faire pour ajouter l'image /?\
+		if(!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content']) && !empty($_FILES['file'])) {
+			$title = $_POST['title'];
+			$author = $_POST['author'];
+			$content = $_POST['content'];
+		 	$chapter_image = $_FILES['file'];
+
+			$id = (!empty($_POST['id']) ? $_POST['id'] : NULL);
+
+			if(isset($_POST['id'])) {
+				$this->chapterManager->update($title, $author, $content, $chapter_image, $id);
+			} else {
+				$chapter = new Chapter();
+				$chapter->setTitle($title);
+				$chapter->setContent($content);
+				$chapter->setAuthor($author);
+				$chapter->setChapterImage($chapter_image);
+				$chapter->add($chapter);
+				header("Location:index.php");
+			}
 		} elseif (!empty($_POST)) {
 			if (empty($_POST['title'])) {
 				$errors .= '<li>Le titre est obligatoire.</li>';
@@ -69,34 +69,33 @@ class AdminController
 			$_SESSION['flash']['error'] = '<ul>' . $errors . '</ul>';
 		}
 		
-		// /?\ upload de l'image de chapitre /?\
-		//////////////////////////////////////////////////////
-		// if(isset($_POST['submit']))
-		// {
-		// 	$file = $_FILES['file']['name'];
-		// 	$max_size = 2000000;
-		// 	$size = filesize($_FILES['file']['tmp_name']);
-        // 	$extensions = array('.png','.jpg','.jpeg','.gif','.PNG','.JPG','.JPEG','.GIF');
-        //     $extension = strrchr($file,'.');
+		// upload de l'image de chapitre
+		if(isset($_FILES['file']))
+		{
+			$file = $_FILES['file']['name'];
+			$max_size = 2000000;
+			$size = $_FILES['file']['size'];
+        	$extensions = array('.png','.jpg','.jpeg','.gif','.PNG','.JPG','.JPEG','.GIF');
+            $extension = strrchr($file,'.');
 
-		// 	if(!in_array($extension,$extensions)) 
-		// 	{
-        //     	$error = "Cette image n'est pas valable";
-		//     }
+			if(!in_array($extension,$extensions)) 
+			{
+            	$error = "Cette image n'est pas valable";
+		    }
 			
-		// 	if($size>$max_size)
-		// 	{
-		// 		$error = "Le fichier est trop volumineux";
-		// 	}
+			if($size>$max_size)
+			{
+				$error = "Le fichier est trop volumineux";
+			}
 
-		// 	if(!isset($error))
-		// 		{
-		// 			$file = preg_replace('/[^.a-z0-9]+)/i','-',$file);
-		// 			move_uploaded_file($_FILE['file']['tmp_name'],"public/img/".$fichier);
-		// 	} else {
-		// 	echo $error;
-		// 	}
-		// }
+			if(!isset($error))
+				{
+					$key = md5($_FILES['file']['name']).time().$extension;
+					move_uploaded_file($_FILES['file']['tmp_name'],'public/img/'.$key);
+			} else {
+			echo $error;
+			}
+		}
 
 		// suppression et edition des contenus //
 		$chapterManager = new Chapter();
