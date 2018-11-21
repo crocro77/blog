@@ -21,8 +21,8 @@
                             <div class="card">
                                 <div class="card-content <?= getColor($table,$colors) ?> white-text">
                                     <span class="card-title"><?= $table_name ?></span>
-                                    <?php $nbrInTable = inTable($table); ?>
-                                    <h4><?= $nbrInTable[0] ?></h4>
+                                    <?php $nombre = inTable($table); ?>
+                                    <h4><?= $nombre[0] ?></h4>
                                 </div>
                             </div>
                         </div>
