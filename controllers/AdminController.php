@@ -18,40 +18,56 @@ class AdminController
 
 		// ajout et maj d'un contenu dans la bdd //
 		$errors = '';
-		// if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content'])) {
-		// 	$title = $_POST['title'];
-		// 	$author = $_POST['author'];
-		// 	$content = $_POST['content'];
-
-		// 	$id = (!empty($_POST['id']) ? $_POST['id'] : null);
-
-		// 	if (isset($_POST['id'])) {
-		// 		$this->chapterManager->update($title, $author, $content, $id);
-		// 	} else {
-		// 		$chapter = new Chapter();
-		// 		$chapter->setTitle($title);
-		// 		$chapter->setContent($content);
-		// 		$chapter->setAuthor($author);
-		// 		$chapter->add($chapter);
-		// 		header("Location:index.php");
-		// 	}
-		// /?\ a faire pour ajouter l'image /?\
-		if(!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content']) && !empty($_FILES['file'])) {
+		if(!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content'])) {
 			$title = $_POST['title'];
 			$author = $_POST['author'];
 			$content = $_POST['content'];
-		 	$chapter_image = $_FILES['file'];
 
 			$id = (!empty($_POST['id']) ? $_POST['id'] : NULL);
 
+			// upload de l'image de chapitre
+			if(isset($_FILES['file']))
+			{
+				$chapter_image = "post.png";
+				$file = $_FILES['file']['name'];
+				$max_size = 2000000;
+				$size = $_FILES['file']['size'];
+				$extensions = array('.png','.jpg','.jpeg','.gif','.PNG','.JPG','.JPEG','.GIF');
+				$extension = strrchr($file,'.');
+
+				if(!in_array($extension,$extensions)) 
+				{
+					$error = "Cette image n'est pas valable";
+				}
+				
+				if($size>$max_size)
+				{
+					$error = "Le fichier est trop volumineux";
+				}
+
+				if(!isset($error))
+				{
+					$key = md5($_FILES['file']['name']).time().$extension;
+					move_uploaded_file($_FILES['file']['tmp_name'],'public/img/'.$key);
+					$chapter_image = $key;
+				}
+			}
+
 			if(isset($_POST['id'])) {
-				$this->chapterManager->update($title, $author, $content, $chapter_image, $id);
+				$chapter = new Chapter();
+				$chapter->update($title, $author, $content, $id);
+				if($chapter_image) {
+					$chapter->updateImage($chapter_image, $id);
+					header("Location:index.php");
+				}
 			} else {
 				$chapter = new Chapter();
 				$chapter->setTitle($title);
 				$chapter->setContent($content);
 				$chapter->setAuthor($author);
-				$chapter->setChapterImage($chapter_image);
+				if($chapter_image) {
+					$chapter->setChapterImage($chapter_image);	
+				}
 				$chapter->add($chapter);
 				header("Location:index.php");
 			}
@@ -67,34 +83,6 @@ class AdminController
 			}
 
 			$_SESSION['flash']['error'] = '<ul>' . $errors . '</ul>';
-		}
-		
-		// upload de l'image de chapitre
-		if(isset($_FILES['file']))
-		{
-			$file = $_FILES['file']['name'];
-			$max_size = 2000000;
-			$size = $_FILES['file']['size'];
-        	$extensions = array('.png','.jpg','.jpeg','.gif','.PNG','.JPG','.JPEG','.GIF');
-            $extension = strrchr($file,'.');
-
-			if(!in_array($extension,$extensions)) 
-			{
-            	$error = "Cette image n'est pas valable";
-		    }
-			
-			if($size>$max_size)
-			{
-				$error = "Le fichier est trop volumineux";
-			}
-
-			if(!isset($error))
-				{
-					$key = md5($_FILES['file']['name']).time().$extension;
-					move_uploaded_file($_FILES['file']['tmp_name'],'public/img/'.$key);
-			} else {
-			echo $error;
-			}
 		}
 
 		// suppression et edition des contenus //
