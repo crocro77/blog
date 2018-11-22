@@ -75,7 +75,6 @@ class Chapter extends ObjectModel
 		return $chapter;
 	}
 
-	
 	/**
 	 * Ajoute un chapitre dans la base de données.
 	 * @param chapter $chapter L'objet chapitre
@@ -107,6 +106,10 @@ class Chapter extends ObjectModel
 		$request->execute();
 	}
 
+	/**
+	 * Met à jour l'image d'un chapitre.
+	 * @param string $chapter_image L'image
+	 */
 	public function updateImage($chapter_image, $id)
 	{
 		$request = $this->db->prepare('UPDATE posts SET chapter_image = :chapter_image WHERE id = :id');
@@ -114,22 +117,6 @@ class Chapter extends ObjectModel
 		$request->bindValue(':id', (int) $id);
 		$request->execute();
 	}
-	/**
-	 *  /?\ ajout de l'upload d'image à la création de chapitre /?\
-	*/
-	// public function postImage($tmp_name, $extension){
-	// 	$id = $this->db->lastInsertId();
-	// 	$image = [
-	// 		'id'    =>  $id,
-	// 		'chapter_image' =>  $id.$extension
-	// 	];
-
-	// 	$sql = "UPDATE posts SET chapter_image = :chapter_image WHERE id = :id";
-	// 	$req = $db->prepare($sql);
-	// 	$req->execute($image);
-	// 	move_uploaded_file($tmp_name,"public/img/".$id.$extension);
-	// 	header("Location:index.php?page=post&id=".$id);
-	// }
 	
 	/**
 	 * Supprime un chapitre de la bdd
