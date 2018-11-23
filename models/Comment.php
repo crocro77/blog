@@ -34,7 +34,7 @@ class Comment extends ObjectModel
 	 * @param id $chapterId L'id du chapitre
 	 * @return Comment objet Les commentaires.
 	 */
-	public function getComments($post_id) {
+	public function getChapterComments($post_id) {
 		$request = $this->db->prepare('SELECT * FROM comments WHERE post_id = :post_id ORDER BY comment_date DESC');
 		$request->bindValue(':post_id', $post_id);
 		$request->execute();

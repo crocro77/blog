@@ -16,9 +16,9 @@ class BlogController
 		// Nombre de pages.
 		$numberOfPages = ceil($numberOfChapters / $chaptersPerPage);
 
-		if (isset($_GET['page']) && empty($_GET['page'])) {
-			$currentPage = 1;
-		} elseif (isset($_GET['page']) && !empty($_GET['page'])) {
+		$currentPage = 1;
+		
+		if (isset($_GET['page']) && !empty($_GET['page'])) {
 			$currentPage = intval($_GET['page']);
 
 			if ($currentPage > $numberOfPages) {
@@ -27,6 +27,7 @@ class BlogController
 		} else {
 			$currentPage = 1;
 		}
+		
 
 		$firstChapter = ($currentPage - 1) * $chaptersPerPage;
 		$listOfChapters = $chapterManager->getList($firstChapter, $chaptersPerPage);
@@ -60,7 +61,7 @@ class BlogController
 
 		$chapterManager = new Chapter();
 		$chapterUnique = $chapterManager->getUnique($_GET['id']);
-		$listOfComments = $commentManager->getComments($_GET['id']);
+		$listOfComments = $commentManager->getChapterComments($_GET['id']);
 
 		return load_template('single.php', array('chapterUnique' => $chapterUnique, 'listOfComments' => $listOfComments));
 	}

@@ -4,7 +4,7 @@ require('includes/template-loader.php');
 
 class ErrorController
 {
-	public function execute() {
+	public function executeError() {
 		return load_template('error.php', array());
 	}
 }

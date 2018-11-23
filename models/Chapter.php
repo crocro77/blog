@@ -71,6 +71,9 @@ class Chapter extends ObjectModel
 		$request->execute();
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Chapter');
 		$chapter = $request->fetch();
+		if($chapter === false) {
+			header("Location:index.php");
+		}
 		$chapter->setDate(new DateTime($chapter->getDate()));
 		return $chapter;
 	}
@@ -85,7 +88,7 @@ class Chapter extends ObjectModel
 		$req->bindValue(':title', $chapter->getTitle());
 		$req->bindValue(':content', $chapter->getContent());
 		$req->bindValue(':author', $chapter->getAuthor());
-		$req->bindValue(':chapter_image', $chapter->getChapterImage());
+		$req->bindValue(':chapter_image', $chapter->getChapterImage() ? $chapter->getChapterImage() : 'post.png');
 		$req->execute();
 	}
 
