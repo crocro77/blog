@@ -1,5 +1,7 @@
 <?php
 
+// namespace BlogAlaska\Database;
+
 class Database 
 {
 	private $db;
@@ -20,4 +22,7 @@ class Database
 		return $this->db;
 	}
 
+	// public static function getDBConnection() {
+	// 	return self::$db;
+	// }
 }

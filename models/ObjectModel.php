@@ -14,6 +14,7 @@ class ObjectModel
     {
         $db = new Database();
         $this->db = $db->getDBConnection();
+        // $db = \BlogAlaska\Database::getDBConnection();
     }
 
     /**

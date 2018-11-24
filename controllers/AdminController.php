@@ -1,6 +1,6 @@
 <?php
 
-require('includes/template-loader.php');
+require_once('includes/template-loader.php');
 
 class AdminController
 {

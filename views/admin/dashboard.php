@@ -2,14 +2,14 @@
 	<div class="col-xs-12">
 		<div class="center">
 			<h3>Tableau de bord</h3>
-		</div>
+		</div>  
 		<div class="row">
 			<div class="center">
             <?php
-                include('includes/dashboard-tables.php');
+                require_once('includes/dashboard-tables.php');
                 $tables = [
-                    "Chapitre(s)"      =>  "posts",
-                    "Commentaire(s)"      =>  "comments",
+                    "Chapitre(s)"       =>  "posts",
+                    "Commentaire(s)"    =>  "comments",
                 ];
                 $colors = [
                     "posts"             =>  "green",
