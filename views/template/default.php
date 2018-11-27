@@ -6,7 +6,7 @@
     <title><?= $pageTitle; ?></title>
     <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="public/css/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="public/css/materialize.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -31,7 +31,7 @@
       <?= $content; ?>
       
     <footer>
-        <p id="titleDetail">2018 - <a href="#" data-activates="mobile-menu" id="admin-btn" class="button-collapse">Jean Forteroche</a></p>
+        <p class="titleDetail">2018 - <a href="#" data-activates="mobile-menu" id="admin-btn" class="button-collapse">Jean Forteroche</a></p>
     </footer>
   </body>
 </html>

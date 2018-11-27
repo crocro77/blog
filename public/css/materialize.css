@@ -7821,7 +7821,7 @@ input[type=range]::-ms-thumb {
   padding-left: 16px;
   height: 1.5rem;
   line-height: 1.5rem;
-  letter-spacing: .4;
+  letter-spacing: 0.4px;
   display: inline-block;
 }
 
@@ -9487,10 +9487,6 @@ input[type=range]::-ms-thumb {
   }
 }
 
-.parallax-container {
-  height: 300px;
-}
-
 #site-title {
   font-family: 'Indie Flower';
   text-align: center;
@@ -9521,7 +9517,7 @@ input[type=range]::-ms-thumb {
   box-shadow: 2px 2px black;
 }
 
-#titleDetail {
+.titleDetail {
   text-align: center;
 }
 
@@ -9743,4 +9739,8 @@ nav,
 #admin-btn {
   color: black;
   cursor: default;
+}
+
+#admin-connection {
+  width: 100%
 }

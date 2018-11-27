@@ -5,9 +5,9 @@
     </div>
     <br />
     <div>
-        <h1  id="site-title">Billet simple pour l'Alaska de Jean Forteroche</h1>
+        <h1  id="site-title">Billet simple pour l'Alaska<br />Jean Forteroche</h1>
         <br />
-        <p id="titleDetail"><a class="btn light-blue waves-effect" href="index.php">Retour à la page d'accueil</a></p>
+        <p class="titleDetail"><a class="btn light-blue waves-effect" href="index.php">Retour à la page d'accueil</a></p>
     </div>
 </div>
 <div class="container">
@@ -23,22 +23,19 @@
     if ($listOfComments != false) {
         foreach($listOfComments as $comment) {
     ?>
-        <strong><?= htmlspecialchars($comment->getAuthor()); ?> (Le <?= date("d/m/Y", strtotime($comment->getCommentDate())) ?>) a dit :</strong><?php
-        ?>
+        <strong><?= htmlspecialchars($comment->getAuthor()); ?> (Le <?= date("d/m/Y", strtotime($comment->getCommentDate())) ?>) a dit :</strong>
         <blockquote>
-            <p>
-                <?= htmlspecialchars($comment->getComment()); ?>
-                <?php
-                if(empty($comment->getSignaled())) { // Si l'attribut 'signaler' est vide, on affiche le lien pour signaler.
-                ?>
-                <a href="index.php?p=single&amp;id=<?= $chapterUnique->getId(); ?>&amp;action=signal&amp;commentId=<?= $comment->getId(); ?>"><small class="signal pull-right">Signaler</small></a>
-                <?php
-                // Sinon, on affiche un message d'alerte pour prévenir que le commentaire a été signalé.
-                } else {
-                    echo '<em class="orange">Le commentaire a été signalé et est en attente de modération.</em>';
-                }
-                ?>
-            </p>
+            <?= htmlspecialchars($comment->getComment()); ?>
+            <?php
+            if(empty($comment->getSignaled())) { // Si l'attribut 'signaler' est vide, on affiche le lien pour signaler.
+            ?>
+            <a href="index.php?p=single&amp;id=<?= $chapterUnique->getId(); ?>&amp;action=signal&amp;commentId=<?= $comment->getId(); ?>"><small class="signal pull-right">Signaler</small></a>
+            <?php
+            // Sinon, on affiche un message d'alerte pour prévenir que le commentaire a été signalé.
+            } else {
+                echo '<em class="orange">Le commentaire a été signalé et est en attente de modération.</em>';
+            }
+            ?>
         </blockquote>
         <?php
         }
