@@ -11,14 +11,18 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="public/js/materialize.js"></script>
+    <script type="text/javascript" src="public/js/responsive.js"></script>
   </head>
   <body>
     <nav class="light-blue">
         <div class="container">
             <div class="nav-wrapper">
-              <a class="navbar-brand" href="index.php">Billet simple pour l'Alaska de Jean Forteroche</a>       
+              <a class="navbar-brand" href="index.php">Billet simple pour l'Alaska de Jean Forteroche</a>  
                 <ul class="right hide-on-med-and-down">
-                    <li><a title="Administration" href="index.php?p=admin"><i class="material-icons">lock</i></a></li>
+                  <li><a title="Administration" href="index.php?p=admin"><i class="material-icons">lock</i></a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-menu">
+                  <li><a title="Administration" href="index.php?p=admin"><i class="material-icons">lock</i></a></li>
                 </ul>
             </div>
         </div>
@@ -27,7 +31,7 @@
       <?= $content; ?>
       
     <footer>
-        <p id="titleDetail">2018 - Jean Forteroche</p>
+        <p id="titleDetail">2018 - <a href="#" data-activates="mobile-menu" id="admin-btn" class="button-collapse">Jean Forteroche</a></p>
     </footer>
   </body>
 </html>
