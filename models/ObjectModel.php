@@ -12,9 +12,7 @@ class ObjectModel
      */
     public function __construct()
     {
-        $db = new Database();
-        $this->db = $db->getDBConnection();
-        // $db = \BlogAlaska\Database::getDBConnection();
+        $this->db = Database::getDBConnection();
     }
 
     /**

@@ -37,7 +37,7 @@ class Chapter extends ObjectModel
 	 * @param int $chaptersPerPage Le nombre de chapitres par page
 	 * @return Chapter objects La liste
 	 */
-	public function getList($firstChapter = -1, $chaptersPerPage = -1) 
+	public static function getList($firstChapter = -1, $chaptersPerPage = -1) 
 	{
 		$sql = 'SELECT * FROM posts ORDER BY id';
 		
@@ -46,7 +46,8 @@ class Chapter extends ObjectModel
 		{
 			$sql .= ' LIMIT ' . (int) $chaptersPerPage . ' OFFSET ' . (int) $firstChapter;
 		}
-		$request = $this->db->query($sql);
+		$db = Database::getDBConnection();
+		$request = $db->query($sql);
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Chapter');
 		$listOfChapters = $request->fetchAll();
 		
@@ -64,9 +65,10 @@ class Chapter extends ObjectModel
 	 * @param int $id L'id du chapitre
 	 * @return chapter l'objet chapitre
 	 */
-	public function getUnique($id)
+	public static function getUnique($id)
 	{
-		$request = $this->db->prepare('SELECT * FROM posts WHERE id = :id');
+		$db = Database::getDBConnection();
+		$request = $db->prepare('SELECT * FROM posts WHERE id = :id');
 		$request->bindValue(':id', (int) $id);
 		$request->execute();
 		$request->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Chapter');
@@ -82,9 +84,10 @@ class Chapter extends ObjectModel
 	 * Ajoute un chapitre dans la base de données.
 	 * @param chapter $chapter L'objet chapitre
 	 */
-	public function add(Chapter $chapter)
+	public static function add(Chapter $chapter)
 	{
-		$req = $this->db->prepare('INSERT INTO posts(title, content, author, chapter_image, date) VALUES(:title, :content, :author, :chapter_image, NOW())');
+		$db = Database::getDBConnection();
+		$req = $db->prepare('INSERT INTO posts(title, content, author, chapter_image, date) VALUES(:title, :content, :author, :chapter_image, NOW())');
 		$req->bindValue(':title', $chapter->getTitle());
 		$req->bindValue(':content', $chapter->getContent());
 		$req->bindValue(':author', $chapter->getAuthor());
@@ -99,9 +102,10 @@ class Chapter extends ObjectModel
 	 * @param string $content Le contenu
 	 * @param int $id L'id
 	 */
-	public function update($title, $author, $content, $id)
+	public static function update($title, $author, $content, $id)
 	{
-		$request = $this->db->prepare('UPDATE posts SET title = :title, author = :author, content = :content, date = NOW() WHERE id = :id');
+		$db = Database::getDBConnection();
+		$request = $db->prepare('UPDATE posts SET title = :title, author = :author, content = :content, date = NOW() WHERE id = :id');
 		$request->bindValue(':title', $title);
 		$request->bindValue(':author', $author);
 		$request->bindValue(':content', $content);
@@ -113,9 +117,10 @@ class Chapter extends ObjectModel
 	 * Met à jour l'image d'un chapitre.
 	 * @param string $chapter_image L'image
 	 */
-	public function updateImage($chapter_image, $id)
+	public static function updateImage($chapter_image, $id)
 	{
-		$request = $this->db->prepare('UPDATE posts SET chapter_image = :chapter_image WHERE id = :id');
+		$db = Database::getDBConnection();
+		$request = $db->prepare('UPDATE posts SET chapter_image = :chapter_image WHERE id = :id');
 		$request->bindValue(':chapter_image', $chapter_image);
 		$request->bindValue(':id', (int) $id);
 		$request->execute();
@@ -124,9 +129,10 @@ class Chapter extends ObjectModel
 	/**
 	 * Supprime un chapitre de la bdd
 	 */
-	public function deleteChapter()
+	public static function deleteChapter()
 	{
-		$this->db->exec('DELETE FROM posts WHERE id = '. $_POST['id']);
+		$db = Database::getDBConnection();
+		$db->exec('DELETE FROM posts WHERE id = '. $_POST['id']);
 	}
 
 	// SETTERS
