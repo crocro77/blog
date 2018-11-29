@@ -18,9 +18,5 @@
     elseif ($selectedTab == 'comments') {
         include('views/admin/comments.php');
     }
-	//  Le tableau de bord si 'selectedTab' vaut 'settings'.
-    elseif ($selectedTab == 'settings') {
-        include('views/admin/settings.php');
-    }
     ?>
 </div>
