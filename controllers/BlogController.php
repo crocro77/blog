@@ -28,11 +28,10 @@ class BlogController
 			$currentPage = 1;
 		}
 		
-
 		$firstChapter = ($currentPage - 1) * $chaptersPerPage;
 		$listOfChapters = $chapterManager->getList($firstChapter, $chaptersPerPage);
 
-		return load_template('home.php', array('listOfChapters' => $listOfChapters, 'numberOfPages' => $numberOfPages, 'currentPage' => $currentPage));
+		return load_template('front/home.php', array('listOfChapters' => $listOfChapters, 'numberOfPages' => $numberOfPages, 'currentPage' => $currentPage));
     }
     
     public function executeSingle() {
@@ -63,6 +62,6 @@ class BlogController
 		$chapterUnique = $chapterManager->getUnique($_GET['id']);
 		$listOfComments = $commentManager->getChapterComments($_GET['id']);
 
-		return load_template('single.php', array('chapterUnique' => $chapterUnique, 'listOfComments' => $listOfComments));
+		return load_template('front/single.php', array('chapterUnique' => $chapterUnique, 'listOfComments' => $listOfComments));
 	}
 }

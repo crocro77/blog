@@ -24,5 +24,6 @@ class ObjectModel
         $query = 'SELECT COUNT(*) FROM '.$this->tableName;
         $result = $this->db->query($query)->fetchColumn();
 		return $result;
-	}
+    }
+    
 }

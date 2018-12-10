@@ -105,7 +105,7 @@ class Chapter extends ObjectModel
 	public static function update($title, $author, $content, $id)
 	{
 		$db = Database::getDBConnection();
-		$request = $db->prepare('UPDATE posts SET title = :title, author = :author, content = :content, date = NOW() WHERE id = :id');
+		$request = $db->prepare('UPDATE posts SET title = :title, author = :author, content = :content WHERE id = :id');
 		$request->bindValue(':title', $title);
 		$request->bindValue(':author', $author);
 		$request->bindValue(':content', $content);

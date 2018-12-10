@@ -43,7 +43,7 @@ class AdminController
 				}
 
 				if (!isset($error)) {
-					$key = md5($_FILES['file']['name']) . time() . $extension;
+					$key = $_POST['title'] . time() . $extension;
 					move_uploaded_file($_FILES['file']['tmp_name'], 'public/img/' . $key);
 					$chapter_image = $key;
 				}
@@ -121,8 +121,16 @@ class AdminController
 			$_SESSION['username'] = $_POST['username'];
 			// Redirection vers la page d'accueil.
 			header('Location: index.php?p=admin');
+		} else {
+			echo "Nom d'administrateur ou mot de passe incorrect(s) !";
 		}
 
 		return load_template('admin/login.php', array());
+	}
+
+	public function executeLogout()
+	{
+		session_destroy();
+		header('Location: index.php');
 	}
 }

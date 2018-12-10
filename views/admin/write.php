@@ -33,7 +33,7 @@ if(isset($_SESSION['flash'])) {
 	<img id="output_image" width="25%" height="25%"/>
 	<div class="col s12">
         <div class="btn light-blue waves-effect waves-light input-field file-field col s3">
-			<input type="file" name="file" onchange="preview_image(event)">
+			<input type="file" name="file" onchange="preview_image(event)" value="<?php if(isset($_GET['action']) && $_GET['action'] == 'edit') echo $chapter->getChapterImage(); ?>" />
     		<input type="submit" value="Image d'illustration du chapitre" name="submit">
         </div>
     </div>
