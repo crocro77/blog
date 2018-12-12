@@ -1,20 +1,18 @@
 <?php 
+// Si l'on édite un chapitre
 if(isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
-	echo '<div class="page-header">';
 	echo '<h3>Mettre à jour le chapitre</h3>';
-	echo '</div>';
-} elseif (isset($_GET['action']) && $_GET['action'] == 'write' && isset($_GET['id'])) {
-	echo '<div class="page-header">';
-	echo '<h3>Nouveau chapitre</h3>';
-	echo '</div>';
 }
-// Si l'on n'est pas en train d'éditer un article. 
+
+// Si l'on n'est pas en train d'éditer un chapitre. 
 if(!isset($_GET['action'])) {
 	echo '<p>Vous pouvez rédiger dès à présent un nouveau chapitre.</p>';
 }
+
 if(isset($_SESSION['flash'])) {
 	include('includes/flash-msg.php');
 }
+
 ?>
 <form action="" method="post" enctype="multipart/form-data">
 	<div class="form-group">
@@ -39,14 +37,14 @@ if(isset($_SESSION['flash'])) {
     </div>
 
 	<?php
-	// Si on édite un article, le bouton d'envoi devient 'Mettre à jour'.
+	// Si on édite un chapitre, le bouton d'envoi devient 'Mettre à jour'.
 	if(isset($_GET['action']) && $_GET['action'] == 'edit') {
 		?>
 		<input type="hidden" name="id" value="<?= $chapter->getId(); ?>" />
 		<button type="submit" class="btn btn-warning">Mettre à jour</button>
 		<?php
 	}
-	// Sinon, le bouton d'envoi permet de publier un article.
+	// Sinon, le bouton d'envoi permet de publier un chapitre.
 	else {
 		?>
 		<button type="submit" class="btn btn-publish">Publier</button>

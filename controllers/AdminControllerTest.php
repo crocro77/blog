@@ -2,7 +2,7 @@
 
 require_once('includes/template-loader.php');
 
-class AdminController
+class AdminControllerTest
 {
 	public function executeAdminPanel()
 	{
@@ -16,6 +16,12 @@ class AdminController
 			$selectedTab = $_GET['tab'];
 		}
 
+		return load_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter));
+    
+    }
+
+    public function executeAddEditChapter()
+    {
 		// ajout et maj d'un contenu dans la bdd //
 		$errors = '';
 		if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content'])) {
@@ -82,8 +88,18 @@ class AdminController
 
 			$_SESSION['flash']['error'] = '<ul>' . $errors . '</ul>';
 		}
+		
+		$listOfchapters = $chapterManager->getList();
+		$listOfComments = $commentManager->getAllComments();
+		$signaledComments = $commentManager->getSignaledComments();
 
-		// suppression et edition des contenus //
+		return load_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
+    
+    }
+
+    public function executeChapterManager()
+    {
+        // suppression et edition des contenus //
 		$chapterManager = new Chapter();
 		if (isset($_GET['action'])) {
 			if ($_GET['action'] == 'delete') {
@@ -93,8 +109,16 @@ class AdminController
 				$chapter = $chapterManager->getUnique($_GET['id']);
 			}
 		}
+		
+		$listOfchapters = $chapterManager->getList();
 
-		// gestionnaire des commentaires
+		return load_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'chapter' => $chapter));
+    
+    }
+
+    public function executeCommentManager()
+    {
+    	// gestionnaire des commentaires
 		$commentManager = new Comment();
 		if (isset($_GET['action'])) {
 			if ($_GET['action'] == 'validateComment') {
@@ -104,16 +128,15 @@ class AdminController
 			} elseif ($_GET['action'] == 'seenComment') {
 				$commentManager->seenComment($_GET['commentId']);
 			}
-		}
+        }
 
-		$listOfchapters = $chapterManager->getList();
 		$listOfComments = $commentManager->getAllComments();
 		$signaledComments = $commentManager->getSignaledComments();
 
-		return load_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
-	}
-
-	public function executeLogin()
+		return load_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
+    
+    }
+        public function executeLogin()
 	{
 
 		// Si 'username' et 'password' sont corrects, la variable de session 'username' est créée.
