@@ -34,7 +34,15 @@ class BlogControllerTest
 		return load_template('front/home.php', array('listOfChapters' => $listOfChapters, 'numberOfPages' => $numberOfPages, 'currentPage' => $currentPage));
     }
     
-    public function executeSingle() {
+	public function executeSingleChapter()
+	{
+		$chapterManager = new Chapter();
+		$chapterUnique = $chapterManager->getUnique($_GET['id']);
+
+		return load_template('front/single.php', array('chapterUnique' => $chapterUnique));
+	}
+
+	public function executeSingleComments() {
 		// Si $_POST['author'] n'est pas vide OU qu'il est vide mais que $_SESSION['username'] existe et que $_POST['comment'] n'est pas vide
 		$commentManager = new Comment();
 		if(!empty($_POST['author']) || (empty($_POST['author']) && isset($_SESSION['username']) && !empty($_POST['comment']))) {
@@ -58,10 +66,8 @@ class BlogControllerTest
 			}
 		}
 
-		$chapterManager = new Chapter();
-		$chapterUnique = $chapterManager->getUnique($_GET['id']);
 		$listOfComments = $commentManager->getChapterComments($_GET['id']);
 
-		return load_template('front/single.php', array('chapterUnique' => $chapterUnique, 'listOfComments' => $listOfComments));
+		return load_template('front/single.php', array('listOfComments' => $listOfComments));
 	}
 }

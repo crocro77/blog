@@ -14,7 +14,7 @@ switch ($p) {
 		break;
 	case "single":
 		$controller = new BlogControllerTest();
-		$content = $controller->executeSingle();
+		$content = $controller->executeSingleChapter();
 		break;
 	case "admin":
 		if(!isset($_SESSION['username']) OR isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {

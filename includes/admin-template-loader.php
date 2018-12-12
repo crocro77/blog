@@ -14,7 +14,7 @@ function load_admin_template($template_name, $data = array())
 
     //Getting template content
 	ob_start();
-	include 'views/admin/' . (string)$template_name;
+	include 'views/' . (string)$template_name;
 	$template = ob_get_contents();
 	ob_end_clean();
 	return $template;

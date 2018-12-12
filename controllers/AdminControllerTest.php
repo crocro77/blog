@@ -1,6 +1,6 @@
 <?php
 
-require_once('includes/template-loader.php');
+require_once('includes/admin-template-loader.php');
 
 class AdminControllerTest
 {
@@ -16,7 +16,7 @@ class AdminControllerTest
 			$selectedTab = $_GET['tab'];
 		}
 
-		return load_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter));
+		return load_admin_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter));
     
     }
 
@@ -93,7 +93,7 @@ class AdminControllerTest
 		$listOfComments = $commentManager->getAllComments();
 		$signaledComments = $commentManager->getSignaledComments();
 
-		return load_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
+		return load_admin_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter, 'signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
     
     }
 
@@ -112,7 +112,7 @@ class AdminControllerTest
 		
 		$listOfchapters = $chapterManager->getList();
 
-		return load_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'chapter' => $chapter));
+		return load_admin_template('admin/admin.php', array('listOfchapters' => $listOfchapters, 'chapter' => $chapter));
     
     }
 
@@ -133,7 +133,7 @@ class AdminControllerTest
 		$listOfComments = $commentManager->getAllComments();
 		$signaledComments = $commentManager->getSignaledComments();
 
-		return load_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
+		return load_admin_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments));
     
     }
         public function executeLogin()
@@ -146,7 +146,7 @@ class AdminControllerTest
 			header('Location: index.php?p=admin');
 		}
 
-		return load_template('admin/login.php', array());
+		return load_admin_template('admin/login.php', array());
 	}
 
 	public function executeLogout()

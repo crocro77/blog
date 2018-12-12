@@ -14,7 +14,7 @@
     <script type="text/javascript" src="public/js/responsive.js"></script>
   </head>
   <body>
-    <nav class="light-blue">
+    <!-- <nav class="light-blue">
         <div class="container">
             <div class="nav-wrapper">
               <a class="navbar-brand" href="index.php">Billet simple pour l'Alaska de Jean Forteroche</a>  
@@ -27,7 +27,7 @@
             </div>
         </div>
     </nav>
-    <br />
+    <br /> -->
     <div class="center">
         <ul class="flex-container">
             <li class="tab" <?php if($selectedTab == 'dashboard') echo 'class="active"' ?>>
