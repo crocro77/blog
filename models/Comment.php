@@ -128,6 +128,7 @@ class Comment extends ObjectModel
 	 * @param int $commentId 
 	 */
 	public static function seenComment($commentId) {
+		$db = Database::getDBConnection();
 		$req = $db->prepare('UPDATE comments SET seen = 1 WHERE id = :id');
 		$req->bindValue(':id', (int) $commentId);
 		$req->execute();

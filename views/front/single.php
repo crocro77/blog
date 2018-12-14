@@ -18,7 +18,7 @@
         <h6 class="center">Par <?= htmlspecialchars($chapterUnique->getAuthor()); ?> le <?= $chapterUnique->getDate()->format('d/m/Y') ?></h6>
         <p><?= $chapterUnique->getContent(); ?></p>
         <hr>
-    <h4>Commentaire(s)</h4>
+    <h4 id="comments">Commentaire(s)</h4>
     <?php
     if ($listOfComments != false) {
         foreach($listOfComments as $comment) {

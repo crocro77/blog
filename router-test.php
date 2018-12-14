@@ -9,20 +9,24 @@ if (isset($_GET['p'])) {
 switch ($p) {
 	case "home":
 		$pageTitle .= ' - Bienvenue';
-		$controller = new BlogControllerTest();
+		$controller = new BlogHomeControllerTest();
 		$content = $controller->executeHome();
 		break;
 	case "single":
-		$controller = new BlogControllerTest();
+		$controller = new BlogSingleChapterControllerTest();
 		$content = $controller->executeSingleChapter();
+		$controller2 = new BlogCommentChapterControllerTest();
+		$content2 = $controller2->executeCommentChapter();
 		break;
 	case "admin":
 		if(!isset($_SESSION['username']) OR isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {
 			header('Location: index.php?p=login');
 		} else {
 			$pageTitle .= ' - Tableau de bord';
-			$controller = new AdminControllerTest();
+			$controller = new AdminPanelControllerTest();
 			$content = $controller->executeAdminPanel();
+			$controller2 = new AdminAddEditControllerTest();
+			$content2 = $controller2->executeAddEditChapter();
 		}
 		break;
 	case "login":
@@ -30,12 +34,12 @@ switch ($p) {
 			header('Location: index.php');
 		} else {
 			$pageTitle .= ' - Connexion';
-			$controller = new AdminControllerTest();
+			$controller = new AdminPanelControllerTest();
 			$content = $controller->executeLogin();
 		}
 		break;
 	case "logout":
-        $controller = new AdminControllerTest();
+        $controller = new AdminPanelControllerTest();
         $content = $controller->executeLogout();
 		break;
 	default:
