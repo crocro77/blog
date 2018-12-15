@@ -5,6 +5,7 @@ require_once('includes/template-loader.php');
 class BlogCommentChapterControllerTest
 {
     public function executeCommentChapter() {
+        // ajout d'un commentaire
         if(!empty($_POST['author']) || (empty($_POST['author']) && isset($_SESSION['username']) && !empty($_POST['comment']))) {
 			$comment = new Comment();
 			$comment->setPostId($_GET['id']);
@@ -17,9 +18,17 @@ class BlogCommentChapterControllerTest
             $commentManager = new Comment();
 			$commentManager->add($comment);
             header('Location: index.php?p=single&id='.($_GET['id']).'#comments');
-            include('includes/flash-msg.php');
-            $_SESSION['flash']['success'] = 'Votre commentaire a bien été ajouté.'; 
-            
         }
+
+        // signalement d'un commentaire
+        if(isset($_GET['action'])) {
+			if($_GET['action'] == 'signal') {
+                $commentManager = new Comment();
+				$comment = $commentManager->getSpecificComment($_GET['commentId']);
+				$commentManager->signal($comment);
+				$_SESSION['flash']['success'] = 'Le commentaire a bien été signalé. Il sera modéré par l\'administrateur dès que possible.';
+				include('includes/flash-msg.php');
+			}
+		}
     }
 }

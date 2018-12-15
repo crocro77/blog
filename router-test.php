@@ -13,20 +13,20 @@ switch ($p) {
 		$content = $controller->executeHome();
 		break;
 	case "single":
-		$controller = new BlogSingleChapterControllerTest();
-		$content = $controller->executeSingleChapter();
-		$controller2 = new BlogCommentChapterControllerTest();
-		$content2 = $controller2->executeCommentChapter();
+		$chapterController = new BlogSingleChapterControllerTest();
+		$content = $chapterController->executeSingleChapter();
+		$commentController = new BlogCommentChapterControllerTest();
+		$content2 = $commentController->executeCommentChapter();
 		break;
 	case "admin":
 		if(!isset($_SESSION['username']) OR isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {
 			header('Location: index.php?p=login');
 		} else {
 			$pageTitle .= ' - Tableau de bord';
-			$controller = new AdminPanelControllerTest();
-			$content = $controller->executeAdminPanel();
-			$controller2 = new AdminAddEditControllerTest();
-			$content2 = $controller2->executeAddEditChapter();
+			$panelController = new AdminPanelControllerTest();
+			$content = $panelController->executeAdminPanel();
+			$addEditController = new AdminAddEditControllerTest();
+			$content2 = $addEditController->executeAddEditChapter();
 		}
 		break;
 	case "login":

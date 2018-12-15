@@ -6,9 +6,7 @@ class AdminPanelControllerTest
 {
 	public function executeAdminPanel()
 	{
-
 		$selectedTab = 'dashboard';
-
         $chapter = null;
         $chapterManager = new Chapter();
         $listOfchapters = $chapterManager->getList();
@@ -22,7 +20,6 @@ class AdminPanelControllerTest
 		}
 
         // suppression et edition des contenus //
-
 		if (isset($_GET['action'])) {
 			if ($_GET['action'] == 'delete') {
 				$chapterManager->deleteChapter();
@@ -33,7 +30,6 @@ class AdminPanelControllerTest
         }
 
         // gestionnaire des commentaires
-
 		if (isset($_GET['action'])) {
 			if ($_GET['action'] == 'validateComment') {
                 $commentManager->validateComment($_GET['commentId']);
@@ -55,7 +51,7 @@ class AdminPanelControllerTest
 		// Si 'username' et 'password' sont corrects, la variable de session 'username' est créée.
 		if (isset($_POST['username']) && $_POST['username'] == 'j.forteroche' && isset($_POST['password']) && $_POST['password'] == 'admin') {
 			$_SESSION['username'] = $_POST['username'];
-			// Redirection vers la page d'accueil.
+			// Redirection vers la page d'accueil admin : dashboard par défaut.
 			header('Location: index.php?p=admin');
 		}
 

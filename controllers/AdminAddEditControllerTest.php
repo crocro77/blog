@@ -38,7 +38,7 @@ class AdminAddEditControllerTest
 					$chapter_image = $key;
 				}
 			}
-
+			// si l'id existe déjà : update du chapitre
 			if (isset($_POST['id'])) {
 				$chapter = new Chapter();
 				$chapter->update($title, $author, $content, $id);
@@ -48,6 +48,7 @@ class AdminAddEditControllerTest
 				} else {
 					header("Location:index.php");
 				}
+			// sinon, create du chapitre
 			} else {
 				$chapter = new Chapter();
 				$chapter->setTitle($title);
@@ -59,6 +60,7 @@ class AdminAddEditControllerTest
 				$chapter->add($chapter);
 				header("Location:index.php");
 			}
+		// conditions si les champs demandés ne sont pas renseignés
 		} elseif (!empty($_POST)) {
 			if (empty($_POST['title'])) {
 				$errors .= '<li>Le titre est obligatoire.</li>';
