@@ -1,6 +1,6 @@
 <?php
 
-require_once('includes/admin-template-loader.php');
+require_once('includes/template-loader.php');
 
 class AdminAddEditControllerTest
 {       

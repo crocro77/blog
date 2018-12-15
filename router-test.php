@@ -30,13 +30,9 @@ switch ($p) {
 		}
 		break;
 	case "login":
-		if(isset($_SESSION['username']) AND $_SESSION['username'] == 'j.forteroche') {
-			header('Location: index.php');
-		} else {
-			$pageTitle .= ' - Connexion';
-			$controller = new AdminPanelControllerTest();
-			$content = $controller->executeLogin();
-		}
+		$pageTitle .= ' - Connexion';
+		$controller = new AdminPanelControllerTest();
+		$content = $controller->executeLogin();
 		break;
 	case "logout":
         $controller = new AdminPanelControllerTest();

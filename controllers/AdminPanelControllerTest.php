@@ -1,6 +1,6 @@
 <?php
 
-require_once('includes/admin-template-loader.php');
+require_once('includes/template-loader.php');
 
 class AdminPanelControllerTest
 {
@@ -43,7 +43,7 @@ class AdminPanelControllerTest
 			}
         }
         
-		return load_admin_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments, 'listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter));
+		return load_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments, 'listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter));
     }
 
     public function executeLogin()
@@ -55,7 +55,7 @@ class AdminPanelControllerTest
 			header('Location: index.php?p=admin');
 		}
 
-		return load_admin_template('admin/login.php', array());
+		return load_template('admin/login.php', array());
 	}
 
 	public function executeLogout()

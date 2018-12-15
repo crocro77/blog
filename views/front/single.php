@@ -51,6 +51,7 @@
                 echo '<p>Vous postez un commentaire en tant que <strong>' . $_SESSION['username'] . '</strong></p>';
             }
             ?>
+            <p>Le pseudo et le commentaire sont obligatoires pour valider votre commentaire.</p>
             <form class="form-horizontal" action="index.php?p=single&amp;id=<?= $chapterUnique->getId(); ?>#comments" method="post">
                 <?php
                 if(!isset($_SESSION['username'])) {
