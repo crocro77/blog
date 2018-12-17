@@ -21,5 +21,5 @@ spl_autoload_register('autoload');
 
 $pageTitle = "Billet simple pour l'Alaska de Jean Forteroche";
 
-require 'router-test.php';
+require 'router.php';
 require 'views/template/default.php';

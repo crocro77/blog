@@ -203,6 +203,10 @@ class Chapter extends ObjectModel
 		{
 			$this->chapter_image = $chapter_image;
 		}
+		// TODO : setter chapter image vide en post png ????
+		// else {
+		// 	$this->chapter_image = 'post.png';
+		// }
 	}
 	
 	// GETTERS
