@@ -25,18 +25,16 @@ switch ($p) {
 			header('Location: index.php?p=login');
 		} else {
 			$pageTitle .= ' - Tableau de bord';
-			$controller = new AdminController();
-			$content = $controller->executeAdminPanel();
+			$panelController = new AdminController();
+			$content = $panelController->executeAdminPanel();
+			$addEditController = new AdminController();
+			$content2 = $addEditController->executeAddEditChapter();
 		}
 		break;
 	case "login":
-		if(isset($_SESSION['username']) AND $_SESSION['username'] == 'j.forteroche') {
-			header('Location: index.php');
-		} else {
-			$pageTitle .= ' - Connexion';
-			$controller = new AuthentificationController();
-			$content = $controller->executeLogin();
-		}
+		$pageTitle .= ' - Connexion';
+		$controller = new AuthentificationController();
+		$content = $controller->executeLogin();
 		break;
 	case "logout":
         $controller = new AuthentificationController();
