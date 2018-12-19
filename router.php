@@ -27,8 +27,15 @@ switch ($p) {
 			$pageTitle .= ' - Tableau de bord';
 			$panelController = new AdminController();
 			$content = $panelController->executeAdminPanel();
-			$addEditController = new AdminController();
-			$content2 = $addEditController->executeAddEditChapter();
+			$writeController = new AdminController();
+			$content2 = $writeController->executeWriteManager();
+			$commentAdminManager = new AdminController();
+			$content3 = $commentAdminManager->executeCommentManager();
+			// $deleteChapter = new AdminController();
+			// $content4 = $deleteChapter->executeDeleteChapter();
+			// fonctionne pas :'(
+			// $updateChapter = new AdminController();
+			// $content5 = $updateChapter->executeUpdateChapter();
 		}
 		break;
 	case "login":

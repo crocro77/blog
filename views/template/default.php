@@ -28,7 +28,7 @@
         </div>
     </nav>
 
-      <?= $content; $content2; ?>
+      <?= $content; ?>
       
     <footer>
         <p class="titleDetail">2018 - <a href="#" data-activates="mobile-menu" id="admin-btn" class="button-collapse">Jean Forteroche</a></p>

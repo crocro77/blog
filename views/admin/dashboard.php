@@ -6,15 +6,7 @@
 		<div class="row">
 			<div class="center">
             <?php
-                require_once('includes/dashboard-tables.php');
-                $tables = [
-                    "Chapitre(s)"       =>  "posts",
-                    "Commentaire(s)"    =>  "comments",
-                ];
-                $colors = [
-                    "posts"             =>  "green",
-                    "comments"          =>  "orange",
-                ];
+                require_once('includes/dashboard-config.php');
                 foreach($tables as $table_name => $table){
                     ?>
                         <div class="col l6 m6 s12">
