@@ -91,7 +91,7 @@ class Chapter extends ObjectModel
 		$req->bindValue(':title', $chapter->getTitle());
 		$req->bindValue(':content', $chapter->getContent());
 		$req->bindValue(':author', $chapter->getAuthor());
-		$req->bindValue(':chapter_image', $chapter->getChapterImage() ? $chapter->getChapterImage() : 'post.png');
+		$req->bindValue(':chapter_image', $chapter->getChapterImage());
 		$req->execute();
 	}
 
@@ -202,11 +202,9 @@ class Chapter extends ObjectModel
 		if(is_string($chapter_image) && !empty($chapter_image)) 
 		{
 			$this->chapter_image = $chapter_image;
+		} else {
+			$this->chapter_image = 'post.png';
 		}
-		// TODO : setter chapter image vide en post png ????
-		// else {
-		// 	$this->chapter_image = 'post.png';
-		// }
 	}
 	
 	// GETTERS

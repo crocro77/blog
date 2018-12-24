@@ -1,10 +1,10 @@
 <h2 id="to-the-top">Liste des chapitres</h2>
 <hr/>
 <?php
-if(empty($listOfchapters)) {
+if(empty($listOfChapters)) {
 	echo '<p>Vous n\'avez pas encore publié d\'article. <a href="index.php?p=admin&amp;menu=write">Commencez ici</a></p>';
 } else {
-    foreach($listOfchapters as $chapter){
+    foreach($listOfChapters as $chapter){
         ?>
         <div class="row">
             <div class="col s12">
@@ -21,7 +21,7 @@ if(empty($listOfchapters)) {
                         <br/><br/>
                         <a class="btn light-blue waves-effect waves-light" href="index.php?p=single&id=<?= $chapter->getId(); ?>">Voir le chapitre complet</a>
                         <br/><br/>
-                        <a class="btn light-blue waves-effect waves-light" href="index.php?p=admin&tab=write&action=edit&id=<?= $chapter->getId(); ?>">Éditer le chapitre</a>
+                        <a class="btn light-blue waves-effect waves-light" href="index.php?p=editchapter&id=<?= $chapter->getId(); ?>">Éditer le chapitre</a>
                         <br/><br/>
                         <form method="post" role="form" action="index.php?p=admin&menu=list&action=delete&id=<?= $chapter->getId(); ?>">
                             <input type="hidden" name="id" value="<?= $chapter->getId(); ?>">

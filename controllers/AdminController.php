@@ -9,7 +9,7 @@ class AdminController
 		$selectedTab = 'dashboard';
         $chapter = null;
         $chapterManager = new Chapter();
-        $listOfchapters = $chapterManager->getList();
+        $listOfChapters = $chapterManager->getList();
         $commentManager = new Comment();
         $listOfComments = $commentManager->getAllComments();
 		$signaledComments = $commentManager->getSignaledComments();
@@ -20,17 +20,17 @@ class AdminController
 		}
 
 		// suppression et edition des contenus
-		$chapterManager = new Chapter();
-		if (isset($_GET['action'])) {
-			if ($_GET['action'] == 'delete') {
-				$chapterManager->deleteChapter();
-				header("Location:index.php?p=admin&tab=list");
-			} elseif ($_GET['action'] == 'edit') {
-				$chapter = $chapterManager->getUnique($_GET['id']);
-			}
-		}
+		// $chapterManager = new Chapter();
+		// if (isset($_GET['action'])) {
+		// 	if ($_GET['action'] == 'delete') {
+		// 		$chapterManager->deleteChapter();
+		// 		header("Location:index.php?p=admin&tab=list");
+		// 	} elseif ($_GET['action'] == 'edit') {
+		// 		$chapter = $chapterManager->getUnique($_GET['id']);
+		// 	}
+		// }
 
-		return load_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments, 'listOfchapters' => $listOfchapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter));
+		return load_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments, 'listOfChapters' => $listOfChapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter));
 	}
 
 	public function executeWriteManager()
@@ -64,9 +64,7 @@ class AdminController
 				$chapter->setTitle($title);
 				$chapter->setContent($content);
 				$chapter->setAuthor($author);
-				if ($chapter_image) {
-					$chapter->setChapterImage($chapter_image);
-				}
+				$chapter->setChapterImage($chapter_image);
 				$chapter->add($chapter);
 				header("Location:index.php");
 			}
@@ -86,28 +84,29 @@ class AdminController
 		}	
 	}
 	
-	// public function executeDeleteChapter()
-	// {
-	// 	$chapterManager = new Chapter();
-	// 	if (isset($_GET['action'])) {
-	// 		if ($_GET['action'] == 'delete') {
-	// 			$chapterManager->deleteChapter();
-	// 			header("Location:index.php?p=admin&tab=list");
-	// 		}
-	// 	}
-	// }
+	public function executeDeleteChapter()
+	{
+		$chapterManager = new Chapter();
+		if (isset($_GET['action'])) {
+			if ($_GET['action'] == 'delete') {
+				$chapterManager->deleteChapter();
+				header("Location:index.php?p=admin&tab=list");
+			}
+		}
+	}
 
-	// fonctionne pas :'(
-	// public function executeUpdateChapter()
-	// {
-	// 	$chapter = null;
-	// 	$chapterManager = new Chapter();
-	// 	if (isset($_GET['action'])) {
-	// 		if ($_GET['action'] == 'edit') {
-	// 			$chapter = $chapterManager->getUnique($_GET['id']);
-	// 		}
-	// 	}
-	// }
+	public function executeUpdateChapter()
+	{
+		$chapterManager = new Chapter();
+			$chapter = $chapterManager->getUnique($_GET['id']);
+			if($chapter) {
+				$selectedTab = 'write';
+				$action = 'edit';
+				return load_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter, 'action' => $action));
+			} else {
+				header("Location:index.php?p=admin&tab=list");
+			}
+	}
 
 	public function executeCommentManager()
 	{

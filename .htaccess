@@ -1,2 +1,0 @@
-RewriteEngine on
-RewriteRule chapitre([0-9]+) index.php?p=single&id=$1

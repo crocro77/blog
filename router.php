@@ -14,11 +14,15 @@ switch ($p) {
 		break;
 	case "single":
 		$controller = new FrontController();
-        $content = $controller->executeSingleChapter();
+		$content = $controller->executeSingleChapter();
+		break;
+	case "postcomment": 
         $commentController = new FrontController();
-        $content2 = $commentController->executeCommentChapter();
+		$content = $commentController->executeCommentChapter();
+		break;
+	case "signalcomment":
         $signalController = new FrontController();
-        $content3 = $signalController->executeSignalComment();
+        $content = $signalController->executeSignalComment();
 		break;
 	case "admin":
 		if(!isset($_SESSION['username']) OR isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {
@@ -27,16 +31,23 @@ switch ($p) {
 			$pageTitle .= ' - Tableau de bord';
 			$panelController = new AdminController();
 			$content = $panelController->executeAdminPanel();
-			$writeController = new AdminController();
-			$content2 = $writeController->executeWriteManager();
-			$commentAdminManager = new AdminController();
-			$content3 = $commentAdminManager->executeCommentManager();
-			// $deleteChapter = new AdminController();
-			// $content4 = $deleteChapter->executeDeleteChapter();
-			// fonctionne pas :'(
-			// $updateChapter = new AdminController();
-			// $content5 = $updateChapter->executeUpdateChapter();
+			break;
 		}
+	case "writemanager":
+		$writeController = new AdminController();
+		$content = $writeController->executeWriteManager();
+		break;
+	case "commentmanager":
+		$commentAdminManager = new AdminController();
+		$content = $commentAdminManager->executeCommentManager();
+		break;
+	case "editchapter":
+		$updateChapter = new AdminController();
+		$content = $updateChapter->executeUpdateChapter();
+		break;
+	case "deletechapter":
+		$deleteChapter = new AdminController();
+		$content = $deleteChapter->executeDeleteChapter();
 		break;
 	case "login":
 		$pageTitle .= ' - Connexion';

@@ -55,8 +55,8 @@ if (empty($listOfComments)) {
 							<td><em><?= $signaledComment->getComment(); ?></em></td>
 							<td><?= $signaledComment->getCommentDate()->format('d/m/y'); ?></td>
 							<td>
-								<a title="Valider le commentaire" href="?p=admin&amp;tab=comments&amp;action=validateComment&amp;commentId=<?= $signaledComment->getId(); ?>"><i class="material-icons">done</i></a>
-								<a title="Supprimer le commentaire" href="?p=admin&amp;tab=comments&amp;action=deleteComment&amp;commentId=<?= $signaledComment->getId(); ?>"><i class="material-icons">delete</i></a>
+								<a title="Valider le commentaire" href="?p=admin&amp;tab=comments&amp;action=validateComment&amp;commentId=<?= $signaledComment->getId(); ?>#signaled-comment"><i class="material-icons">done</i></a>
+								<a title="Supprimer le commentaire" href="?p=admin&amp;tab=comments&amp;action=deleteComment&amp;commentId=<?= $signaledComment->getId(); ?>#signaled-comment"><i class="material-icons">delete</i></a>
 							</td>
 						</tr>
 					<?php
