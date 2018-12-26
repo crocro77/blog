@@ -1,7 +1,7 @@
 <?php 
 // Si l'on édite un chapitre
 if(isset($action) && $action == 'edit') {
-	echo '<h3>Mettre à jour le chapitre</h3>';
+	echo '<h5>Mettre à jour le chapitre</h5>';
 }
 
 // Si l'on n'est pas en train d'éditer un chapitre. 
@@ -38,7 +38,7 @@ if(isset($_SESSION['flash'])) {
 
 	<?php
 	// Si on édite un chapitre, le bouton d'envoi devient 'Mettre à jour'.
-	if(isset($_GET['action']) && $_GET['action'] == 'edit') {
+	if(isset($action) && $action == 'edit') {
 		?>
 		<input type="hidden" name="id" value="<?= $chapter->getId(); ?>" />
 		<button type="submit" class="btn btn-warning">Mettre à jour</button>
