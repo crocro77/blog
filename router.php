@@ -33,9 +33,9 @@ switch ($p) {
 			$content = $panelController->executeAdminPanel();
 			break;
 		}
-	case "writemanager":
+	case "createchapter":
 		$writeController = new AdminController();
-		$content = $writeController->executeWriteManager();
+		$content = $writeController->executeCreateChapter();
 		break;
 	case "commentmanager":
 		$commentAdminManager = new AdminController();
