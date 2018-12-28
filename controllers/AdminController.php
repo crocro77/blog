@@ -19,17 +19,6 @@ class AdminController
 			$selectedTab = $_GET['tab'];
 		}
 
-		// suppression et edition des contenus
-		// $chapterManager = new Chapter();
-		// if (isset($_GET['action'])) {
-		// 	if ($_GET['action'] == 'delete') {
-		// 		$chapterManager->deleteChapter();
-		// 		header("Location:index.php?p=admin&tab=list");
-		// 	} elseif ($_GET['action'] == 'edit') {
-		// 		$chapter = $chapterManager->getUnique($_GET['id']);
-		// 	}
-		// }
-
 		return load_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments, 'listOfChapters' => $listOfChapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter));
 	}
 
@@ -48,26 +37,15 @@ class AdminController
 			// upload de l'image de chapitre
 			include 'includes/image-upload.php';
 
-			// si l'id existe déjà : update du chapitre
-			// if (isset($_POST['id'])) {
-			// 	$chapter = new Chapter();
-			// 	$chapter->update($title, $author, $content, $id);
-			// 	if ($chapter_image) {
-			// 		$chapter->updateImage($chapter_image, $id);
-			// 		header("Location:index.php");
-			// 	} else {
-			// 		header("Location:index.php");
-			// 	}
-			// sinon, create du chapitre
-			// } else {
-				$chapter = new Chapter();
-				$chapter->setTitle($title);
-				$chapter->setContent($content);
-				$chapter->setAuthor($author);
-				$chapter->setChapterImage($chapter_image);
-				$chapter->add($chapter);
-				header("Location:index.php");
-			// }
+			// Create du chapitre
+			$chapter = new Chapter();
+			$chapter->setTitle($title);
+			$chapter->setContent($content);
+			$chapter->setAuthor($author);
+			$chapter->setChapterImage($chapter_image);
+			$chapter->add($chapter);
+			header("Location:index.php");
+
 		// conditions si les champs demandés ne sont pas renseignés
 		} elseif (!empty($_POST)) {
 			if (empty($_POST['title'])) {
@@ -86,26 +64,23 @@ class AdminController
 	
 	public function executeDeleteChapter()
 	{
+		// suppression d'un chapitre
 		$chapterManager = new Chapter();
-		if (isset($_GET['action'])) {
-			if ($_GET['action'] == 'delete') {
-				$chapterManager->deleteChapter();
-				header("Location:index.php?p=admin&tab=list");
-			}
-		}
+		$chapterManager->deleteChapter();
+		header("Location:index.php?p=admin&tab=list");
 	}
 
 	public function executeUpdateChapter()
 	{
 		$chapterManager = new Chapter();
-			$chapter = $chapterManager->getUnique($_GET['id']);
-			if($chapter) {
-				$selectedTab = 'write';
-				$action = 'edit';
-				return load_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter, 'action' => $action));
-			} else {
-				header("Location:index.php?p=admin&tab=list");
-			}
+		$chapter = $chapterManager->getUnique($_GET['id']);
+		if($chapter) {
+			$selectedTab = 'write';
+			$action = 'edit';
+			return load_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter, 'action' => $action));
+		} else {
+			header("Location:index.php?p=admin&tab=list");
+		}
 
 		// maj d'un contenu dans la bdd //
 		$errors = '';
@@ -131,6 +106,7 @@ class AdminController
 					header("Location:index.php");
 				}
 			}
+		// conditions si les champs demandés ne sont pas renseignés
 		} elseif (!empty($_POST)) {
 			if (empty($_POST['title'])) {
 				$errors .= '<li>Le titre est obligatoire.</li>';
@@ -146,21 +122,27 @@ class AdminController
 		}	
 	}
 
-	public function executeCommentManager()
+	public function executeValidateComment()
 	{
-		// gestionnaire des commentaires
+		// validation d'un commentaire signalé
 		$commentManager = new Comment();
-		if (isset($_GET['action'])) {
-			if ($_GET['action'] == 'validateComment') {
-                $commentManager->validateComment($_GET['commentId']);
-                header("Location:index.php?p=admin&tab=comments");
-			} elseif ($_GET['action'] == 'deleteComment') {
-                $commentManager->deleteComment($_GET['commentId']);
-                header("Location:index.php?p=admin&tab=comments");
-			} elseif ($_GET['action'] == 'seenComment') {
-                $commentManager->seenComment($_GET['commentId']);
-                header("Location:index.php?p=admin&tab=comments");
-			}
-        }
+		$commentManager->validateComment($_GET['commentId']);
+        header("Location:index.php?p=admin&tab=comments");
+	}
+
+	public function executeDeleteComment()
+	{
+		// suppression d'un commentaire
+		$commentManager = new Comment();
+		$commentManager->deleteComment($_GET['commentId']);
+        header("Location:index.php?p=admin&tab=comments");
+	}
+
+	public function executeSeenComment()
+	{
+		// marqué un commentaire comme vu
+		$commentManager = new Comment();
+		$commentManager->seenComment($_GET['commentId']);
+        header("Location:index.php?p=admin&tab=comments");
 	}
 }

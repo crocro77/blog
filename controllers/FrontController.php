@@ -63,16 +63,12 @@ class FrontController
         }
     }
 
-    public function executeSignalComment()
+    public function executeSignalComment($commentId)
     {    
         // signalement d'un commentaire
-        if(isset($_GET['action'])) {
-			if($_GET['action'] == 'signal') {
-                $commentManager = new Comment();
-				$comment = $commentManager->getSpecificComment($_GET['commentId']);
-				$commentManager->signal($comment);
-				$_SESSION['flash']['success'] = 'Le commentaire a bien été signalé. Il sera modéré par l\'administrateur dès que possible.';
-			}
-		}
+        $commentManager = new Comment();
+		$comment = $commentManager->getSpecificComment($_GET['commentId']);
+		$commentManager->signal($comment);
+		$_SESSION['flash']['success'] = 'Le commentaire a bien été signalé. Il sera modéré par l\'administrateur dès que possible.';
     }
 }

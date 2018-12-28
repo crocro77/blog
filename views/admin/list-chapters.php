@@ -23,7 +23,7 @@ if(empty($listOfChapters)) {
                         <br/><br/>
                         <a class="btn light-blue waves-effect waves-light" href="index.php?p=editchapter&id=<?= $chapter->getId(); ?>">Éditer le chapitre</a>
                         <br/><br/>
-                        <form method="post" role="form" onclick="return confirm('Etes vous sûr de vouloir supprimer ce chapitre ?')" action="index.php?p=admin&menu=list&action=delete&id=<?= $chapter->getId(); ?>">
+                        <form method="post" role="form" onclick="return confirm('Etes vous sûr de vouloir supprimer ce chapitre ?')" action="index.php?p=admin&menu=list&action=deletechapter&id=<?= $chapter->getId(); ?>">
                             <input type="hidden" name="id" value="<?= $chapter->getId(); ?>">
                             <input type="submit" value="Supprimer le chapitre" class="btn btn-danger">
                         </form>

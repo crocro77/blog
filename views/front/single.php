@@ -29,7 +29,7 @@
             <?php
             if(empty($comment->getSignaled())) { // Si l'attribut 'signaler' est vide, on affiche le lien pour signaler.
             ?>
-            <a href="index.php?p=single&amp;id=<?= $chapterUnique->getId(); ?>&amp;action=signal&amp;commentId=<?= $comment->getId(); ?>"><small class="signal pull-right">Signaler</small></a>
+            <a href="index.php?p=single&amp;id=<?= $chapterUnique->getId(); ?>&amp;action=signalcomment&amp;commentId=<?= $comment->getId(); ?>"><small class="signal pull-right">Signaler</small></a>
             <?php
             // Sinon, on affiche un message d'alerte pour prévenir que le commentaire a été signalé.
             } else {
@@ -52,7 +52,7 @@
             }
             ?>
             <p>Le pseudo et le commentaire sont obligatoires pour valider votre commentaire.</p>
-            <form class="form-horizontal" action="index.php?p=single&amp;id=<?= $chapterUnique->getId(); ?>#comments" method="post">
+            <form class="form-horizontal" action="index.php?p=single&amp;id=<?= $chapterUnique->getId(); ?>&amp;action=postcomment#comments" method="post">
                 <?php
                 if(!isset($_SESSION['username'])) {
                 ?>
