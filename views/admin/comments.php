@@ -22,8 +22,8 @@ if (empty($listOfComments)) {
 						<td class="center"><a href="?p=single&amp;id=<?= $comment->getPostId(); ?>"><?= $comment->getPostId(); ?></a></td>
 						<td><em><?= $comment->getComment(); ?></em></td>
 						<td><strong><?= $comment->getAuthor(); ?></strong></td>
-						<td><a href="?p=admin&amp;tab=comments&amp;action=seenComment&amp;commentId=<?= $comment->getId(); ?>" title="Indiqué comme vu"><i class="material-icons">remove_red_eye</i></a>
-							<a href="?p=admin&amp;tab=comments&amp;action=deleteComment&amp;commentId=<?= $comment->getId(); ?>" title="Supprimer le commentaire"><i class="material-icons">delete</i></a>
+						<td><a href="?p=admin&amp;tab=comments&amp;action=seencomment&amp;commentId=<?= $comment->getId(); ?>" title="Indiqué comme vu"><i class="material-icons">remove_red_eye</i></a>
+							<a href="?p=admin&amp;tab=comments&amp;action=deletecomment&amp;commentId=<?= $comment->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')" title="Supprimer le commentaire"><i class="material-icons">delete</i></a>
 						</td>
 					</tr>
 					<?php
@@ -55,8 +55,8 @@ if (empty($listOfComments)) {
 							<td><em><?= $signaledComment->getComment(); ?></em></td>
 							<td><?= $signaledComment->getCommentDate()->format('d/m/y'); ?></td>
 							<td>
-								<a title="Valider le commentaire" href="?p=admin&amp;tab=comments&amp;action=validateComment&amp;commentId=<?= $signaledComment->getId(); ?>#signaled-comment"><i class="material-icons">done</i></a>
-								<a title="Supprimer le commentaire" href="?p=admin&amp;tab=comments&amp;action=deleteComment&amp;commentId=<?= $signaledComment->getId(); ?>#signaled-comment"><i class="material-icons">delete</i></a>
+								<a title="Valider le commentaire" href="?p=admin&amp;tab=comments&amp;action=validatecomment&amp;commentId=<?= $signaledComment->getId(); ?>#signaled-comment"><i class="material-icons">done</i></a>
+								<a title="Supprimer le commentaire" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')" href="?p=admin&amp;tab=comments&amp;action=deletecomment&amp;commentId=<?= $signaledComment->getId(); ?>#signaled-comment"><i class="material-icons">delete</i></a>
 							</td>
 						</tr>
 					<?php
@@ -75,4 +75,4 @@ if (empty($listOfComments)) {
 	<a href="#to-the-top" title="Retour en haut" class="right"><i class="material-icons">arrow_upward</i></a>
 </div>
 
-<script type="text/javascript" src="public/js/script.js"></script>
+<script type="text/javascript" src="public/js/clignotement.js"></script>

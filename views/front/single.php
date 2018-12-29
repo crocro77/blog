@@ -20,6 +20,10 @@
         <hr>
     <h4 id="comments">Commentaire(s)</h4>
     <?php
+    if(isset($_SESSION['flash'])) {
+        include('includes/flash-msg.php');
+    }
+    
     if ($listOfComments != false) {
         foreach($listOfComments as $comment) {
     ?>
@@ -78,3 +82,4 @@
             </form>
         </div>
 </div>
+<script type="text/javascript" src="public/js/clignotement.js"></script>

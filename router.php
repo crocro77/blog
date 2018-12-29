@@ -11,20 +11,20 @@ try {
 				$signalController = new FrontController();
 				$content = $signalController->executeSignalComment($_GET['commentId']);
 				break;
-			case "validateComment":
+			case "validatecomment":
 				$validateComment = new AdminController();
 				$content = $validateComment->executeValidateComment();
 				break;
-			case "deleteComment":
+			case "deletecomment":
 				$deleteComment = new AdminController();
 				$content = $deleteComment->executeDeleteComment();
 				break;
-			case "seenComment":
+			case "seencomment":
 				$seenComment = new AdminController();
 				$content = $seenComment->executeSeenComment();
 				break;
 			// fonctionne pas /?\ double emploi avec lignes 44-48 /?\
-			case "editchapter":
+			case "edit":
 				$updateChapter = new AdminController();
 				$content = $updateChapter->executeUpdateChapter();
 				break;
