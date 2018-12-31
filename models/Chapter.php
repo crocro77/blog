@@ -102,27 +102,15 @@ class Chapter extends ObjectModel
 	 * @param string $content Le contenu
 	 * @param int $id L'id
 	 */
-	public static function update($title, $author, $content, $id)
+	public function updateChapter()
 	{
 		$db = Database::getDBConnection();
-		$request = $db->prepare('UPDATE posts SET title = :title, author = :author, content = :content WHERE id = :id');
-		$request->bindValue(':title', $title);
-		$request->bindValue(':author', $author);
-		$request->bindValue(':content', $content);
-		$request->bindValue(':id', (int) $id);
-		$request->execute();
-	}
-
-	/**
-	 * Met à jour l'image d'un chapitre.
-	 * @param string $chapter_image L'image
-	 */
-	public static function updateImage($chapter_image, $id)
-	{
-		$db = Database::getDBConnection();
-		$request = $db->prepare('UPDATE posts SET chapter_image = :chapter_image WHERE id = :id');
-		$request->bindValue(':chapter_image', $chapter_image);
-		$request->bindValue(':id', (int) $id);
+		$request = $db->prepare('UPDATE posts SET title = :title, author = :author, content = :content, chapter_image = :chapter_image WHERE id = :id');
+		$request->bindValue(':title', $this->getTitle());
+		$request->bindValue(':author', $this->getAuthor());
+		$request->bindValue(':content', $this->getContent());
+		$request->bindValue(':chapter_image', $this->getChapterImage());
+		$request->bindValue(':id', $this->getId());
 		$request->execute();
 	}
 	

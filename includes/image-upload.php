@@ -1,5 +1,6 @@
 <?php
 
+$chapter_image = '';
 if (isset($_FILES['file'])) {
     $file = $_FILES['file']['name'];
     $max_size = 2000000;

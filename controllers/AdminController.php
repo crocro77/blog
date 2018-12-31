@@ -4,6 +4,14 @@ require_once('includes/template-loader.php');
 
 class AdminController
 {
+	public function __construct()
+	{
+		if(!isset($_SESSION['username']) OR isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {
+			header('Location: index.php?p=login');
+			exit();
+		}
+	}
+
 	public function executeAdminPanel()
 	{
 		$selectedTab = 'dashboard';
@@ -24,74 +32,58 @@ class AdminController
 
 	public function executeCreateChapter()
     {
-		$title = $_POST['title'];
-		$author = $_POST['author'];
-		$content = $_POST['content'];
-		$chapter_image = "";
+		if(isset($_POST['title'])){
+			$errors = '';
+			if (empty($_POST['title'])) {
+				$errors .= '<li>Le titre est obligatoire.</li>';
+			}
+			if (empty($_POST['author'])) {
+				$errors .= '<li>L\'auteur est obligatoire.</li>';
+			}
+			if (empty($_POST['content'])) {
+				$errors .= '<li>Le contenu est obligatoire.</li>';
+			}
+			if (empty($errors)) {
+				// upload de l'image de chapitre
+				include 'includes/image-upload.php';
 
-		// upload de l'image de chapitre
-		include 'includes/image-upload.php';
-
-		// Create du chapitre
-		$chapter = new Chapter();
-		$chapter->setTitle($title);
-		$chapter->setContent($content);
-		$chapter->setAuthor($author);
-		$chapter->setChapterImage($chapter_image);
-		$chapter->add($chapter);
-		header("Location:index.php");
+				// Create du chapitre
+				$chapter = new Chapter();
+				$chapter->setTitle($_POST['title']);
+				$chapter->setContent($_POST['content']);
+				$chapter->setAuthor($_POST['author']);
+				$chapter->setChapterImage($chapter_image);
+				$chapter->add($chapter);
+				header("Location:index.php?p=admin&tab=list");
+			} else {
+				$_SESSION['flash']['error'] = '<ul>' . $errors . '</ul>';
+			}
+		}
+		return load_template('admin/admin.php', array('selectedTab' => 'write'));
 	}
 
 	public function executeUpdateChapter()
 	{
-		// $chapterManager = new Chapter();
-		// $chapter = $chapterManager->getUnique($_GET['id']);
-		// if($chapter) {
-		// 	$selectedTab = 'write';
-		// 	$action = 'edit';
-		// 	return load_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter, 'action' => $action));
-		// } else {
-		// 	header("Location:index.php?p=admin&tab=list");
-		// }
-
-		// maj d'un contenu dans la bdd //
-		// $errors = '';
-		// if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['content'])) {
-			$title = $_POST['title'];
-			$author = $_POST['author'];
-			$content = $_POST['content'];
-			$chapter_image = "";
-
-			// $id = (!empty($_POST['id']) ? $_POST['id'] : null);
-
-			// upload de l'image de chapitre
-			include 'includes/image-upload.php';
-
-			// si l'id existe déjà : update du chapitre
-			// if (isset($_POST['id'])) {
-				$chapter = new Chapter();
-				$chapter->update($title, $author, $content, $id);
-				if ($chapter_image) {
-					$chapter->updateImage($chapter_image, $id);
-					header("Location:index.php");
-				} else {
-					header("Location:index.php");
+		$chapterManager = new Chapter();
+		$chapter = $chapterManager->getUnique($_GET['id']);
+		if($chapter) {
+			if(isset($_POST['title'])) {
+				$chapter->setTitle($_POST['title']);
+				$chapter->setContent($_POST['content']);
+				$chapter->setAuthor($_POST['author']);
+				include 'includes/image-upload.php';
+				if(!empty($chapter_image)) {
+					$chapter->setChapterImage($chapter_image);
 				}
-			// }
-		// conditions si les champs demandés ne sont pas renseignés
-		// } elseif (!empty($_POST)) {
-		// 	if (empty($_POST['title'])) {
-		// 		$errors .= '<li>Le titre est obligatoire.</li>';
-		// 	}
-		// 	if (empty($_POST['author'])) {
-		// 		$errors .= '<li>L\'auteur est obligatoire.</li>';
-		// 	}
-		// 	if (empty($_POST['content'])) {
-		// 		$errors .= '<li>Le contenu est obligatoire.</li>';
-		// 	}
-
-		// 	$_SESSION['flash']['error'] = '<ul>' . $errors . '</ul>';
-		// }	
+				$chapter->updateChapter();
+				header("Location:index.php?p=admin&tab=list");
+			}
+			$selectedTab = 'write';
+			$action = 'edit';
+			return load_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter, 'action' => $action));
+		} else {
+			header("Location:index.php?p=admin&tab=list");
+		}
 	}
 
 	public function executeDeleteChapter()
