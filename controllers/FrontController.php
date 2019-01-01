@@ -69,7 +69,6 @@ class FrontController
         $commentManager = new Comment();
 		$comment = $commentManager->getSpecificComment($_GET['commentId']);
 		$commentManager->signal($comment);
-		$_SESSION['flash']['success'] = '<p class="flash-msg">Le commentaire a bien été signalé. Il sera modéré par l\'administrateur dès que possible.</p>';
 		header('Location: index.php?p=single&id='.($_GET['id']).'#comments');
     }
 }

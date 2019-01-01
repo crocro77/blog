@@ -32,7 +32,7 @@ class AdminController
 
 	public function executeCreateChapter()
     {
-		if(isset($_POST['title'])){
+		if(isset($_POST['title']) && isset($_POST['author']) && isset($_POST['content'])){
 			$errors = '';
 			if (empty($_POST['title'])) {
 				$errors .= '<li>Le titre est obligatoire.</li>';
@@ -44,14 +44,13 @@ class AdminController
 				$errors .= '<li>Le contenu est obligatoire.</li>';
 			}
 			if (empty($errors)) {
-				// upload de l'image de chapitre
-				include 'includes/image-upload.php';
-
 				// Create du chapitre
 				$chapter = new Chapter();
 				$chapter->setTitle($_POST['title']);
 				$chapter->setContent($_POST['content']);
 				$chapter->setAuthor($_POST['author']);
+				// upload de l'image de chapitre
+				include 'includes/image-upload.php';
 				$chapter->setChapterImage($chapter_image);
 				$chapter->add($chapter);
 				header("Location:index.php?p=admin&tab=list");
@@ -59,6 +58,7 @@ class AdminController
 				$_SESSION['flash']['error'] = '<ul>' . $errors . '</ul>';
 			}
 		}
+		
 		return load_template('admin/admin.php', array('selectedTab' => 'write'));
 	}
 
@@ -66,11 +66,13 @@ class AdminController
 	{
 		$chapterManager = new Chapter();
 		$chapter = $chapterManager->getUnique($_GET['id']);
+		// Edition du chapitre
 		if($chapter) {
-			if(isset($_POST['title'])) {
+			if(isset($_POST['title']) && isset($_POST['content']) && isset($_POST['author'])) {
 				$chapter->setTitle($_POST['title']);
 				$chapter->setContent($_POST['content']);
 				$chapter->setAuthor($_POST['author']);
+				// upload de l'image de chapitre
 				include 'includes/image-upload.php';
 				if(!empty($chapter_image)) {
 					$chapter->setChapterImage($chapter_image);

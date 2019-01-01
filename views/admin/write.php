@@ -14,10 +14,22 @@ if(isset($_SESSION['flash'])) {
 }
 
 ?>
+
+<?php
+// if(isset($_SESSION['data'])){
+// 	// check if data is available
+// 	$titleValue = $_SESSION['data']['title'];
+// 	$contentValue = $_SESSION['data']['content'];
+// 	} else {
+// 	$titleValue = '';
+// 	$contentValue = '';
+// }
+?>
+
 <form action="" method="post" enctype="multipart/form-data">
 	<div class="form-group">
 		<label for="title">Titre </label>
-		<input type="text" name="title" class="form-control" value="<?php if(isset($action) && $action == 'edit') echo $chapter->getTitle(); ?>" />
+		<input type="text" name="title" class="form-control" value="<?php if(isset($action) && $action == 'edit') echo $chapter->getTitle(); //else echo $titleValue ?>" />
 	</div>
 	<div class="form-group">
 		<label for="author">Auteur </label>
@@ -25,7 +37,7 @@ if(isset($_SESSION['flash'])) {
 	</div>
 	<div class="form-group">
 		<label for="content">Contenu </label>
-		<textarea name="content" class="form-control"><?php if(isset($action) && $action == 'edit') echo $chapter->getContent(); ?></textarea>
+		<textarea name="content" class="form-control"><?php if(isset($action) && $action == 'edit') echo $chapter->getContent(); // else echo $contentValue ?></textarea>
 	</div>
 	<br />
 	<img id="output_image" width="25%" height="25%"/>

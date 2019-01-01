@@ -2215,6 +2215,7 @@ figure {
    * 2. Show the overflow in Edge and IE.
    */
 hr {
+  color: #eee;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
   /* 1 */

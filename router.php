@@ -47,14 +47,10 @@ try {
 			$content = $controller->executeSingleChapter();
 			break;
 		case "admin":
-			// if(!isset($_SESSION['username']) OR isset($_SESSION['username']) AND $_SESSION['username'] !== 'j.forteroche') {
-			// 	header('Location: index.php?p=login');
-			// } else {
-				$pageTitle .= ' - Tableau de bord';
-				$panelController = new AdminController();
-				$content = $panelController->executeAdminPanel();
-				break;
-			//}
+			$pageTitle .= ' - Tableau de bord';
+			$panelController = new AdminController();
+			$content = $panelController->executeAdminPanel();
+			break;
 		case "write":
 			$createController = new AdminController();
 			$content = $createController->executeCreateChapter();

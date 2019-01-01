@@ -143,7 +143,8 @@ class Chapter extends ObjectModel
 	 */
 	public function setTitle($title)
 	{
-		if(is_string($title) && !empty($title)) {
+		if(is_string($title) && !empty($title) && strlen($title) < 255)
+		{
 			$this->title = $title;
 		}
 	}
@@ -154,7 +155,7 @@ class Chapter extends ObjectModel
 	 */
 	public function setContent($content)
 	{
-		if(is_string($content) && !empty($content)) 
+		if(is_string($content) && !empty($content) && strlen($content) < 16777215) 
 		{
 			$this->content = $content;
 		}
@@ -166,7 +167,7 @@ class Chapter extends ObjectModel
 	 */
 	public function setAuthor($author)
 	{
-		if(is_string($author) && !empty($author)) 
+		if(is_string($author) && !empty($author) && strlen($author) < 50) 
 		{
 			$this->author = $author;
 		}
