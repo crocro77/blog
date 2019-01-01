@@ -1,9 +1,6 @@
 <?php
 
 session_start();
-// $data = array("title"=>"titleValue", "content"=>"contentValue" );
-// // store any data in this array
-// $_SESSION['data'] = $data;
 
 /**
  * Autoloader permettant de charger les différentes classes.

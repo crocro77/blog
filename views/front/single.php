@@ -19,11 +19,7 @@
         <p><?= $chapterUnique->getContent(); ?></p>
         <hr>
     <h4 id="comments">Commentaire(s)</h4>
-    <?php
-    if(isset($_SESSION['flash'])) {
-        include('includes/flash-msg.php');
-    }
-    
+    <?php    
     if ($listOfComments != false) {
         foreach($listOfComments as $comment) {
     ?>

@@ -15,7 +15,6 @@ class AdminController
 	public function executeAdminPanel()
 	{
 		$selectedTab = 'dashboard';
-        $chapter = null;
         $chapterManager = new Chapter();
         $listOfChapters = $chapterManager->getList();
         $commentManager = new Comment();
@@ -27,7 +26,7 @@ class AdminController
 			$selectedTab = $_GET['tab'];
 		}
 
-		return load_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments, 'listOfChapters' => $listOfChapters, 'selectedTab' => $selectedTab, 'chapter' => $chapter));
+		return load_template('admin/admin.php', array('signaledComments' => $signaledComments, 'listOfComments' => $listOfComments, 'listOfChapters' => $listOfChapters, 'selectedTab' => $selectedTab));
 	}
 
 	public function executeCreateChapter()
@@ -65,26 +64,28 @@ class AdminController
 	public function executeUpdateChapter()
 	{
 		$chapterManager = new Chapter();
-		$chapter = $chapterManager->getUnique($_GET['id']);
-		// Edition du chapitre
-		if($chapter) {
-			if(isset($_POST['title']) && isset($_POST['content']) && isset($_POST['author'])) {
-				$chapter->setTitle($_POST['title']);
-				$chapter->setContent($_POST['content']);
-				$chapter->setAuthor($_POST['author']);
-				// upload de l'image de chapitre
-				include 'includes/image-upload.php';
-				if(!empty($chapter_image)) {
-					$chapter->setChapterImage($chapter_image);
+		if(isset($_GET['id'])) {
+			$chapter = $chapterManager->getUnique($_GET['id']);
+			// Edition du chapitre
+			if($chapter) {
+				if(isset($_POST['title']) && isset($_POST['content']) && isset($_POST['author'])) {
+					$chapter->setTitle($_POST['title']);
+					$chapter->setContent($_POST['content']);
+					$chapter->setAuthor($_POST['author']);
+					// upload de l'image de chapitre
+					include 'includes/image-upload.php';
+					if(!empty($chapter_image)) {
+						$chapter->setChapterImage($chapter_image);
+					}
+					$chapter->updateChapter();
+					header("Location:index.php?p=admin&tab=list");
 				}
-				$chapter->updateChapter();
+				$selectedTab = 'write';
+				$action = 'edit';
+				return load_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter, 'action' => $action));
+			} else {
 				header("Location:index.php?p=admin&tab=list");
 			}
-			$selectedTab = 'write';
-			$action = 'edit';
-			return load_template('admin/admin.php', array('selectedTab' => $selectedTab, 'chapter' => $chapter, 'action' => $action));
-		} else {
-			header("Location:index.php?p=admin&tab=list");
 		}
 	}
 
@@ -99,24 +100,30 @@ class AdminController
 	public function executeValidateComment()
 	{
 		// validation d'un commentaire signalé
-		$commentManager = new Comment();
-		$commentManager->validateComment($_GET['commentId']);
-        header("Location:index.php?p=admin&tab=comments");
+		if(isset($_GET['commentId'])) {
+			$commentManager = new Comment();
+			$commentManager->validateComment($_GET['commentId']);
+			header("Location:index.php?p=admin&tab=comments");
+		}
 	}
 
 	public function executeDeleteComment()
 	{
 		// suppression d'un commentaire
-		$commentManager = new Comment();
-		$commentManager->deleteComment($_GET['commentId']);
-        header("Location:index.php?p=admin&tab=comments");
+		if(isset($_GET['commentId'])) {
+			$commentManager = new Comment();
+			$commentManager->deleteComment($_GET['commentId']);
+			header("Location:index.php?p=admin&tab=comments");
+		}
 	}
 
 	public function executeSeenComment()
 	{
 		// marqué un commentaire comme vu
-		$commentManager = new Comment();
-		$commentManager->seenComment($_GET['commentId']);
-        header("Location:index.php?p=admin&tab=comments");
+		if(isset($_GET['commentId'])) {
+			$commentManager = new Comment();
+			$commentManager->seenComment($_GET['commentId']);
+			header("Location:index.php?p=admin&tab=comments");
+		}
 	}
 }
