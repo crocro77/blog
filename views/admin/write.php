@@ -28,15 +28,15 @@ if(isset($_POST['title']) || isset($_POST['content']))
 <form action="" method="post" enctype="multipart/form-data">
 	<div class="form-group">
 		<label for="title">Titre </label>
-		<input type="text" name="title" class="form-control" value="<?php if(isset($action) && $action == 'edit') echo $chapter->getTitle(); else echo $repopulateTitle ?>" />
+		<input type="text" name="title" id="title" class="form-control" value="<?php if(isset($action) && $action == 'edit') echo $chapter->getTitle(); else echo $repopulateTitle ?>" />
 	</div>
 	<div class="form-group">
 		<label for="author">Auteur </label>
-		<input type="text" name="author" class="form-control" value="<?php if(isset($action) && $action == 'edit') echo $chapter->getAuthor(); else echo "Jean Forteroche" ?>" />
+		<input type="text" name="author" id="author" class="form-control" value="<?php if(isset($action) && $action == 'edit') echo $chapter->getAuthor(); else echo "Jean Forteroche" ?>" />
 	</div>
 	<div class="form-group">
 		<label for="content">Contenu </label>
-		<textarea name="content" class="form-control"><?php if(isset($action) && $action == 'edit') echo $chapter->getContent(); else echo $repopulateContent ?></textarea>
+		<textarea name="content" id="content" class="form-control"><?php if(isset($action) && $action == 'edit') echo $chapter->getContent(); else echo $repopulateContent ?></textarea>
 	</div>
 	<br />
 	<img id="output_image" width="25%" height="25%"/>

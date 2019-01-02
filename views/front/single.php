@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label for="author" class="col-sm-1 control-label">Pseudo </label>
                     <div class="col-sm-offset-1 col-sm-2">
-                        <input type="text" name="author" class="form-control" required/>
+                        <input type="text" name="author" id="author" class="form-control" required/>
                     </div>
                 </div>
                 <?php
@@ -68,7 +68,7 @@
                 <div class="form-group">
                     <label for="comment" class="col-sm-1 control-label">Commentaire</label>
                         <div class="col-sm-offset-1 col-sm-10">
-                            <textarea name="comment" class="materialize-textarea" required></textarea>
+                            <textarea name="comment" id="comment" class="materialize-textarea" required></textarea>
                         </div>
                 </div>
                     <input type="hidden" name="id" value="<?= $chapterUnique->getId(); ?>">

@@ -8,7 +8,7 @@ if (empty($listOfComments)) {
 } else { ?>
 <div class="row">
 	<div class="container">
-		<table class="table">
+		<table id="comments-table" class="table">
 			<thead>
 				<th class="center">Chapitre</th>
 				<th>Commentaire</th>
