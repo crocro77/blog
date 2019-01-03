@@ -61,7 +61,7 @@ switch ($p) {
 	case "login":
 		$pageTitle .= ' - Connexion';
 		$controller = new AuthentificationController();
-		$content = $controller->executeLoginTest();
+		$content = $controller->executeLogin();
 		break;
 	case "logout":
 		$controller = new AuthentificationController();
